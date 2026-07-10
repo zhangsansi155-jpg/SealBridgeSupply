@@ -34,7 +34,7 @@ get_header();
                 <form class="quote-form">
                     <label>Name<input type="text" name="name" autocomplete="name"></label>
                     <label>Email<input type="email" name="email" autocomplete="email"></label>
-                    <label>WhatsApp<input type="tel" name="whatsapp" autocomplete="tel" placeholder="+86 138 0000 0000"></label>
+                    <label>WhatsApp<input type="tel" name="whatsapp" autocomplete="tel" placeholder="+86 187 7021 4461"></label>
                     <label>Product Type
                         <select name="product_type">
                             <option>Electrical Enclosure Gasket</option>
@@ -50,13 +50,9 @@ get_header();
                 </form>
                 <h2>Fast Contact Channels</h2>
                 <div class="contact-channel-grid">
-                    <a href="https://wa.me/8613800000000" target="_blank" rel="noopener">
+                    <a href="https://wa.me/8618770214461" target="_blank" rel="noopener">
                         <strong>WhatsApp</strong>
-                        <span>+86 138 0000 0000</span>
-                    </a>
-                    <a href="https://www.facebook.com/sealbridgesupply" target="_blank" rel="noopener">
-                        <strong>Facebook</strong>
-                        <span>facebook.com/sealbridgesupply</span>
+                        <span>+86 187 7021 4461</span>
                     </a>
                 </div>
                 <?php
@@ -67,8 +63,7 @@ get_header();
             <h2>Useful Attachments</h2>
             <p>Drawing, product photo, material target, quantity plan, and certificate requirements are the fastest path to a useful first quotation.</p>
             <div class="sidebar-contact-list">
-                <a href="https://wa.me/8613800000000" target="_blank" rel="noopener">WhatsApp: +86 138 0000 0000</a>
-                <a href="https://www.facebook.com/sealbridgesupply" target="_blank" rel="noopener">Facebook: SealBridge Supply</a>
+                <a href="https://wa.me/8618770214461" target="_blank" rel="noopener">WhatsApp: +86 187 7021 4461</a>
             </div>
             <a class="button" href="<?php echo esc_url(home_url('/products/')); ?>">View Products</a>
         </aside>

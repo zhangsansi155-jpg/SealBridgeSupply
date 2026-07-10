@@ -62,8 +62,7 @@ get_header();
                         <a class="button secondary" href="<?php echo esc_url(home_url('/products/')); ?>">Back to Products</a>
                     </div>
                     <div class="quote-contact-mini">
-                        <a href="https://wa.me/8613800000000" target="_blank" rel="noopener">WhatsApp: +86 138 0000 0000</a>
-                        <a href="https://www.facebook.com/sealbridgesupply" target="_blank" rel="noopener">Facebook: SealBridge Supply</a>
+                        <a href="https://wa.me/8618770214461" target="_blank" rel="noopener">WhatsApp: +86 187 7021 4461</a>
                     </div>
                 </div>
                 <div class="entry-content product-rich-content">
