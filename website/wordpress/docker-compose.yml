@@ -1,0 +1,42 @@
+services:
+  wordpress:
+    image: wordpress:6.6-php8.2-apache
+    restart: unless-stopped
+    ports:
+      - "${WORDPRESS_PORT:-8080}:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME:-sealbridge_wp}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER:-sealbridge}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD:-sealbridge_password}
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_ENVIRONMENT_TYPE', 'local');
+        define('DISALLOW_FILE_EDIT', true);
+    volumes:
+      - ./wordpress.htaccess:/var/www/html/.htaccess
+      - ./wp-content:/var/www/html/wp-content
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME:-sealbridge_wp}
+      MYSQL_USER: ${WORDPRESS_DB_USER:-sealbridge}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD:-sealbridge_password}
+      MYSQL_ROOT_PASSWORD: ${WORDPRESS_DB_ROOT_PASSWORD:-sealbridge_root_password}
+    volumes:
+      - ./db-data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:5
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${WORDPRESS_DB_USER:-sealbridge}
+      PMA_PASSWORD: ${WORDPRESS_DB_PASSWORD:-sealbridge_password}
+    depends_on:
+      - db

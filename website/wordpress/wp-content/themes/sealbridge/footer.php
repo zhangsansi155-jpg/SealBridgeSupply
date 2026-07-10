@@ -1,0 +1,41 @@
+<?php
+/**
+ * Site footer.
+ *
+ * @package SealBridge
+ */
+?>
+</main>
+<footer class="site-footer">
+    <div class="section-inner footer-grid">
+        <div class="footer-brand">
+            <strong><?php bloginfo('name'); ?></strong>
+            <p><?php bloginfo('description'); ?></p>
+        </div>
+        <nav class="footer-link-group" aria-label="<?php esc_attr_e('Products and sourcing', 'sealbridge'); ?>">
+            <strong>Explore</strong>
+            <a href="<?php echo esc_url(home_url('/products/')); ?>">Products</a>
+            <a href="<?php echo esc_url(home_url('/applications/')); ?>">Applications</a>
+            <a href="<?php echo esc_url(home_url('/insights/')); ?>">Articles</a>
+            <a href="<?php echo esc_url(home_url('/materials/')); ?>">Materials</a>
+            <a href="<?php echo esc_url(home_url('/capabilities/')); ?>">Capabilities</a>
+        </nav>
+        <nav class="footer-link-group" aria-label="<?php esc_attr_e('Company information', 'sealbridge'); ?>">
+            <strong>Company</strong>
+            <a href="<?php echo esc_url(home_url('/about/')); ?>">About</a>
+            <a href="<?php echo esc_url(home_url('/factory-screening/')); ?>">Factory Screening</a>
+            <a href="<?php echo esc_url(home_url('/service-follow-up/')); ?>">Service & Follow-up</a>
+            <a href="<?php echo esc_url(home_url('/sourcing-process/')); ?>">Sourcing Process</a>
+            <a href="<?php echo esc_url(home_url('/faq/')); ?>">FAQ</a>
+            <a href="<?php echo esc_url(home_url('/contact/')); ?>">Request a Quote</a>
+        </nav>
+        <nav class="footer-link-group" aria-label="<?php esc_attr_e('Policies and compliance', 'sealbridge'); ?>">
+            <strong>Trust</strong>
+            <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
+            <a href="<?php echo esc_url(home_url('/terms-of-service/')); ?>">Terms of Service</a>
+        </nav>
+    </div>
+</footer>
+<?php wp_footer(); ?>
+</body>
+</html>

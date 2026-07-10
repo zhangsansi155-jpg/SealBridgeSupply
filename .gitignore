@@ -1,0 +1,9 @@
+.DS_Store
+*.log
+
+# WordPress local environment (see website/wordpress/.gitignore)
+website/wordpress/.env
+website/wordpress/db-data/
+website/wordpress/wp-content/uploads/
+website/wordpress/wp-content/upgrade/
+website/wordpress/wp-content/cache/
