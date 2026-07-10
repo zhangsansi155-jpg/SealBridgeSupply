@@ -51,6 +51,11 @@ function sealbridge_assets(): void
 }
 add_action('wp_enqueue_scripts', 'sealbridge_assets');
 
+function sealbridge_logo_url(): string
+{
+    return get_template_directory_uri() . '/assets/sealbridge-logo.svg';
+}
+
 function sealbridge_seo_map(): array
 {
     return [
@@ -241,7 +246,7 @@ function sealbridge_seo_head(): void
     $description = trim(wp_strip_all_tags($seo['description'] ?? ''));
     $title = trim(wp_strip_all_tags($seo['title'] ?? wp_get_document_title()));
     $canonical = sealbridge_canonical_url();
-    $image = get_template_directory_uri() . '/assets/products/gallery/enclosure-gaskets-main.png';
+    $image = sealbridge_logo_url();
 
     if (is_singular('product')) {
         $image = sealbridge_product_image_url(get_queried_object());

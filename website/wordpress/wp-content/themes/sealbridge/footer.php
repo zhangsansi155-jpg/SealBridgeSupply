@@ -9,6 +9,7 @@
 <footer class="site-footer">
     <div class="section-inner footer-grid">
         <div class="footer-brand">
+            <img class="footer-logo" src="<?php echo esc_url(sealbridge_logo_url()); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>">
             <strong><?php bloginfo('name'); ?></strong>
             <p><?php bloginfo('description'); ?></p>
         </div>

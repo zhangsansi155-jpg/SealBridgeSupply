@@ -72,8 +72,21 @@ img {
 }
 
 .brand {
-  display: grid;
-  gap: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 240px;
+}
+
+.brand-logo {
+  display: block;
+  width: 184px;
+  max-width: 40vw;
+  height: auto;
+}
+
+.brand-copy {
+  display: none;
 }
 
 .brand-name {
@@ -85,6 +98,14 @@ img {
 .brand-tagline {
   color: var(--muted);
   font-size: 0.82rem;
+}
+
+.footer-logo {
+  display: block;
+  width: 204px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 12px;
 }
 
 .main-nav ul {

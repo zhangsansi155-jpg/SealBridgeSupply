@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 112" role="img" aria-labelledby="title desc">
+  <title id="title">SealBridge Supply logo</title>
+  <desc id="desc">A gasket ring and bridge mark beside the SealBridge Supply wordmark.</desc>
+  <defs>
+    <linearGradient id="markGradient" x1="14" y1="16" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2f6f5e"/>
+      <stop offset="1" stop-color="#0f3d38"/>
+    </linearGradient>
+  </defs>
+  <rect width="460" height="112" fill="none"/>
+  <g transform="translate(8 8)">
+    <circle cx="48" cy="48" r="42" fill="#f7f8f3" stroke="url(#markGradient)" stroke-width="8"/>
+    <circle cx="48" cy="48" r="20" fill="none" stroke="#d9a441" stroke-width="8"/>
+    <path d="M20 60c12-18 24-27 36-27s24 9 36 27" fill="none" stroke="#0f3d38" stroke-width="7" stroke-linecap="round"/>
+    <path d="M25 67h46" fill="none" stroke="#0f3d38" stroke-width="7" stroke-linecap="round"/>
+    <path d="M48 36v29" fill="none" stroke="#2f6f5e" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(118 31)">
+    <text x="0" y="28" fill="#142622" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" letter-spacing="0">SealBridge</text>
+    <text x="0" y="56" fill="#2f6f5e" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="1.8">SUPPLY</text>
+    <path d="M91 51h88" fill="none" stroke="#d9a441" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

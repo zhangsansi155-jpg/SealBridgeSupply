@@ -16,8 +16,11 @@
 <header class="site-header">
     <div class="header-inner">
         <a class="brand" href="<?php echo esc_url(home_url('/')); ?>">
-            <span class="brand-name"><?php bloginfo('name'); ?></span>
-            <span class="brand-tagline"><?php bloginfo('description'); ?></span>
+            <img class="brand-logo" src="<?php echo esc_url(sealbridge_logo_url()); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>">
+            <span class="brand-copy">
+                <span class="brand-name"><?php bloginfo('name'); ?></span>
+                <span class="brand-tagline"><?php bloginfo('description'); ?></span>
+            </span>
         </a>
         <nav class="main-nav" aria-label="<?php esc_attr_e('Primary navigation', 'sealbridge'); ?>">
             <?php
