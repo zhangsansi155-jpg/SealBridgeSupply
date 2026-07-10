@@ -199,7 +199,14 @@ function sealbridge_pre_document_title(?string $title): string
     }
 
     $seo = sealbridge_current_seo();
-    return trim(wp_strip_all_tags($seo['title'] ?? get_bloginfo('name'))) . ' | ' . get_bloginfo('name');
+    $seo_title = trim(wp_strip_all_tags($seo['title'] ?? get_bloginfo('name')));
+    $site_name = get_bloginfo('name');
+
+    if ($seo_title === '' || stripos($seo_title, $site_name) !== false) {
+        return $seo_title;
+    }
+
+    return $seo_title . ' | ' . $site_name;
 }
 add_filter('pre_get_document_title', 'sealbridge_pre_document_title');
 
@@ -270,6 +277,16 @@ function sealbridge_seo_head(): void
 }
 add_action('wp_head', 'sealbridge_seo_head', 2);
 remove_action('wp_head', 'rel_canonical');
+
+function sealbridge_disable_author_sitemap($provider, string $name)
+{
+    if ($name === 'users') {
+        return false;
+    }
+
+    return $provider;
+}
+add_filter('wp_sitemaps_add_provider', 'sealbridge_disable_author_sitemap', 10, 2);
 
 function sealbridge_default_menu(): void
 {
