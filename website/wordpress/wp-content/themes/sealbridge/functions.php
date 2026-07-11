@@ -283,6 +283,38 @@ function sealbridge_seo_head(): void
 add_action('wp_head', 'sealbridge_seo_head', 2);
 remove_action('wp_head', 'rel_canonical');
 
+/**
+ * The public website is English even when the WordPress dashboard locale is
+ * Chinese. Keep the admin locale untouched and declare the storefront
+ * language accurately for browsers and search engines.
+ */
+function sealbridge_public_language_attributes(string $output): string
+{
+    if (is_admin()) {
+        return $output;
+    }
+
+    return 'lang="en-US" dir="ltr"';
+}
+add_filter('language_attributes', 'sealbridge_public_language_attributes');
+
+/**
+ * Provide a theme-owned brand icon when no WordPress Site Icon is configured.
+ * Once an icon is selected in Settings > General, WordPress becomes the source
+ * of truth and this fallback is not printed.
+ */
+function sealbridge_brand_favicon(): void
+{
+    if (has_site_icon()) {
+        return;
+    }
+
+    $icon_url = get_template_directory_uri() . '/assets/sealbridge-favicon.svg';
+    echo '<link rel="icon" href="' . esc_url($icon_url) . '" type="image/svg+xml">' . "\n";
+    echo '<meta name="application-name" content="SealBridge Supply">' . "\n";
+}
+add_action('wp_head', 'sealbridge_brand_favicon', 3);
+
 function sealbridge_disable_author_sitemap($provider, string $name)
 {
     if ($name === 'users') {
