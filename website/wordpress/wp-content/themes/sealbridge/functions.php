@@ -260,21 +260,48 @@ function sealbridge_seo_head(): void
     echo '<meta property="og:description" content="' . esc_attr($description) . '">' . "\n";
     echo '<meta property="og:url" content="' . esc_url($canonical) . '">' . "\n";
     echo '<meta property="og:type" content="' . (is_singular() ? 'article' : 'website') . '">' . "\n";
+    echo '<meta property="og:site_name" content="' . esc_attr(get_bloginfo('name')) . '">' . "\n";
     echo '<meta property="og:image" content="' . esc_url($image) . '">' . "\n";
 
-    $schema = [
-        '@context' => 'https://schema.org',
-        '@type' => is_singular('product') ? 'Product' : 'Organization',
-        'name' => is_singular('product') ? get_the_title() : get_bloginfo('name'),
-        'description' => $description,
-        'url' => $canonical,
-    ];
+    if (is_front_page()) {
+        $home_url = home_url('/');
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'Organization',
+                    '@id' => $home_url . '#organization',
+                    'name' => get_bloginfo('name'),
+                    'url' => $home_url,
+                    'logo' => $image,
+                    'description' => $description,
+                ],
+                [
+                    '@type' => 'WebSite',
+                    '@id' => $home_url . '#website',
+                    'name' => get_bloginfo('name'),
+                    'alternateName' => 'SealBridge',
+                    'url' => $home_url,
+                    'publisher' => ['@id' => $home_url . '#organization'],
+                    'inLanguage' => 'en-US',
+                ],
+            ],
+        ];
+    } else {
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@type' => is_singular('product') ? 'Product' : 'Organization',
+            'name' => is_singular('product') ? get_the_title() : get_bloginfo('name'),
+            'description' => $description,
+            'url' => $canonical,
+        ];
+    }
 
     if (is_singular('product')) {
         $schema['brand'] = ['@type' => 'Brand', 'name' => get_bloginfo('name')];
         $schema['image'] = $image;
         $schema['category'] = 'Custom gasket';
-    } else {
+    } elseif (!is_front_page()) {
         $schema['logo'] = $image;
     }
 
