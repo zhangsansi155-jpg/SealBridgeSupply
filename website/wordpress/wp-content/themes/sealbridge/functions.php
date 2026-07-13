@@ -290,7 +290,7 @@ function sealbridge_seo_head(): void
     } else {
         $schema = [
             '@context' => 'https://schema.org',
-            '@type' => is_singular('product') ? 'Product' : 'Organization',
+            '@type' => is_singular('product') ? 'Service' : 'Organization',
             'name' => is_singular('product') ? get_the_title() : get_bloginfo('name'),
             'description' => $description,
             'url' => $canonical,
@@ -298,9 +298,15 @@ function sealbridge_seo_head(): void
     }
 
     if (is_singular('product')) {
-        $schema['brand'] = ['@type' => 'Brand', 'name' => get_bloginfo('name')];
         $schema['image'] = $image;
-        $schema['category'] = 'Custom gasket';
+        $schema['serviceType'] = 'Custom gasket sourcing and project coordination';
+        $schema['provider'] = [
+            '@type' => 'Organization',
+            '@id' => home_url('/') . '#organization',
+            'name' => get_bloginfo('name'),
+            'url' => home_url('/'),
+        ];
+        $schema['areaServed'] = 'Worldwide';
     } elseif (!is_front_page()) {
         $schema['logo'] = $image;
     }
