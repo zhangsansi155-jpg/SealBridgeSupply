@@ -90,6 +90,35 @@ get_header();
                     </div>
                 <?php endif; ?>
                 <?php
+                $related_article_slugs = sealbridge_product_article_slugs(get_post_field('post_name', get_the_ID()));
+                $related_articles = [];
+                foreach ($related_article_slugs as $article_slug) {
+                    $article_post = get_page_by_path($article_slug, OBJECT, 'post');
+                    if ($article_post instanceof WP_Post && $article_post->post_status === 'publish') {
+                        $related_articles[] = $article_post;
+                    }
+                }
+                if ($related_articles) :
+                    ?>
+                    <section class="product-parameter-section" aria-labelledby="related-buying-guides">
+                        <div class="section-header">
+                            <span class="eyebrow">Technical Library</span>
+                            <h2 id="related-buying-guides">Related Gasket Buying Guides</h2>
+                            <p>Use these articles to confirm materials, sealing conditions, drawings, and quotation details before requesting a sample.</p>
+                        </div>
+                        <div class="grid products">
+                            <?php foreach ($related_articles as $related_article) : ?>
+                                <article class="article-card">
+                                    <span class="article-meta"><?php echo esc_html(get_the_date('', $related_article)); ?></span>
+                                    <h3><a href="<?php echo esc_url(get_permalink($related_article)); ?>"><?php echo esc_html(get_the_title($related_article)); ?></a></h3>
+                                    <p><?php echo esc_html(get_the_excerpt($related_article)); ?></p>
+                                    <a class="text-link" href="<?php echo esc_url(get_permalink($related_article)); ?>">Read Buying Guide</a>
+                                </article>
+                            <?php endforeach; ?>
+                        </div>
+                    </section>
+                <?php endif; ?>
+                <?php
             endwhile;
             ?>
         </article>

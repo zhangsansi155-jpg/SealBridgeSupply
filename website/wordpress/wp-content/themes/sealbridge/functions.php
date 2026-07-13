@@ -71,6 +71,28 @@ function sealbridge_seo_map(): array
             'title' => 'Gasket Application Scenarios for Electrical Enclosures',
             'description' => 'Application guides for outdoor electrical enclosure gaskets, control cabinet door seals, junction box gaskets, EV charger cabinets, solar inverters, and LED housings.',
         ],
+        'categories' => [
+            'material-selection' => [
+                'title' => 'Gasket Material Selection Guides',
+                'description' => 'Compare EPDM, silicone, sponge, foam, hardness, density, temperature, compression, and adhesive options for custom gasket projects.',
+            ],
+            'enclosure-sealing' => [
+                'title' => 'Electrical Enclosure Sealing Guides',
+                'description' => 'Practical guides for electrical enclosure gaskets, control cabinet door seals, outdoor boxes, compression design, and ingress protection projects.',
+            ],
+            'gasket-quotation' => [
+                'title' => 'Custom Gasket Quotation Guides',
+                'description' => 'Prepare gasket RFQs with the right drawings, materials, tolerances, quantities, tooling, inspection, packaging, and compliance information.',
+            ],
+            'compliance-testing' => [
+                'title' => 'Gasket Compliance and Testing Guides',
+                'description' => 'Understand IP testing, material documents, certificates, inspection requirements, and compliance questions for enclosure gasket projects.',
+            ],
+            'manufacturing-guides' => [
+                'title' => 'Custom Gasket Manufacturing Guides',
+                'description' => 'Guides to die cutting, adhesive lamination, release liners, tooling, tolerances, sampling, and production of custom gaskets.',
+            ],
+        ],
         'products' => [
             'electrical-enclosure-gaskets' => [
                 'title' => 'Electrical Enclosure Gaskets | Custom Enclosure Gasket Supplier',
@@ -134,6 +156,10 @@ function sealbridge_seo_map(): array
                 'title' => 'Gasket Selection Guides and Sourcing Articles',
                 'description' => 'Articles about enclosure gasket material selection, EPDM vs silicone, die-cut gasket quotes, IP-rated sealing support, and document review.',
             ],
+            'articles' => [
+                'title' => 'Gasket Selection Guides and Sourcing Articles',
+                'description' => 'Practical gasket guides covering material selection, enclosure sealing, RFQ preparation, compliance questions, and custom manufacturing.',
+            ],
         ],
     ];
 }
@@ -156,6 +182,14 @@ function sealbridge_current_seo(): array
 
     if (is_post_type_archive('application')) {
         return $map['applications_archive'];
+    }
+
+    if (is_category()) {
+        $category = get_queried_object();
+        return $map['categories'][$category->slug] ?? [
+            'title' => single_cat_title('', false),
+            'description' => category_description($category->term_id) ?: get_bloginfo('description'),
+        ];
     }
 
     if (is_singular('product')) {
@@ -227,6 +261,12 @@ function sealbridge_canonical_url(): string
 
     if (is_post_type_archive('application')) {
         return get_post_type_archive_link('application') ?: home_url('/applications/');
+    }
+
+    if (is_category()) {
+        $category = get_queried_object();
+        $category_url = get_category_link($category->term_id);
+        return is_wp_error($category_url) ? home_url('/') : $category_url;
     }
 
     if (is_singular() || is_page()) {
@@ -355,6 +395,41 @@ function sealbridge_brand_favicon(): void
     echo '<meta name="application-name" content="SealBridge Supply">' . "\n";
 }
 add_action('wp_head', 'sealbridge_brand_favicon', 3);
+
+/**
+ * Return the most useful editorial guides for a product category.
+ */
+function sealbridge_product_article_slugs(string $product_slug): array
+{
+    $map = [
+        'electrical-enclosure-gaskets' => [
+            'how-to-choose-electrical-enclosure-gaskets-outdoor-boxes',
+            'can-a-gasket-be-ip65-or-ip66-certified',
+        ],
+        'control-cabinet-sealing-strips' => [
+            'control-cabinet-door-seal-profiles',
+            'how-to-choose-electrical-enclosure-gaskets-outdoor-boxes',
+        ],
+        'epdm-foam-gaskets' => [
+            'epdm-foam-gasket-with-adhesive-key-quote-parameters',
+            'epdm-vs-silicone-outdoor-enclosure-gaskets',
+        ],
+        'silicone-gaskets' => [
+            'silicone-gaskets-led-lighting-outdoor-electronics',
+            'epdm-vs-silicone-outdoor-enclosure-gaskets',
+        ],
+        'adhesive-backed-die-cut-gaskets' => [
+            'adhesive-backed-die-cut-gaskets-fast-enclosure-assembly',
+            'custom-die-cut-gasket-quote-information',
+        ],
+        'custom-rubber-gaskets' => [
+            'custom-rubber-gaskets-according-to-drawing-sample-quote',
+            'custom-die-cut-gasket-quote-information',
+        ],
+    ];
+
+    return $map[$product_slug] ?? [];
+}
 
 function sealbridge_disable_author_sitemap($provider, string $name)
 {
