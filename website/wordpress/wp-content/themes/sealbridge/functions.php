@@ -332,7 +332,9 @@ function sealbridge_public_language_attributes(string $output): string
 add_filter('language_attributes', 'sealbridge_public_language_attributes');
 
 /**
- * Provide a theme-owned brand icon when no WordPress Site Icon is configured.
+ * Provide a complete theme-owned brand icon set when no WordPress Site Icon is
+ * configured. SVG remains the sharpest option, while the raster fallbacks are
+ * used by search engines, link previews, older browsers, and Apple devices.
  * Once an icon is selected in Settings > General, WordPress becomes the source
  * of truth and this fallback is not printed.
  */
@@ -342,8 +344,14 @@ function sealbridge_brand_favicon(): void
         return;
     }
 
-    $icon_url = get_template_directory_uri() . '/assets/sealbridge-favicon.svg';
-    echo '<link rel="icon" href="' . esc_url($icon_url) . '" type="image/svg+xml">' . "\n";
+    $assets_url = get_template_directory_uri() . '/assets/';
+    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon.svg') . '" type="image/svg+xml">' . "\n";
+    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon-48.png') . '" type="image/png" sizes="48x48">' . "\n";
+    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon-96.png') . '" type="image/png" sizes="96x96">' . "\n";
+    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon-192.png') . '" type="image/png" sizes="192x192">' . "\n";
+    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon-512.png') . '" type="image/png" sizes="512x512">' . "\n";
+    echo '<link rel="shortcut icon" href="' . esc_url($assets_url . 'favicon.ico') . '" type="image/x-icon">' . "\n";
+    echo '<link rel="apple-touch-icon" href="' . esc_url($assets_url . 'apple-touch-icon.png') . '" sizes="180x180">' . "\n";
     echo '<meta name="application-name" content="SealBridge Supply">' . "\n";
 }
 add_action('wp_head', 'sealbridge_brand_favicon', 3);
