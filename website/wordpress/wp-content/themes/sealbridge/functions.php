@@ -403,15 +403,15 @@ function sealbridge_product_article_slugs(string $product_slug): array
 {
     $map = [
         'electrical-enclosure-gaskets' => [
-            'how-to-choose-electrical-enclosure-gaskets-outdoor-boxes',
+            'choose-electrical-enclosure-gaskets-outdoor-boxes',
             'can-a-gasket-be-ip65-or-ip66-certified',
         ],
         'control-cabinet-sealing-strips' => [
             'control-cabinet-door-seal-profiles',
-            'how-to-choose-electrical-enclosure-gaskets-outdoor-boxes',
+            'choose-electrical-enclosure-gaskets-outdoor-boxes',
         ],
         'epdm-foam-gaskets' => [
-            'epdm-foam-gasket-with-adhesive-key-quote-parameters',
+            'epdm-foam-gasket-with-adhesive-quote-parameters',
             'epdm-vs-silicone-outdoor-enclosure-gaskets',
         ],
         'silicone-gaskets' => [
