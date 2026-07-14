@@ -385,13 +385,16 @@ function sealbridge_brand_favicon(): void
     }
 
     $assets_url = get_template_directory_uri() . '/assets/';
-    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon.svg') . '" type="image/svg+xml">' . "\n";
-    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon-48.png') . '" type="image/png" sizes="48x48">' . "\n";
-    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon-96.png') . '" type="image/png" sizes="96x96">' . "\n";
-    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon-192.png') . '" type="image/png" sizes="192x192">' . "\n";
-    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon-512.png') . '" type="image/png" sizes="512x512">' . "\n";
-    echo '<link rel="shortcut icon" href="' . esc_url($assets_url . 'favicon.ico') . '" type="image/x-icon">' . "\n";
-    echo '<link rel="apple-touch-icon" href="' . esc_url($assets_url . 'apple-touch-icon.png') . '" sizes="180x180">' . "\n";
+    $assets_path = get_template_directory() . '/assets/';
+    $asset_version = (string) filemtime($assets_path . 'sealbridge-favicon.svg');
+    $version_query = '?ver=' . rawurlencode($asset_version);
+    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon.svg' . $version_query) . '" type="image/svg+xml">' . "\n";
+    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon-48.png' . $version_query) . '" type="image/png" sizes="48x48">' . "\n";
+    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon-96.png' . $version_query) . '" type="image/png" sizes="96x96">' . "\n";
+    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon-192.png' . $version_query) . '" type="image/png" sizes="192x192">' . "\n";
+    echo '<link rel="icon" href="' . esc_url($assets_url . 'sealbridge-favicon-512.png' . $version_query) . '" type="image/png" sizes="512x512">' . "\n";
+    echo '<link rel="shortcut icon" href="' . esc_url($assets_url . 'favicon.ico' . $version_query) . '" type="image/x-icon">' . "\n";
+    echo '<link rel="apple-touch-icon" href="' . esc_url($assets_url . 'apple-touch-icon.png' . $version_query) . '" sizes="180x180">' . "\n";
     echo '<meta name="application-name" content="SealBridge Supply">' . "\n";
 }
 add_action('wp_head', 'sealbridge_brand_favicon', 3);
@@ -416,7 +419,7 @@ function sealbridge_serve_root_favicon(): void
     status_header(200);
     header('Content-Type: image/x-icon');
     header('Content-Length: ' . (string) filesize($favicon_path));
-    header('Cache-Control: public, max-age=86400');
+    header('Cache-Control: public, max-age=3600');
     readfile($favicon_path);
     exit;
 }
