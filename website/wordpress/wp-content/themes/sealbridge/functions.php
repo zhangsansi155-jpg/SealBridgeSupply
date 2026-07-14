@@ -397,6 +397,32 @@ function sealbridge_brand_favicon(): void
 add_action('wp_head', 'sealbridge_brand_favicon', 3);
 
 /**
+ * Serve the brand icon from the conventional root favicon URL.
+ *
+ * WordPress handles /favicon.ico through the `do_faviconico` action and falls
+ * back to its own blue W logo when the request is not overridden.  Browsers,
+ * crawlers, and link-preview tools still request this root URL even when the
+ * page head contains explicit icon links, so keep it aligned with the theme
+ * icon set and return the image directly without a redirect.
+ */
+function sealbridge_serve_root_favicon(): void
+{
+    $favicon_path = get_template_directory() . '/assets/favicon.ico';
+
+    if (!is_readable($favicon_path)) {
+        return;
+    }
+
+    status_header(200);
+    header('Content-Type: image/x-icon');
+    header('Content-Length: ' . (string) filesize($favicon_path));
+    header('Cache-Control: public, max-age=86400');
+    readfile($favicon_path);
+    exit;
+}
+add_action('do_faviconico', 'sealbridge_serve_root_favicon', 0);
+
+/**
  * Return the most useful editorial guides for a product category.
  */
 function sealbridge_product_article_slugs(string $product_slug): array
