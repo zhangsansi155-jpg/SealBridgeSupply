@@ -1,5 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#123b4a"/>
-  <path d="M18 20h31v8H26v7h19c4 0 7 3 7 7v2c0 6-5 10-11 10H15v-8h27c1 0 2-1 2-2v-1H25c-4 0-7-3-7-7V20Z" fill="#f5a623"/>
-  <circle cx="16" cy="16" r="5" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" role="img" aria-labelledby="title desc">
+  <title id="title">SealBridge Supply icon</title>
+  <desc id="desc">The SealBridge Supply gasket ring and bridge mark.</desc>
+  <defs>
+    <linearGradient id="markGradient" x1="14" y1="16" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2f6f5e"/>
+      <stop offset="1" stop-color="#0f3d38"/>
+    </linearGradient>
+  </defs>
+  <rect width="112" height="112" fill="#ffffff"/>
+  <g transform="translate(8 8)">
+    <circle cx="48" cy="48" r="42" fill="#f7f8f3" stroke="url(#markGradient)" stroke-width="8"/>
+    <circle cx="48" cy="48" r="20" fill="none" stroke="#d9a441" stroke-width="8"/>
+    <path d="M20 60c12-18 24-27 36-27s24 9 36 27" fill="none" stroke="#0f3d38" stroke-width="7" stroke-linecap="round"/>
+    <path d="M25 67h46" fill="none" stroke="#0f3d38" stroke-width="7" stroke-linecap="round"/>
+    <path d="M48 36v29" fill="none" stroke="#2f6f5e" stroke-width="5" stroke-linecap="round"/>
+  </g>
 </svg>
