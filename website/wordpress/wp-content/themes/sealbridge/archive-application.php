@@ -22,7 +22,7 @@ get_header();
                     ?>
                     <article class="card">
                         <div class="card-marker"></div>
-                        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                        <h2><a href="<?php the_permalink(); ?>"><?php echo esc_html(sealbridge_application_display_title()); ?></a></h2>
                         <p><?php echo esc_html(get_the_excerpt()); ?></p>
                     </article>
                     <?php

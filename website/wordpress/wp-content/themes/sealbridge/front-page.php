@@ -12,7 +12,7 @@ get_header();
     <div class="section-inner hero-grid">
         <div>
             <span class="eyebrow">Custom Gasket Sourcing</span>
-            <h1>Custom Gaskets for Electrical Enclosures & Control Cabinets</h1>
+            <h1>Custom Gasket Sourcing for Electrical Enclosures & Control Cabinets</h1>
             <p>Sourcing, sampling, and production coordination for EPDM foam gaskets, silicone gaskets, adhesive-backed die-cut gaskets, sealing strips, and custom rubber parts.</p>
             <div class="hero-actions">
                 <a class="button" href="<?php echo esc_url(home_url('/contact/')); ?>">Request a Quote</a>
@@ -40,7 +40,7 @@ get_header();
             <?php foreach (array_slice(sealbridge_application_scenarios(), 0, 6) as $scenario) : ?>
                 <article class="scenario-card">
                     <span class="scenario-icon"></span>
-                    <h3><?php echo esc_html($scenario[0]); ?></h3>
+                    <h3><a href="<?php echo esc_url(home_url('/applications/' . $scenario[3] . '/')); ?>"><?php echo esc_html($scenario[0]); ?></a></h3>
                     <p><?php echo esc_html($scenario[1]); ?></p>
                     <strong>Recommended: <?php echo esc_html($scenario[2]); ?></strong>
                 </article>

@@ -80,7 +80,7 @@ get_header();
             <?php foreach (sealbridge_application_scenarios() as $scenario) : ?>
                 <article class="scenario-card">
                     <span class="scenario-icon"></span>
-                    <h3><?php echo esc_html($scenario[0]); ?></h3>
+                    <h3><a href="<?php echo esc_url(home_url('/applications/' . $scenario[3] . '/')); ?>"><?php echo esc_html($scenario[0]); ?></a></h3>
                     <p><?php echo esc_html($scenario[1]); ?></p>
                     <strong><?php echo esc_html($scenario[2]); ?></strong>
                 </article>

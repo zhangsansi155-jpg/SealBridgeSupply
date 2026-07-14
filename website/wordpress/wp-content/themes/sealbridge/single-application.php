@@ -17,7 +17,7 @@ get_header();
                 $article = sealbridge_application_article();
                 ?>
                 <p class="eyebrow">Application</p>
-                <h1 class="page-title"><?php the_title(); ?></h1>
+                <h1 class="page-title"><?php echo esc_html(sealbridge_application_display_title()); ?></h1>
                 <div class="intro-band">
                     <p><?php echo esc_html($article['summary']); ?></p>
                 </div>
@@ -35,6 +35,22 @@ get_header();
                         <li><?php echo esc_html($material); ?></li>
                     <?php endforeach; ?>
                 </ul>
+                <?php if (!empty($article['structures'])) : ?>
+                    <h2>Common Gasket Structures</h2>
+                    <ul>
+                        <?php foreach ($article['structures'] as $structure) : ?>
+                            <li><?php echo esc_html($structure); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+                <?php if (!empty($article['selection_factors'])) : ?>
+                    <h2>Selection Factors to Confirm</h2>
+                    <ul class="feature-list">
+                        <?php foreach ($article['selection_factors'] as $selection_factor) : ?>
+                            <li><?php echo esc_html($selection_factor); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
                 <h2>Related Product Categories</h2>
                 <div class="related-products-grid">
                     <?php foreach ($article['products'] as $product_slug) :
@@ -62,6 +78,19 @@ get_header();
                 </table>
                 <h2>Practical Note</h2>
                 <p>For IP-rated enclosure projects, the gasket supports sealing performance, but the final IP rating belongs to the complete enclosure assembly and test condition. Material choice, compression design, installation method, and production tolerance should be reviewed together.</p>
+                <?php if (!empty($article['related_articles'])) : ?>
+                    <h2>Related Technical Guides</h2>
+                    <ul>
+                        <?php foreach ($article['related_articles'] as $article_slug) :
+                            $related_article = get_page_by_path($article_slug, OBJECT, 'post');
+                            if (!$related_article) {
+                                continue;
+                            }
+                            ?>
+                            <li><a href="<?php echo esc_url(get_permalink($related_article)); ?>"><?php echo esc_html(get_the_title($related_article)); ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
                 <?php
             endwhile;
             ?>

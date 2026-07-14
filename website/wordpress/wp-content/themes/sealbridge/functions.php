@@ -60,8 +60,8 @@ function sealbridge_seo_map(): array
 {
     return [
         'home' => [
-            'title' => 'Custom Gaskets for Electrical Enclosures & Control Cabinets',
-            'description' => 'Custom enclosure gaskets, cabinet door seals, EPDM foam gaskets, silicone gaskets, and adhesive-backed die-cut gaskets for B2B projects.',
+            'title' => 'Custom Gasket Sourcing for Electrical Enclosures & Control Cabinets',
+            'description' => 'Custom gasket sourcing, sampling, and production coordination for electrical enclosures, cabinet doors, EPDM foam, silicone, and die-cut gasket projects.',
         ],
         'products_archive' => [
             'title' => 'Custom Gasket Product Categories for Enclosures and Cabinets',
@@ -117,6 +117,16 @@ function sealbridge_seo_map(): array
             'custom-rubber-gaskets' => [
                 'title' => 'Custom Rubber Gaskets According to Drawing | Rubber Seals',
                 'description' => 'Custom rubber gaskets and custom rubber seals according to drawing, sample, non-standard size, material, hardness, and project requirements.',
+            ],
+        ],
+        'applications' => [
+            'junction-boxes' => [
+                'title' => 'Junction Box Gaskets | Custom Die-Cut and Adhesive-Backed Seals',
+                'description' => 'Custom junction box gaskets for cover sealing, including die-cut EPDM foam, adhesive-backed seals, silicone gaskets, and drawing-based quotation support.',
+            ],
+            'ev-charger-cabinets' => [
+                'title' => 'EV Charger Enclosure Gaskets | Outdoor Cabinet Sealing',
+                'description' => 'Custom EV charger enclosure gaskets for cabinet doors, access panels, and outdoor housings using EPDM foam, silicone, and drawing-based sealing parts.',
             ],
         ],
         'pages' => [
@@ -195,6 +205,14 @@ function sealbridge_current_seo(): array
     if (is_singular('product')) {
         $post = get_queried_object();
         return $map['products'][$post->post_name] ?? $fallback;
+    }
+
+    if (is_singular('application')) {
+        $post = get_queried_object();
+        return $map['applications'][$post->post_name] ?? [
+            'title' => get_the_title($post),
+            'description' => has_excerpt($post) ? get_the_excerpt($post) : wp_trim_words(wp_strip_all_tags($post->post_content), 24),
+        ];
     }
 
     if (is_page()) {
@@ -831,13 +849,28 @@ function sealbridge_product_parameters(?WP_Post $post = null): array
 function sealbridge_application_scenarios(): array
 {
     return [
-        ['Outdoor Electrical Enclosures', 'EPDM foam, silicone, and custom frame gaskets for outdoor box sealing.', 'EPDM Foam Gaskets / Enclosure Gaskets'],
-        ['Control Cabinets', 'Door sealing strips, edge trims, and compression gaskets for repeated cabinet access.', 'Control Cabinet Sealing Strips'],
-        ['Junction Boxes', 'Compact die-cut gaskets and adhesive-backed pads for cover and panel sealing.', 'Adhesive Backed Die Cut Gaskets'],
-        ['EV Charger Cabinets', 'Outdoor gasket options for access doors, panels, and weather-exposed assemblies.', 'EPDM Foam / Silicone Gaskets'],
-        ['Solar Inverter Enclosures', 'UV, aging, and compression-focused sealing for outdoor energy equipment.', 'EPDM / Silicone Gaskets'],
-        ['LED Lighting Housings', 'Soft silicone and foam gaskets for covers, lenses, and outdoor fixtures.', 'Silicone Gaskets / Foam Gaskets'],
+        ['Outdoor Electrical Enclosures', 'EPDM foam, silicone, and custom frame gaskets for outdoor box sealing.', 'EPDM Foam Gaskets / Enclosure Gaskets', 'outdoor-electrical-enclosures'],
+        ['Control Cabinets', 'Door sealing strips, edge trims, and compression gaskets for repeated cabinet access.', 'Control Cabinet Sealing Strips', 'control-cabinets'],
+        ['Junction Box Gaskets', 'Compact die-cut gaskets and adhesive-backed pads for cover and panel sealing.', 'Adhesive Backed Die Cut Gaskets', 'junction-boxes'],
+        ['EV Charger Enclosure Gaskets', 'Outdoor gasket options for charger cabinet doors, access panels, and housings.', 'EPDM Foam / Silicone Gaskets', 'ev-charger-cabinets'],
+        ['Solar Inverter Enclosures', 'UV, aging, and compression-focused sealing for outdoor energy equipment.', 'EPDM / Silicone Gaskets', 'solar-inverter-enclosures'],
+        ['LED Lighting Housings', 'Soft silicone and foam gaskets for covers, lenses, and outdoor fixtures.', 'Silicone Gaskets / Foam Gaskets', 'led-lighting-housings'],
     ];
+}
+
+/**
+ * Keep application H1s aligned with the primary buyer-intent query even when
+ * an older database title is still present.
+ */
+function sealbridge_application_display_title(?WP_Post $post = null): string
+{
+    $post = $post ?: get_post();
+    $titles = [
+        'junction-boxes' => 'Junction Box Gaskets',
+        'ev-charger-cabinets' => 'EV Charger Enclosure Gaskets',
+    ];
+
+    return $titles[$post->post_name] ?? get_the_title($post);
 }
 
 function sealbridge_application_article(?WP_Post $post = null): array
@@ -860,18 +893,24 @@ function sealbridge_application_article(?WP_Post $post = null): array
             'quote' => ['Profile drawing or sample photo', 'Material and hardness', 'Strip length and annual quantity', 'Corner joining or cutting requirement', 'Packaging and label needs'],
         ],
         'junction-boxes' => [
-            'summary' => 'Junction boxes often need compact die-cut gaskets, adhesive-backed pads, or formed enclosure gaskets that support cover sealing and quick assembly.',
-            'pain_points' => ['Small gasket dimensions make tolerance important', 'Adhesive backing must match assembly surface', 'Cover screw compression may be uneven', 'Outdoor boxes need better aging resistance than ordinary EVA foam'],
-            'materials' => ['EPDM foam for outdoor box sealing', 'Adhesive-backed foam for fast assembly', 'Silicone gasket when softness or temperature range matters'],
+            'summary' => 'Custom junction box gaskets seal the joint between a box body and its removable cover. Common formats include die-cut EPDM foam frames, adhesive-backed seals, molded rubber gaskets, and silicone parts made to the cover drawing.',
+            'pain_points' => ['Small gasket paths make dimensional tolerance and corner continuity important', 'Adhesive backing must match powder-coated metal, plastic, or another assembly surface', 'Cover screws can create uneven compression between fastening points', 'Outdoor junction boxes need stronger weather and aging resistance than general-purpose open-cell foam'],
+            'materials' => ['Closed-cell EPDM foam for outdoor junction box cover sealing', 'Adhesive-backed die-cut foam for controlled placement and faster assembly', 'Silicone foam or solid silicone where softness or wider temperature exposure matters'],
+            'structures' => ['One-piece die-cut frame gasket', 'Kiss-cut adhesive-backed gasket supplied on a release liner', 'Molded cover gasket with controlled corners', 'Foam strip joined into a frame for larger or lower-volume boxes'],
+            'selection_factors' => ['Cover flange width and gasket path', 'Minimum, nominal, and maximum sealing gap', 'Fastener spacing and available closing force', 'Outdoor exposure, temperature, UV, and target enclosure test', 'Adhesive surface, liner, installation method, and annual volume'],
             'products' => ['adhesive-backed-die-cut-gaskets', 'electrical-enclosure-gaskets', 'epdm-foam-gaskets'],
-            'quote' => ['2D drawing or cover inner size', 'Material and adhesive requirement', 'Thickness and tolerance', 'Release liner preference', 'Assembly environment'],
+            'related_articles' => ['adhesive-backed-die-cut-gaskets-fast-enclosure-assembly', 'can-a-gasket-be-ip65-or-ip66-certified'],
+            'quote' => ['2D drawing, DXF, or cover gasket path', 'Box and cover material plus sealing surface finish', 'Material, thickness, density or hardness, and adhesive requirement', 'Compression gap, tolerance, and target enclosure test', 'Sample quantity, annual volume, liner, packing, and document needs'],
         ],
         'ev-charger-cabinets' => [
-            'summary' => 'EV charger cabinets are outdoor equipment, so gasket selection should consider rain, dust, heat, UV exposure, cabinet access panels, and long service life.',
-            'pain_points' => ['Outdoor aging and water exposure', 'Large cabinet doors need stable compression', 'Different panels may require different gasket forms', 'Compliance documents may be requested by overseas customers'],
-            'materials' => ['EPDM foam for outdoor weather sealing', 'Silicone gasket for temperature and UV-sensitive positions', 'Custom rubber gaskets for shaped cabinet parts'],
+            'summary' => 'EV charger enclosure gaskets protect cabinet doors, access panels, display or connector housings, and internal electrical compartments from outdoor dust and water exposure. The gasket must be selected together with the enclosure gap, latch pressure, service access, and test target.',
+            'pain_points' => ['Outdoor UV, ozone, rain, humidity, and thermal cycling can accelerate material aging', 'Tall charger cabinet doors need consistent compression along hinges, latches, and corners', 'Service panels, displays, connector areas, and main doors may need different gasket constructions', 'Material traceability and RoHS, REACH, UL94, TDS, or SDS information may be required'],
+            'materials' => ['Closed-cell EPDM foam for weather-exposed charger cabinet doors and panels', 'Silicone foam or silicone rubber for softer closing force or wider temperature exposure', 'Custom molded or die-cut rubber gaskets for shaped covers, displays, and connector housings'],
+            'structures' => ['Die-cut frame gasket for access panels and flat covers', 'Extruded bulb or D-profile seal for cabinet doors', 'Corner-joined foam or rubber frame', 'Molded gasket for non-flat charger components'],
+            'selection_factors' => ['Enclosure gap and intended compression range', 'Door stiffness, hinge position, latch spacing, and closing force', 'Outdoor temperature, UV, ozone, rain, and cleaning exposure', 'Adhesive-backed, retained-channel, or mechanically located installation', 'Complete enclosure IP/NEMA test target and requested material documents'],
             'products' => ['epdm-foam-gaskets', 'silicone-gaskets', 'electrical-enclosure-gaskets'],
-            'quote' => ['Cabinet panel drawing', 'Working environment and IP target', 'Material preference', 'Thickness or profile size', 'RoHS / REACH / UL94 information needs'],
+            'related_articles' => ['epdm-vs-silicone-outdoor-enclosure-gaskets', 'can-a-gasket-be-ip65-or-ip66-certified'],
+            'quote' => ['Cabinet door, panel, or gasket-path drawing', 'Minimum and maximum gap plus compression target', 'Working temperature, UV, rain, cleaning, and service-access conditions', 'Material, thickness or profile size, joining, and adhesive requirements', 'Sample and annual quantity plus RoHS, REACH, UL94, TDS, or SDS needs'],
         ],
         'solar-inverter-enclosures' => [
             'summary' => 'Solar inverter enclosures need gasket options that can stay reliable under UV exposure, temperature changes, outdoor humidity, and continuous compression.',

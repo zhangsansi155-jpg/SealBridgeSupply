@@ -244,8 +244,8 @@ $product_seo_sections = [
 $applications = [
     ['Outdoor Electrical Enclosures', 'outdoor-electrical-enclosures', 'Gasket selection guide for outdoor electrical boxes, equipment enclosures, and weather-exposed cabinet assemblies.'],
     ['Control Cabinets', 'control-cabinets', 'Sealing strip and gasket guide for industrial control cabinet doors, edges, and repeated access panels.'],
-    ['Junction Boxes', 'junction-boxes', 'Compact gasket and adhesive-backed sealing guide for junction box covers and small enclosure assemblies.'],
-    ['EV Charger Cabinets', 'ev-charger-cabinets', 'Outdoor gasket selection guide for EV charger cabinet doors, access panels, and electrical modules.'],
+    ['Junction Box Gaskets', 'junction-boxes', 'Custom junction box gasket guide for die-cut EPDM foam, adhesive-backed seals, cover compression, and drawing-based quotation.'],
+    ['EV Charger Enclosure Gaskets', 'ev-charger-cabinets', 'Outdoor gasket selection guide for EV charger enclosure doors, access panels, display housings, and electrical compartments.'],
     ['Solar Inverter Enclosures', 'solar-inverter-enclosures', 'EPDM and silicone gasket guide for solar inverter enclosures exposed to UV, heat, and outdoor humidity.'],
     ['LED Lighting Housings', 'led-lighting-housings', 'Silicone and foam gasket guide for LED lighting covers, lenses, housings, and outdoor fixtures.'],
 ];
