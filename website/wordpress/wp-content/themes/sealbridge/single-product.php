@@ -19,6 +19,7 @@ get_header();
                 $gallery = sealbridge_product_gallery();
                 $applications = sealbridge_product_applications();
                 $parameter_groups = sealbridge_product_parameters();
+                $buyer_guidance = sealbridge_product_buyer_guidance();
                 $video_url = (string) get_post_meta(get_the_ID(), '_sealbridge_product_video', true);
                 ?>
                 <div class="product-gallery" data-product-gallery>
@@ -68,6 +69,28 @@ get_header();
                 <div class="entry-content product-rich-content">
                     <?php the_content(); ?>
                 </div>
+                <?php if ($buyer_guidance) : ?>
+                    <section class="product-parameter-section" aria-labelledby="product-buyer-guidance">
+                        <div class="section-header">
+                            <span class="eyebrow">Buyer Guidance</span>
+                            <h2 id="product-buyer-guidance"><?php echo esc_html($buyer_guidance['title']); ?></h2>
+                            <p><?php echo esc_html($buyer_guidance['intro']); ?></p>
+                        </div>
+                        <div class="product-parameter-grid">
+                            <?php foreach ($buyer_guidance['checks'] as $check_title => $check_text) : ?>
+                                <section class="parameter-card">
+                                    <h3><?php echo esc_html($check_title); ?></h3>
+                                    <p><?php echo esc_html($check_text); ?></p>
+                                </section>
+                            <?php endforeach; ?>
+                        </div>
+                        <nav class="section-link-row" aria-label="<?php esc_attr_e('Related product guidance', 'sealbridge'); ?>">
+                            <?php foreach ($buyer_guidance['links'] as $link_label => $link_path) : ?>
+                                <a class="text-link" href="<?php echo esc_url(home_url($link_path)); ?>"><?php echo esc_html($link_label); ?></a>
+                            <?php endforeach; ?>
+                        </nav>
+                    </section>
+                <?php endif; ?>
                 <?php if ($parameter_groups) : ?>
                     <div class="product-parameter-section">
                         <div class="section-header">

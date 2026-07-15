@@ -117,12 +117,12 @@ function sealbridge_seo_map(): array
         ],
         'products' => [
             'electrical-enclosure-gaskets' => [
-                'title' => 'Electrical Enclosure Gaskets | Custom Enclosure Gasket Supplier',
-                'description' => 'Custom electrical enclosure gaskets for junction boxes, outdoor covers, equipment housings, and IP-rated enclosure sealing support.',
+                'title' => 'Custom Electrical Enclosure Gaskets | SealBridge Supply',
+                'description' => 'Custom rubber and EPDM foam gaskets for electrical enclosures, junction boxes, outdoor covers, and drawing-based IP sealing projects.',
             ],
             'control-cabinet-sealing-strips' => [
-                'title' => 'Control Cabinet Sealing Strips | Cabinet Door Seals',
-                'description' => 'Control cabinet sealing strips and cabinet door seals for distribution cabinets, electrical cabinets, server cabinets, and industrial panels.',
+                'title' => 'Control Cabinet Door Gasket Seals | SealBridge Supply',
+                'description' => 'Custom control cabinet door gasket seals, EPDM sealing strips, bulb seals, and extruded profiles sized to the door gap and installation method.',
             ],
             'epdm-foam-gaskets' => [
                 'title' => 'EPDM Foam Gaskets | Closed Cell Sponge Gasket Supplier',
@@ -133,8 +133,8 @@ function sealbridge_seo_map(): array
                 'description' => 'Silicone rubber gaskets and silicone foam gaskets for LED lighting housings, outdoor electronics, equipment covers, and temperature-sensitive sealing.',
             ],
             'adhesive-backed-die-cut-gaskets' => [
-                'title' => 'Adhesive Backed Die Cut Gaskets | Peel and Stick Gaskets',
-                'description' => 'Adhesive backed die cut gaskets, self-adhesive foam gaskets, and peel-and-stick rubber gaskets for fast enclosure and panel assembly.',
+                'title' => 'Custom Die Cut Gaskets | SealBridge Supply',
+                'description' => 'Custom die cut foam and rubber gaskets with adhesive backing for electrical boxes, enclosure panels, covers, and repeatable peel-and-stick assembly.',
             ],
             'custom-rubber-gaskets' => [
                 'title' => 'Custom Rubber Gaskets According to Drawing | Rubber Seals',
@@ -925,6 +925,62 @@ function sealbridge_product_parameters(?WP_Post $post = null): array
     ];
 
     return $parameters[$post->post_name] ?? [];
+}
+
+/**
+ * Add focused buyer guidance for product queries that already receive search
+ * impressions. The copy clarifies purchasing intent without changing the
+ * database-managed product description.
+ */
+function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
+{
+    $post = $post ?: get_post();
+    $guidance = [
+        'electrical-enclosure-gaskets' => [
+            'title' => 'Custom Rubber Gaskets for Electrical Enclosures',
+            'intro' => 'Use this product route for drawing-based enclosure cover gaskets, junction box frames, access-panel seals, and outdoor electrical box gaskets. The correct material depends on the cover geometry, compression gap, exposure conditions, and assembly method—not on an IP label alone.',
+            'checks' => [
+                'Material direction' => 'EPDM foam is a common starting point for outdoor weather resistance and compressible door sealing. Silicone foam or solid rubber may suit wider temperature ranges or different compression loads.',
+                'Design information' => 'Send the enclosure drawing, gasket path, cover dimensions, target thickness, compression gap, adhesive requirement, and expected order quantity.',
+                'Validation scope' => 'A gasket supports an IP65 or IP66 enclosure design, but the rating applies to the complete assembled enclosure and its test conditions.',
+            ],
+            'links' => [
+                'Outdoor electrical enclosure gasket applications' => '/applications/outdoor-electrical-enclosures/',
+                'Junction box gasket applications' => '/applications/junction-boxes/',
+                'How to choose an electrical enclosure gasket' => '/choose-electrical-enclosure-gaskets-outdoor-boxes/',
+            ],
+        ],
+        'control-cabinet-sealing-strips' => [
+            'title' => 'Control Cabinet Door Gasket and Seal Profile Selection',
+            'intro' => 'Control cabinet gasketing normally starts with the door gap and mounting edge. Bulb seals, D-profile strips, self-grip edge seals, and custom EPDM extrusions create different compression forces and installation conditions.',
+            'checks' => [
+                'Profile fit' => 'Confirm profile width and height, retaining edge dimensions, door closing gap, bend radius, and whether corners are cut, bonded, or supplied as continuous strip.',
+                'Material direction' => 'Dense or sponge EPDM profiles are widely used for cabinet doors. Silicone profiles may be considered when softness or temperature exposure is more demanding.',
+                'Quotation details' => 'Provide a profile drawing or section photo, material, hardness or density, color, roll or cut length, annual volume, and packaging preference.',
+            ],
+            'links' => [
+                'Control cabinet sealing applications' => '/applications/control-cabinets/',
+                'Control cabinet door seal profile guide' => '/control-cabinet-door-seal-profiles/',
+                'Request a custom cabinet gasket quote' => '/contact/',
+            ],
+        ],
+        'adhesive-backed-die-cut-gaskets' => [
+            'title' => 'Custom Die Cut Gaskets for Enclosure Assembly',
+            'intro' => 'Custom die cut gaskets can be supplied as individual foam or rubber frames, kiss-cut parts on a release liner, or adhesive-backed pads for repeatable placement on electrical boxes, panels, and covers.',
+            'checks' => [
+                'Material and thickness' => 'Specify EPDM foam, silicone foam, rubber sheet, or another target material together with thickness, density or hardness, and compression requirements.',
+                'Adhesive system' => 'The assembly surface, adhesive grade, release liner, operating temperature, and environmental exposure should be reviewed before sampling.',
+                'Production file' => 'Send a DXF, PDF, CAD drawing, or dimensioned sketch with tolerances, quantity per order, packing format, and any inspection or document needs.',
+            ],
+            'links' => [
+                'Adhesive-backed gasket assembly guide' => '/adhesive-backed-die-cut-gaskets-fast-enclosure-assembly/',
+                'Custom die cut gasket RFQ checklist' => '/custom-die-cut-gasket-quote-information/',
+                'Junction box gasket applications' => '/applications/junction-boxes/',
+            ],
+        ],
+    ];
+
+    return $guidance[$post->post_name] ?? [];
 }
 
 function sealbridge_application_scenarios(): array
