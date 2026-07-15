@@ -56,6 +56,11 @@ function sealbridge_logo_url(): string
     return get_template_directory_uri() . '/assets/sealbridge-logo.svg';
 }
 
+function sealbridge_contact_email(): string
+{
+    return 'support@sealbridgesupply.com';
+}
+
 function sealbridge_seo_map(): array
 {
     return [
@@ -333,6 +338,13 @@ function sealbridge_seo_head(): void
                     'url' => $home_url,
                     'logo' => $image,
                     'description' => $description,
+                    'email' => sealbridge_contact_email(),
+                    'contactPoint' => [
+                        '@type' => 'ContactPoint',
+                        'contactType' => 'customer support and quotation requests',
+                        'email' => sealbridge_contact_email(),
+                        'availableLanguage' => ['English', 'Chinese'],
+                    ],
                 ],
                 [
                     '@type' => 'WebSite',
@@ -353,6 +365,10 @@ function sealbridge_seo_head(): void
             'description' => $description,
             'url' => $canonical,
         ];
+
+        if (!is_singular('product')) {
+            $schema['email'] = sealbridge_contact_email();
+        }
     }
 
     if (is_singular('product')) {
@@ -363,6 +379,7 @@ function sealbridge_seo_head(): void
             '@id' => home_url('/') . '#organization',
             'name' => get_bloginfo('name'),
             'url' => home_url('/'),
+            'email' => sealbridge_contact_email(),
         ];
         $schema['areaServed'] = 'Worldwide';
     } elseif (!is_front_page()) {

@@ -213,7 +213,7 @@ $pages = [
 <h2>Request Form Mockup</h2>
 <form class="quote-form"><label>Name<input type="text" name="name"></label><label>Email<input type="email" name="email"></label><label>WhatsApp<input type="tel" name="whatsapp" placeholder="+86 187 7021 4461"></label><label>Product Type<select name="product_type"><option>Electrical Enclosure Gasket</option><option>Control Cabinet Sealing Strip</option><option>EPDM Foam Gasket</option><option>Silicone Gasket</option><option>Adhesive Backed Die Cut Gasket</option><option>Custom Rubber Gasket</option></select></label><label>Project Details<textarea name="message" placeholder="Material, size, quantity, application, documents needed..."></textarea></label><button class="button" type="button">Prepare Quote Details</button></form>
 <h2>Fast Contact Channels</h2>
-<div class="contact-channel-grid"><a href="https://wa.me/8618770214461" target="_blank" rel="noopener"><strong>WhatsApp</strong><span>+86 187 7021 4461</span></a></div>',
+<div class="contact-channel-grid"><a href="mailto:support@sealbridgesupply.com"><strong>Email</strong><span>support@sealbridgesupply.com</span></a><a href="https://wa.me/8618770214461" target="_blank" rel="noopener"><strong>WhatsApp</strong><span>+86 187 7021 4461</span></a></div>',
     ],
     [
         'post_title' => 'Insights',

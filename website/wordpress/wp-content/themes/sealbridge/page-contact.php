@@ -50,6 +50,10 @@ get_header();
                 </form>
                 <h2>Fast Contact Channels</h2>
                 <div class="contact-channel-grid">
+                    <a href="<?php echo esc_url('mailto:' . sealbridge_contact_email()); ?>">
+                        <strong>Email</strong>
+                        <span><?php echo esc_html(sealbridge_contact_email()); ?></span>
+                    </a>
                     <a href="https://wa.me/8618770214461" target="_blank" rel="noopener">
                         <strong>WhatsApp</strong>
                         <span>+86 187 7021 4461</span>
@@ -63,6 +67,7 @@ get_header();
             <h2>Useful Attachments</h2>
             <p>Drawing, product photo, material target, quantity plan, and certificate requirements are the fastest path to a useful first quotation.</p>
             <div class="sidebar-contact-list">
+                <a href="<?php echo esc_url('mailto:' . sealbridge_contact_email()); ?>">Email: <?php echo esc_html(sealbridge_contact_email()); ?></a>
                 <a href="https://wa.me/8618770214461" target="_blank" rel="noopener">WhatsApp: +86 187 7021 4461</a>
             </div>
             <a class="button" href="<?php echo esc_url(home_url('/products/')); ?>">View Products</a>

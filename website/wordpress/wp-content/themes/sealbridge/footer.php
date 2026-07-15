@@ -34,6 +34,7 @@
             <strong>Trust</strong>
             <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
             <a href="<?php echo esc_url(home_url('/terms-of-service/')); ?>">Terms of Service</a>
+            <a href="<?php echo esc_url('mailto:' . sealbridge_contact_email()); ?>"><?php echo esc_html(sealbridge_contact_email()); ?></a>
         </nav>
     </div>
 </footer>

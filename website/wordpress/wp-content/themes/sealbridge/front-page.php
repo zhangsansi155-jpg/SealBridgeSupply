@@ -224,5 +224,39 @@ get_header();
     </div>
 </section>
 
+<aside class="floating-support" aria-label="Contact SealBridge Supply">
+    <details id="sealbridge-floating-support">
+        <summary aria-label="Open contact options">
+            <span class="floating-support-mark" aria-hidden="true">
+                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/sealbridge-favicon.svg'); ?>" alt="">
+                <span class="floating-support-status"></span>
+            </span>
+            <span class="floating-support-label"><strong>Hi there!</strong><small>How can we help?</small></span>
+        </summary>
+        <div class="floating-support-panel">
+            <span class="floating-support-sparkle" aria-hidden="true">✦</span>
+            <p class="floating-support-kicker">SealBridge Support</p>
+            <h2>Let’s talk about your gasket project.</h2>
+            <p>Send a drawing, photo, material question, or quotation request.</p>
+            <a class="floating-support-option" href="<?php echo esc_url('mailto:' . sealbridge_contact_email()); ?>">
+                <span class="floating-support-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M3 6.5h18v12H3zM4 8l8 6 8-6"/></svg>
+                </span>
+                <span><strong>Email us</strong><small><?php echo esc_html(sealbridge_contact_email()); ?></small></span>
+            </a>
+            <a class="floating-support-option whatsapp" href="https://wa.me/8618770214461" target="_blank" rel="noopener">
+                <span class="floating-support-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.5Z"/><path d="M9 8.5c.4 2.8 2.1 4.5 5 5"/></svg>
+                </span>
+                <span><strong>Chat on WhatsApp</strong><small>Click to open WhatsApp</small></span>
+            </a>
+        </div>
+    </details>
+</aside>
+
+<script>
+document.getElementById('sealbridge-floating-support')?.removeAttribute('open');
+</script>
+
 <?php
 get_footer();
