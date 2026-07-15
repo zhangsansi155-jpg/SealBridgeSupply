@@ -17,7 +17,7 @@
             <strong>Explore</strong>
             <a href="<?php echo esc_url(home_url('/products/')); ?>">Products</a>
             <a href="<?php echo esc_url(home_url('/applications/')); ?>">Applications</a>
-            <a href="<?php echo esc_url(home_url('/insights/')); ?>">Articles</a>
+            <a href="<?php echo esc_url(home_url('/articles/')); ?>">Articles</a>
             <a href="<?php echo esc_url(home_url('/materials/')); ?>">Materials</a>
             <a href="<?php echo esc_url(home_url('/capabilities/')); ?>">Capabilities</a>
         </nav>

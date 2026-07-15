@@ -204,7 +204,7 @@ get_header();
             ?>
         </div>
         <div class="section-link-row">
-            <a class="button secondary" href="<?php echo esc_url(home_url('/insights/')); ?>">View All Articles</a>
+            <a class="button secondary" href="<?php echo esc_url(home_url('/articles/')); ?>">View All Articles</a>
         </div>
     </div>
 </section>

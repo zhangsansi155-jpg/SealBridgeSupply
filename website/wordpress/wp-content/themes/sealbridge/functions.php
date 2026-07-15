@@ -9,6 +9,23 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+/**
+ * Restore the original HTTPS scheme when WordPress runs behind Cloudflare or
+ * another trusted reverse proxy. Without this, WordPress can generate http://
+ * schema URLs and redirect HTTPS sitemap requests back to the same URL.
+ */
+function sealbridge_normalize_proxy_https(): void
+{
+    $forwarded_proto = strtolower(trim((string) ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '')));
+    $cf_visitor = strtolower((string) ($_SERVER['HTTP_CF_VISITOR'] ?? ''));
+
+    if ($forwarded_proto === 'https' || str_contains($cf_visitor, '"scheme":"https"')) {
+        $_SERVER['HTTPS'] = 'on';
+        $_SERVER['SERVER_PORT'] = '443';
+    }
+}
+sealbridge_normalize_proxy_https();
+
 function sealbridge_setup(): void
 {
     add_theme_support('title-tag');
@@ -454,7 +471,8 @@ function sealbridge_serve_root_favicon(): void
     status_header(200);
     header('Content-Type: image/x-icon');
     header('Content-Length: ' . (string) filesize($favicon_path));
-    header('Cache-Control: public, max-age=3600');
+    header('Cache-Control: no-cache, must-revalidate, max-age=0');
+    header('CDN-Cache-Control: no-store');
     readfile($favicon_path);
     exit;
 }
@@ -505,6 +523,52 @@ function sealbridge_disable_author_sitemap($provider, string $name)
 }
 add_filter('wp_sitemaps_add_provider', 'sealbridge_disable_author_sitemap', 10, 2);
 
+/**
+ * Sitemap XML endpoints must never be sent through WordPress canonical URL
+ * redirects. This protects the sitemap index from proxy-related self loops.
+ */
+function sealbridge_preserve_sitemap_requests($redirect_url, string $requested_url)
+{
+    $path = (string) wp_parse_url($requested_url, PHP_URL_PATH);
+
+    if (preg_match('#^/wp-sitemap(?:-[^/]+)?\.xml$#', $path)) {
+        return false;
+    }
+
+    return $redirect_url;
+}
+add_filter('redirect_canonical', 'sealbridge_preserve_sitemap_requests', 10, 2);
+
+/** Redirect the retired article-library slug to its canonical replacement. */
+function sealbridge_redirect_legacy_insights(): void
+{
+    $path = (string) wp_parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH);
+
+    if (trim($path, '/') !== 'insights') {
+        return;
+    }
+
+    wp_safe_redirect(home_url('/articles/'), 301, 'SealBridge Supply');
+    exit;
+}
+add_action('template_redirect', 'sealbridge_redirect_legacy_insights', 1);
+
+/** Keep database-backed navigation menus aligned with /articles/. */
+function sealbridge_update_legacy_article_menu_urls(array $items): array
+{
+    $legacy_url = untrailingslashit(home_url('/insights/'));
+    $article_url = home_url('/articles/');
+
+    foreach ($items as $item) {
+        if (isset($item->url) && untrailingslashit((string) $item->url) === $legacy_url) {
+            $item->url = $article_url;
+        }
+    }
+
+    return $items;
+}
+add_filter('wp_nav_menu_objects', 'sealbridge_update_legacy_article_menu_urls');
+
 function sealbridge_default_menu(): void
 {
     ?>
@@ -512,7 +576,7 @@ function sealbridge_default_menu(): void
         <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
         <li><a href="<?php echo esc_url(home_url('/products/')); ?>">Products</a></li>
         <li><a href="<?php echo esc_url(home_url('/applications/')); ?>">Applications</a></li>
-        <li><a href="<?php echo esc_url(home_url('/insights/')); ?>">Articles</a></li>
+        <li><a href="<?php echo esc_url(home_url('/articles/')); ?>">Articles</a></li>
         <li><a href="<?php echo esc_url(home_url('/materials/')); ?>">Materials</a></li>
         <li><a href="<?php echo esc_url(home_url('/capabilities/')); ?>">Capabilities</a></li>
         <li><a href="<?php echo esc_url(home_url('/factory-screening/')); ?>">Factory Screening</a></li>
