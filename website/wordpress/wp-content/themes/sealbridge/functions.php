@@ -78,6 +78,130 @@ function sealbridge_contact_email(): string
     return 'support@sealbridgesupply.com';
 }
 
+/** Redirect back to the quote form with a non-sensitive result code. */
+function sealbridge_quote_redirect(string $status): void
+{
+    $url = add_query_arg('quote_status', sanitize_key($status), home_url('/contact/'));
+    wp_safe_redirect($url . '#quote-form', 303, 'SealBridge Supply');
+    exit;
+}
+
+/** Process public and signed-in custom gasket quotation requests. */
+function sealbridge_handle_quote_request(): void
+{
+    $nonce = sanitize_text_field(wp_unslash($_POST['sealbridge_quote_nonce'] ?? ''));
+    if (!wp_verify_nonce($nonce, 'sealbridge_quote_request')) {
+        sealbridge_quote_redirect('invalid');
+    }
+
+    // A hidden honeypot and minimum completion time stop simple form bots.
+    $website = trim((string) wp_unslash($_POST['website'] ?? ''));
+    $started_at = absint($_POST['form_started_at'] ?? 0);
+    if ($website !== '' || $started_at === 0 || (time() - $started_at) < 2) {
+        sealbridge_quote_redirect('invalid');
+    }
+
+    $name = sanitize_text_field(wp_unslash($_POST['name'] ?? ''));
+    $company = sanitize_text_field(wp_unslash($_POST['company'] ?? ''));
+    $email = sanitize_email(wp_unslash($_POST['email'] ?? ''));
+    $country = sanitize_text_field(wp_unslash($_POST['country'] ?? ''));
+    $whatsapp = sanitize_text_field(wp_unslash($_POST['whatsapp'] ?? ''));
+    $product_type = sanitize_text_field(wp_unslash($_POST['product_type'] ?? ''));
+    $quantity = sanitize_text_field(wp_unslash($_POST['quantity'] ?? ''));
+    $message = sanitize_textarea_field(wp_unslash($_POST['message'] ?? ''));
+    $privacy_consent = !empty($_POST['privacy_consent']);
+
+    if ($name === '' || !is_email($email) || $message === '' || !$privacy_consent) {
+        sealbridge_quote_redirect('invalid');
+    }
+
+    $remote_ip = sanitize_text_field($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+    $rate_key = 'sealbridge_quote_' . md5($remote_ip . '|' . strtolower($email));
+    if (get_transient($rate_key)) {
+        sealbridge_quote_redirect('rate_limited');
+    }
+    set_transient($rate_key, 1, MINUTE_IN_SECONDS);
+
+    $attachments = [];
+    $temporary_attachment = '';
+    $upload = $_FILES['project_file'] ?? null;
+
+    if (is_array($upload) && ($upload['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_NO_FILE) {
+        $allowed_extensions = ['pdf', 'dxf', 'dwg', 'step', 'stp', 'igs', 'iges', 'zip', 'jpg', 'jpeg', 'png', 'webp'];
+        $original_name = sanitize_file_name((string) ($upload['name'] ?? ''));
+        $extension = strtolower((string) pathinfo($original_name, PATHINFO_EXTENSION));
+        $file_size = absint($upload['size'] ?? 0);
+        $temporary_name = (string) ($upload['tmp_name'] ?? '');
+
+        if (
+            ($upload['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK
+            || $file_size === 0
+            || $file_size > 10 * MB_IN_BYTES
+            || !in_array($extension, $allowed_extensions, true)
+            || !is_uploaded_file($temporary_name)
+        ) {
+            sealbridge_quote_redirect('file_error');
+        }
+
+        $temporary_attachment = trailingslashit(get_temp_dir()) . wp_unique_filename(get_temp_dir(), $original_name);
+        if (!move_uploaded_file($temporary_name, $temporary_attachment)) {
+            sealbridge_quote_redirect('file_error');
+        }
+        $attachments[] = $temporary_attachment;
+    }
+
+    $subject_context = $company !== '' ? $company : $name;
+    $subject = sprintf('[Website RFQ] %s — %s', $product_type ?: 'Custom gasket project', $subject_context);
+    $body = implode("\n", [
+        'New quotation request from sealbridgesupply.com',
+        '',
+        'Name: ' . $name,
+        'Company: ' . ($company ?: 'Not provided'),
+        'Email: ' . $email,
+        'Country / Region: ' . ($country ?: 'Not provided'),
+        'WhatsApp: ' . ($whatsapp ?: 'Not provided'),
+        'Product Type: ' . ($product_type ?: 'Not specified'),
+        'Estimated Quantity: ' . ($quantity ?: 'Not provided'),
+        '',
+        'Project Details:',
+        $message,
+        '',
+        'Submitted: ' . current_time('mysql'),
+    ]);
+    $headers = [
+        'Content-Type: text/plain; charset=UTF-8',
+        sprintf('Reply-To: %s <%s>', $name, $email),
+    ];
+
+    $sent = wp_mail(sealbridge_contact_email(), $subject, $body, $headers, $attachments);
+
+    if ($temporary_attachment !== '' && file_exists($temporary_attachment)) {
+        wp_delete_file($temporary_attachment);
+    }
+
+    if (!$sent) {
+        delete_transient($rate_key);
+        sealbridge_quote_redirect('mail_error');
+    }
+
+    $confirmation_subject = 'We received your SealBridge Supply quotation request';
+    $confirmation_body = "Hello {$name},\n\nThank you for sending your gasket project details. We received your request and will review the application, material, drawing, quantity, and document requirements.\n\nIf you need to add another file, reply to support@sealbridgesupply.com and include your company name.\n\nSealBridge Supply\nCustom Gasket Sourcing & Project Coordination";
+    wp_mail($email, $confirmation_subject, $confirmation_body, ['Content-Type: text/plain; charset=UTF-8']);
+
+    sealbridge_quote_redirect('sent');
+}
+add_action('admin_post_nopriv_sealbridge_quote_request', 'sealbridge_handle_quote_request');
+add_action('admin_post_sealbridge_quote_request', 'sealbridge_handle_quote_request');
+
+/** Keep the public quote nonce and form timestamp out of edge caches. */
+function sealbridge_no_cache_quote_page(): void
+{
+    if (is_page('contact')) {
+        nocache_headers();
+    }
+}
+add_action('template_redirect', 'sealbridge_no_cache_quote_page', 0);
+
 function sealbridge_seo_map(): array
 {
     return [
