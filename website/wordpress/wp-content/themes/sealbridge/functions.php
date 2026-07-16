@@ -686,14 +686,16 @@ function sealbridge_product_article_slugs(string $product_slug): array
         'electrical-enclosure-gaskets' => [
             'choose-electrical-enclosure-gaskets-outdoor-boxes',
             'can-a-gasket-be-ip65-or-ip66-certified',
+            'nema-3r-4-4x-enclosure-gasket-requirements',
         ],
         'control-cabinet-sealing-strips' => [
             'control-cabinet-door-seal-profiles',
-            'choose-electrical-enclosure-gaskets-outdoor-boxes',
+            'nema-3r-4-4x-enclosure-gasket-requirements',
         ],
         'epdm-foam-gaskets' => [
             'epdm-foam-gasket-with-adhesive-quote-parameters',
             'epdm-vs-silicone-outdoor-enclosure-gaskets',
+            'closed-cell-epdm-sponge-density-compression-guide',
         ],
         'silicone-gaskets' => [
             'silicone-gaskets-led-lighting-outdoor-electronics',
