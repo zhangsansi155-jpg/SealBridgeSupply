@@ -251,8 +251,6 @@ $applications = [
 ];
 
 $posts = [
-    ['NEMA 3R, 4 and 4X Enclosure Gasket Requirements', 'nema-3r-4-4x-enclosure-gasket-requirements', 'NEMA 3R, NEMA 4, and NEMA 4X are enclosure-level designations rather than certifications for a gasket alone. Compare the environmental target, gasket path, compression, materials, corners, hardware, and final assembly testing before specifying a cabinet door seal.'],
-    ['Closed-Cell EPDM Sponge Density and Compression Guide', 'closed-cell-epdm-sponge-density-compression-guide', 'Closed-cell EPDM sponge density does not by itself determine sealing performance. Buyers should compare compression force, compression deflection, compression set, thickness, water absorption, adhesive construction, and the actual enclosure gap before approving a gasket.'],
     ['EPDM vs Silicone for Outdoor Enclosure Gaskets', 'epdm-vs-silicone-outdoor-enclosure-gaskets', 'EPDM is often a practical outdoor enclosure material because it offers strong weather, ozone, aging, and water resistance. Silicone is useful when broader temperature range, softness, or UV stability is more important. The better choice depends on compression, cost, exposure, and document requirements.'],
     ['What Information Is Needed for a Custom Die Cut Gasket Quote?', 'custom-die-cut-gasket-quote-information', 'A useful quote request should include drawing, material, thickness, adhesive requirement, tolerance, quantity, application, and compliance needs. Clear inputs help suppliers avoid assumptions and reduce quotation cycles.'],
     ['Can a Gasket Be IP65 or IP66 Certified?', 'can-a-gasket-be-ip65-or-ip66-certified', 'A gasket alone should not usually be described as IP65 or IP66 certified. The IP rating belongs to the final enclosure assembly under test conditions. Gasket material and compression design can support that target, but the enclosure must be verified as a system.'],
@@ -262,47 +260,6 @@ $posts = [
     ['Silicone Gaskets for LED Lighting Housings and Outdoor Electronics', 'silicone-gaskets-led-lighting-outdoor-electronics', 'Silicone gaskets are useful for LED lighting housings, outdoor electronics, and covers exposed to heat, UV, or wider temperature ranges. Solid silicone and silicone foam should be compared based on compression and assembly design.'],
     ['Adhesive Backed Die Cut Gaskets for Fast Enclosure Assembly', 'adhesive-backed-die-cut-gaskets-fast-enclosure-assembly', 'Adhesive backed die cut gaskets help speed up assembly for junction boxes, electronic housings, enclosure covers, and panels. Material, adhesive, release liner, tolerance, and packing format should be confirmed before sampling.'],
     ['Custom Rubber Gaskets According to Drawing: From Sample to Quote', 'custom-rubber-gaskets-according-to-drawing-sample-quote', 'Custom rubber gaskets according to drawing require material, hardness, dimensions, tolerance, application environment, tooling condition, sample requirement, quantity, and inspection criteria before a useful quotation can be prepared.'],
-];
-
-$post_content = [
-    'nema-3r-4-4x-enclosure-gasket-requirements' => '<p>NEMA enclosure types describe the protection delivered by a <strong>complete electrical enclosure</strong>. A door gasket is one part of that system, together with the enclosure body, door stiffness, hinges, latches, cable entries, fasteners, corners, and installation. It is therefore inaccurate to call an untested rubber strip a “NEMA 4X gasket.” A supplier can recommend a material and profile to support the target, but the completed enclosure must be evaluated against the applicable requirement.</p>
-<h2>NEMA 3R vs NEMA 4 vs NEMA 4X</h2>
-<table><thead><tr><th>Enclosure type</th><th>Typical project concern</th><th>Gasket implication</th></tr></thead><tbody>
-<tr><td>NEMA 3R</td><td>Outdoor exposure, falling rain, snow, and external ice formation</td><td>Weather-resistant material and a controlled gasket path are still important, but the complete construction determines compliance.</td></tr>
-<tr><td>NEMA 4</td><td>Indoor or outdoor dust, rain, splashing water, and hose-directed water</td><td>Continuous compression, sealed corners, suitable latch spacing, and low-leakage joints become more demanding.</td></tr>
-<tr><td>NEMA 4X</td><td>NEMA 4-type protection plus corrosion resistance</td><td>The gasket must be compatible with the environment, while enclosure metal, coating, hardware, and other components also need corrosion consideration.</td></tr>
-</tbody></table>
-<p>This table is a selection overview, not a substitute for the current standard or project-specific testing. NEMA and IEC ingress-protection classifications are not interchangeable labels, even when a buyer compares them during early design.</p>
-<h2>What the Gasket Must Contribute</h2>
-<ul class="feature-list"><li>A continuous sealing path without uncontrolled gaps</li><li>Enough recovery to accommodate door and enclosure tolerances</li><li>Compression force that the latches and door can maintain</li><li>Corner construction that does not open during closing or thermal cycling</li><li>Resistance to the expected weather, ozone, temperature, cleaners, oils, or UV exposure</li><li>An installation method that prevents movement during assembly and service</li></ul>
-<h2>Material Direction</h2>
-<p><a href="/products/epdm-foam-gaskets/">Closed-cell EPDM sponge</a> is a common starting point for outdoor cabinet doors because EPDM generally offers useful resistance to weathering, ozone, and water exposure. Solid or sponge <a href="/products/silicone-gaskets/">silicone gaskets</a> may be considered for a broader temperature range or softer compression. Material names alone are not a specification: density, hardness, compression force, compression set, thickness, and the actual compound data must be reviewed.</p>
-<h2>Profile, Corners, and Door Hardware</h2>
-<p>A bulb, D-shape, P-shape, self-grip edge seal, or die-cut frame can all be suitable in the correct geometry. Measure the minimum and maximum door gap, then check the compressed profile across the hinge and latch sides. For extruded profiles, confirm whether corners will be butt joined, bonded, vulcanized, or formed as a frame. Latch spacing and door stiffness must keep compression reasonably uniform; a stronger gasket cannot compensate for a door that bows away from the enclosure.</p>
-<h2>Adhesive Is Usually an Assembly Aid</h2>
-<p>Pressure-sensitive adhesive (PSA) backing can hold a gasket in position during assembly, but it should not automatically be treated as the primary environmental seal. Confirm the cabinet surface, coating, cleaning method, application temperature, dwell time, and service temperature. Mechanical retention, a groove, or a self-grip carrier may be more suitable for repeated door service.</p>
-<h2>Quotation and Validation Checklist</h2>
-<ul><li>Target enclosure type and the market or standard used for validation</li><li>Door and gasket-path drawing, including minimum and maximum gap</li><li>Profile cross-section or die-cut gasket dimensions</li><li>Indoor/outdoor exposure, temperature, UV, chemicals, and corrosion conditions</li><li>Material preference, hardness or density, and compression target</li><li>Corner joining and adhesive or mechanical-retention requirement</li><li>Prototype quantity, annual demand, requested TDS/SDS, RoHS, REACH, or UL94 information</li><li>Complete-enclosure test and acceptance plan</li></ul>
-<p>Send these details through the <a href="/contact/">custom gasket RFQ form</a>, or review <a href="/products/control-cabinet-sealing-strips/">control cabinet sealing strips and electrical panel door gaskets</a> before requesting a profile recommendation.</p>',
-    'closed-cell-epdm-sponge-density-compression-guide' => '<p>Closed-cell EPDM sponge is widely considered for outdoor electrical enclosure gaskets, control cabinet doors, HVAC panels, EV charger cabinets, and other weather-exposed covers. Buyers often start with density, but <strong>density alone cannot predict whether a gasket will seal or whether a door will close</strong>. The useful specification combines thickness, compression-force behavior, compression set, water absorption, surface skin, adhesive construction, and the actual assembly gap.</p>
-<h2>Density, CFD and Compression Set Are Different</h2>
-<table><thead><tr><th>Property</th><th>What it describes</th><th>Why it matters</th></tr></thead><tbody>
-<tr><td>Density</td><td>Mass per unit volume of the sponge material</td><td>Useful for identifying and comparing grades, but not a direct measure of sealing force.</td></tr>
-<tr><td>Compression force deflection (CFD)</td><td>Force needed to compress foam by a stated percentage under a stated method</td><td>Helps estimate closing force and whether the gasket can follow enclosure tolerances.</td></tr>
-<tr><td>Compression set</td><td>Permanent loss of thickness after compression, recovery, time, and temperature conditions</td><td>Helps compare long-term recovery; lower values under comparable test conditions are generally preferred.</td></tr>
-<tr><td>Water absorption</td><td>Water taken into the material under a stated test condition</td><td>Important for outdoor and wet-service selection; “closed cell” is not a guarantee of zero absorption.</td></tr>
-</tbody></table>
-<p>Always compare values produced under the same test method, specimen thickness, compression percentage, temperature, and conditioning. A number copied from a different grade or test condition can create a false comparison.</p>
-<h2>Start from the Enclosure Gap</h2>
-<p>Measure the smallest and largest gap around the closed door. Select an uncompressed gasket thickness that can accommodate that range while maintaining useful contact. Too little compression can leave a leakage path; too much compression can increase latch force, deform the foam, overload adhesive, or shorten recovery life. The final target should come from the material data, profile geometry, enclosure tolerances, and prototype testing—not from a universal percentage.</p>
-<h2>How to Compare EPDM Sponge Samples</h2>
-<ol><li>Confirm that every sample uses the same dimensions and conditioning.</li><li>Record original thickness and the force required at relevant compression points.</li><li>Install samples on representative coated or bare cabinet surfaces.</li><li>Check hinge-side and latch-side compression rather than one location only.</li><li>Cycle the door and expose the assembly to the expected temperature range.</li><li>Allow recovery, then compare thickness loss and visible corner gaps.</li><li>Validate the complete enclosure when an IP or NEMA target is required.</li></ol>
-<h2>Adhesive-Backed EPDM Sponge</h2>
-<p>A pressure-sensitive adhesive (PSA), release liner, and EPDM sponge form one converted gasket construction. Adhesion depends on the coating, surface energy, dust or oil, application pressure, temperature, dwell time, and whether the gasket is stretched around corners. Confirm the exact adhesive grade when required; “self-adhesive” is not enough information for engineering review. See our <a href="/products/adhesive-backed-die-cut-gaskets/">adhesive-backed die-cut gasket options</a> for frames, strips, kiss-cut sheets, and release-liner formats.</p>
-<h2>Documents and Test Data to Request</h2>
-<ul class="feature-list"><li>Technical data sheet (TDS) for the quoted grade</li><li>Density and tolerance with the stated test method</li><li>CFD or compression-load data at useful deflection points</li><li>Compression-set condition and result</li><li>Temperature range and weathering information</li><li>Water-absorption information when outdoor sealing is critical</li><li>RoHS, REACH, SDS, or UL94 information when the project requires it</li><li>Adhesive and liner identification for PSA-backed parts</li></ul>
-<h2>RFQ Checklist</h2>
-<p>For quotation, send the gasket drawing, thickness and width, enclosure-gap range, expected compression, indoor or outdoor environment, temperature, adhesive requirement, roll/strip/frame format, quantity, packing requirement, and required documents. Browse <a href="/products/epdm-foam-gaskets/">closed-cell EPDM foam gaskets</a> or send the project through the <a href="/contact/">custom gasket RFQ form</a>.</p>',
 ];
 
 foreach ($pages as $page) {
@@ -367,7 +324,7 @@ foreach ($applications as $application) {
 }
 
 foreach ($posts as $post) {
-    $content = $post_content[$post[1]] ?? '<p>' . esc_html($post[2]) . '</p><h2>Buyer Takeaway</h2><p>Confirm the actual application, material data, assembly method, and document requirements before locking the specification.</p>';
+    $content = '<p>' . esc_html($post[2]) . '</p><h2>Buyer Takeaway</h2><p>Confirm the actual application, material data, assembly method, and document requirements before locking the specification.</p>';
     sealbridge_upsert_post([
         'post_title' => $post[0],
         'post_name' => $post[1],
