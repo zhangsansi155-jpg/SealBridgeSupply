@@ -87,6 +87,20 @@ function sealbridge_social_links(): array
     ];
 }
 
+/** Return the official brand glyph for a configured social platform. */
+function sealbridge_social_icon(string $platform): string
+{
+    if ('Facebook' === $platform) {
+        return '<svg class="social-brand-icon" viewBox="0 0 24 24" role="img" aria-label="Facebook"><path fill="currentColor" d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.971h-1.513c-1.49 0-1.956.931-1.956 1.887v2.263h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073Z"/></svg>';
+    }
+
+    if ('LinkedIn' === $platform) {
+        return '<svg class="social-brand-icon" viewBox="0 0 24 24" role="img" aria-label="LinkedIn"><path fill="currentColor" d="M20.452 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.356V8.999h3.414v1.561h.048c.475-.9 1.636-1.85 3.367-1.85 3.601 0 4.267 2.37 4.267 5.455v6.287ZM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126Zm1.782 13.019H3.555V8.999h3.564v11.453ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z"/></svg>';
+    }
+
+    return '';
+}
+
 /** Redirect back to the quote form with a non-sensitive result code. */
 function sealbridge_quote_redirect(string $status): void
 {

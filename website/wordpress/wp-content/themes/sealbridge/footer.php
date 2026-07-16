@@ -15,7 +15,7 @@
             <nav class="footer-social-links" aria-label="<?php esc_attr_e('SealBridge Supply social profiles', 'sealbridge'); ?>">
                 <?php foreach (sealbridge_social_links() as $platform => $social_url) : ?>
                     <a href="<?php echo esc_url($social_url); ?>" target="_blank" rel="noopener noreferrer">
-                        <span aria-hidden="true"><?php echo esc_html(substr($platform, 0, 1)); ?></span>
+                        <span class="social-brand-mark social-brand-mark--<?php echo esc_attr(strtolower($platform)); ?>" aria-hidden="true"><?php echo sealbridge_social_icon($platform); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
                         <?php echo esc_html($platform); ?>
                     </a>
                 <?php endforeach; ?>

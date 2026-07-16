@@ -91,7 +91,10 @@ get_header();
                     </a>
                     <?php foreach (sealbridge_social_links() as $platform => $social_url) : ?>
                         <a href="<?php echo esc_url($social_url); ?>" target="_blank" rel="noopener noreferrer">
-                            <strong><?php echo esc_html($platform); ?></strong>
+                            <strong class="contact-social-heading">
+                                <span class="social-brand-mark social-brand-mark--<?php echo esc_attr(strtolower($platform)); ?>" aria-hidden="true"><?php echo sealbridge_social_icon($platform); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+                                <?php echo esc_html($platform); ?>
+                            </strong>
                             <span>View our public profile</span>
                         </a>
                     <?php endforeach; ?>

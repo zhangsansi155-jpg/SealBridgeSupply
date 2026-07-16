@@ -1532,15 +1532,37 @@ img {
   color: var(--white);
 }
 
-.footer-social-links span {
+.social-brand-mark {
   display: grid;
   width: 26px;
   height: 26px;
   place-items: center;
   border-radius: 50%;
-  background: var(--green);
   color: var(--white);
-  font-size: 0.78rem;
+  flex: 0 0 26px;
+  overflow: hidden;
+}
+
+.social-brand-mark--facebook {
+  color: #1877f2;
+  background: var(--white);
+}
+
+.social-brand-mark--linkedin {
+  color: #0a66c2;
+  background: var(--white);
+}
+
+.social-brand-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.contact-social-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
 }
 
 .footer-link-group {
