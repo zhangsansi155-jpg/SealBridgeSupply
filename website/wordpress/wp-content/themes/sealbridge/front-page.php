@@ -13,7 +13,7 @@ get_header();
         <div>
             <span class="eyebrow">Custom Gasket Sourcing</span>
             <h1>Custom Gasket Sourcing for Electrical Enclosures & Control Cabinets</h1>
-            <p>Sourcing, sampling, and production coordination for EPDM foam gaskets, silicone gaskets, adhesive-backed die-cut gaskets, sealing strips, and custom rubber parts.</p>
+            <p>Sourcing, sampling, and production coordination for EPDM foam gaskets, silicone gaskets, adhesive-backed die-cut gaskets, sealing strips, and custom rubber parts for manufacturers across Canada, the United Kingdom, Europe, and other international markets.</p>
             <div class="hero-actions">
                 <a class="button" href="<?php echo esc_url(home_url('/contact/')); ?>">Request a Quote</a>
                 <a class="button secondary" href="<?php echo esc_url(home_url('/products/')); ?>">View Products</a>

@@ -578,7 +578,12 @@ function sealbridge_seo_head(): void
             'email' => sealbridge_contact_email(),
             'sameAs' => array_values(sealbridge_social_links()),
         ];
-        $schema['areaServed'] = 'Worldwide';
+        $schema['areaServed'] = [
+            ['@type' => 'Country', 'name' => 'Canada'],
+            ['@type' => 'Country', 'name' => 'United Kingdom'],
+            ['@type' => 'AdministrativeArea', 'name' => 'European Union'],
+            ['@type' => 'Country', 'name' => 'United States'],
+        ];
     } elseif (!is_front_page() && !is_singular('post')) {
         $schema['logo'] = $image;
     }

@@ -16,6 +16,11 @@ get_header();
                 the_post();
                 ?>
                 <h1 class="page-title"><?php the_title(); ?></h1>
+                <?php if (is_page('about')) : ?>
+                    <div class="intro-band">
+                        <p>We support electrical enclosure, control cabinet, outdoor lighting, EV charging, solar inverter, and industrial equipment manufacturers across Canada, the United Kingdom, Europe, and other international markets.</p>
+                    </div>
+                <?php endif; ?>
                 <?php the_content(); ?>
                 <?php
             endwhile;

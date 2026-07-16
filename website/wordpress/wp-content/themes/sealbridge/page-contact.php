@@ -32,7 +32,7 @@ get_header();
                     </div>
                 <?php endif; ?>
                 <div class="intro-band">
-                    <p>Send the drawing, material, size, quantity, application, and certificate requirements. Clear project details help reduce back-and-forth and improve quotation accuracy.</p>
+                    <p>Send the drawing, material, size, quantity, application, destination country, and certificate requirements. We support manufacturers and B2B buyers across Canada, the United Kingdom, Europe, and other international markets.</p>
                 </div>
                 <h2>Quote Information Checklist</h2>
                 <ul class="feature-list">
@@ -42,6 +42,7 @@ get_header();
                     <li>Hardness or density</li>
                     <li>Adhesive backing requirement</li>
                     <li>Order quantity and sample quantity</li>
+                    <li>Destination country or region</li>
                     <li>Application environment</li>
                     <li>RoHS, REACH, UL94, TDS, or SDS needs</li>
                 </ul>
