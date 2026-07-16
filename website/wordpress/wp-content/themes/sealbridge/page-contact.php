@@ -88,6 +88,12 @@ get_header();
                         <strong>WhatsApp</strong>
                         <span>+86 187 7021 4461</span>
                     </a>
+                    <?php foreach (sealbridge_social_links() as $platform => $social_url) : ?>
+                        <a href="<?php echo esc_url($social_url); ?>" target="_blank" rel="noopener noreferrer">
+                            <strong><?php echo esc_html($platform); ?></strong>
+                            <span>View our public profile</span>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
                 <?php
             endwhile;

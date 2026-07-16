@@ -78,6 +78,15 @@ function sealbridge_contact_email(): string
     return 'support@sealbridgesupply.com';
 }
 
+/** Official public social profiles used in navigation and structured data. */
+function sealbridge_social_links(): array
+{
+    return [
+        'Facebook' => 'https://www.facebook.com/people/SealBridge-Supply/61591637324325/',
+        'LinkedIn' => 'https://www.linkedin.com/in/%E6%99%BA%E7%8E%89-%E5%BC%A0-0888a3422/',
+    ];
+}
+
 /** Redirect back to the quote form with a non-sensitive result code. */
 function sealbridge_quote_redirect(string $status): void
 {
@@ -454,6 +463,11 @@ function sealbridge_seo_head(): void
 
     if (is_singular('product')) {
         $image = sealbridge_product_image_url(get_queried_object());
+    } elseif (is_singular('post') && has_post_thumbnail()) {
+        $featured_image = get_the_post_thumbnail_url(get_queried_object_id(), 'full');
+        if (is_string($featured_image) && $featured_image !== '') {
+            $image = $featured_image;
+        }
     }
 
     if ($description !== '') {
@@ -480,6 +494,7 @@ function sealbridge_seo_head(): void
                     'logo' => $image,
                     'description' => $description,
                     'email' => sealbridge_contact_email(),
+                    'sameAs' => array_values(sealbridge_social_links()),
                     'contactPoint' => [
                         '@type' => 'ContactPoint',
                         'contactType' => 'customer support and quotation requests',
@@ -498,6 +513,45 @@ function sealbridge_seo_head(): void
                 ],
             ],
         ];
+    } elseif (is_singular('post')) {
+        $home_url = home_url('/');
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'Organization',
+                    '@id' => $home_url . '#organization',
+                    'name' => get_bloginfo('name'),
+                    'url' => $home_url,
+                    'logo' => sealbridge_logo_url(),
+                    'email' => sealbridge_contact_email(),
+                    'sameAs' => array_values(sealbridge_social_links()),
+                ],
+                [
+                    '@type' => 'BlogPosting',
+                    '@id' => $canonical . '#article',
+                    'headline' => get_the_title(),
+                    'description' => $description,
+                    'url' => $canonical,
+                    'mainEntityOfPage' => [
+                        '@type' => 'WebPage',
+                        '@id' => $canonical,
+                    ],
+                    'image' => $image,
+                    'datePublished' => get_the_date(DATE_W3C),
+                    'dateModified' => get_the_modified_date(DATE_W3C),
+                    'author' => [
+                        '@type' => 'Organization',
+                        '@id' => $home_url . '#organization',
+                        'name' => get_bloginfo('name'),
+                    ],
+                    'publisher' => [
+                        '@id' => $home_url . '#organization',
+                    ],
+                    'inLanguage' => 'en-US',
+                ],
+            ],
+        ];
     } else {
         $schema = [
             '@context' => 'https://schema.org',
@@ -509,6 +563,7 @@ function sealbridge_seo_head(): void
 
         if (!is_singular('product')) {
             $schema['email'] = sealbridge_contact_email();
+            $schema['sameAs'] = array_values(sealbridge_social_links());
         }
     }
 
@@ -521,9 +576,10 @@ function sealbridge_seo_head(): void
             'name' => get_bloginfo('name'),
             'url' => home_url('/'),
             'email' => sealbridge_contact_email(),
+            'sameAs' => array_values(sealbridge_social_links()),
         ];
         $schema['areaServed'] = 'Worldwide';
-    } elseif (!is_front_page()) {
+    } elseif (!is_front_page() && !is_singular('post')) {
         $schema['logo'] = $image;
     }
 

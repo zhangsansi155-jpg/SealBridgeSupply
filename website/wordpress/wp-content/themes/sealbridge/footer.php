@@ -12,6 +12,14 @@
             <img class="footer-logo" src="<?php echo esc_url(sealbridge_logo_url()); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>">
             <strong><?php bloginfo('name'); ?></strong>
             <p><?php bloginfo('description'); ?></p>
+            <nav class="footer-social-links" aria-label="<?php esc_attr_e('SealBridge Supply social profiles', 'sealbridge'); ?>">
+                <?php foreach (sealbridge_social_links() as $platform => $social_url) : ?>
+                    <a href="<?php echo esc_url($social_url); ?>" target="_blank" rel="noopener noreferrer">
+                        <span aria-hidden="true"><?php echo esc_html(substr($platform, 0, 1)); ?></span>
+                        <?php echo esc_html($platform); ?>
+                    </a>
+                <?php endforeach; ?>
+            </nav>
         </div>
         <nav class="footer-link-group" aria-label="<?php esc_attr_e('Products and sourcing', 'sealbridge'); ?>">
             <strong>Explore</strong>

@@ -1508,6 +1508,41 @@ img {
   max-width: 420px;
 }
 
+.footer-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.footer-social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(220, 229, 223, 0.2);
+  border-radius: 999px;
+  padding: 8px 12px 8px 8px;
+  color: #dce5df;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.footer-social-links a:hover {
+  border-color: rgba(220, 229, 223, 0.5);
+  color: var(--white);
+}
+
+.footer-social-links span {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--white);
+  font-size: 0.78rem;
+}
+
 .footer-link-group {
   display: grid;
   gap: 8px;
