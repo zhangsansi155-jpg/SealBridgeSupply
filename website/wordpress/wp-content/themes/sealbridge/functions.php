@@ -264,20 +264,20 @@ function sealbridge_seo_map(): array
         ],
         'products' => [
             'electrical-enclosure-gaskets' => [
-                'title' => 'Custom Electrical Enclosure Gaskets | SealBridge Supply',
-                'description' => 'Custom rubber and EPDM foam gaskets for electrical enclosures, junction boxes, outdoor covers, and drawing-based IP sealing projects.',
+                'title' => 'Electrical Enclosure Gaskets | Custom Foam, Rubber & Silicone Seals',
+                'description' => 'Custom electrical enclosure gaskets in EPDM foam, rubber, and silicone for panels, junction boxes, outdoor covers, and drawing-based sealing projects.',
             ],
             'control-cabinet-sealing-strips' => [
-                'title' => 'Control Cabinet Door Gasket Seals | SealBridge Supply',
-                'description' => 'Custom control cabinet door gasket seals, EPDM sealing strips, bulb seals, and extruded profiles sized to the door gap and installation method.',
+                'title' => 'Control Cabinet Door Sealing Strips | Gasketing for Electrical Cabinets',
+                'description' => 'Control cabinet door sealing strips, electrical panel door gaskets, bulb seals, and EPDM profiles sized to the door gap and installation method.',
             ],
             'epdm-foam-gaskets' => [
                 'title' => 'EPDM Foam Gaskets | Closed Cell Sponge Gasket Supplier',
                 'description' => 'Closed-cell EPDM foam gaskets and EPDM sponge gaskets for outdoor waterproof, dustproof, weather-resistant enclosure sealing.',
             ],
             'silicone-gaskets' => [
-                'title' => 'Silicone Gaskets | Silicone Rubber Gaskets for Housings',
-                'description' => 'Silicone rubber gaskets and silicone foam gaskets for LED lighting housings, outdoor electronics, equipment covers, and temperature-sensitive sealing.',
+                'title' => 'Silicone Gaskets for Electrical Enclosures | Custom Foam & Solid Silicone',
+                'description' => 'Custom silicone rubber and silicone foam gaskets for electrical enclosures, LED housings, outdoor electronics, equipment covers, and temperature-sensitive sealing.',
             ],
             'adhesive-backed-die-cut-gaskets' => [
                 'title' => 'Custom Die Cut Gaskets | SealBridge Supply',
@@ -1140,7 +1140,7 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
     $post = $post ?: get_post();
     $guidance = [
         'electrical-enclosure-gaskets' => [
-            'title' => 'Custom Rubber Gaskets for Electrical Enclosures',
+            'title' => 'Electrical Enclosure Gaskets for Panels, Covers, and Outdoor Boxes',
             'intro' => 'Use this product route for drawing-based enclosure cover gaskets, junction box frames, access-panel seals, and outdoor electrical box gaskets. The correct material depends on the cover geometry, compression gap, exposure conditions, and assembly method—not on an IP label alone.',
             'checks' => [
                 'Material direction' => 'EPDM foam is a common starting point for outdoor weather resistance and compressible door sealing. Silicone foam or solid rubber may suit wider temperature ranges or different compression loads.',
@@ -1151,11 +1151,12 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
                 'Outdoor electrical enclosure gasket applications' => '/applications/outdoor-electrical-enclosures/',
                 'Junction box gasket applications' => '/applications/junction-boxes/',
                 'Electrical enclosure gasket material guide' => '/electrical-enclosure-gasket-material-guide/',
+                'Silicone gaskets for electrical enclosures' => '/products/silicone-gaskets/',
                 'How to choose an electrical enclosure gasket' => '/choose-electrical-enclosure-gaskets-outdoor-boxes/',
             ],
         ],
         'silicone-gaskets' => [
-            'title' => 'Silicone Gaskets for LED Lighting Housings and Outdoor Electronics',
+            'title' => 'Silicone Gaskets for Electrical Enclosures',
             'intro' => 'Use this product route for silicone gaskets, silicone rubber gaskets, and silicone foam gaskets where softness, UV exposure, temperature range, and clean assembly matter. Buyers often compare solid silicone against silicone foam for LED housings, outdoor electronics, battery covers, and temperature-sensitive enclosure projects.',
             'checks' => [
                 'Material direction' => 'Solid silicone is usually selected for molded or cut parts that need stable elasticity and higher temperature resistance. Silicone foam can be a better fit when softer compression and lower closing force matter more.',
@@ -1165,12 +1166,14 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
             'links' => [
                 'Silicone gasket applications for LED and outdoor electronics' => '/applications/led-lighting-housings/',
                 'Outdoor electrical enclosure gasket applications' => '/applications/outdoor-electrical-enclosures/',
+                'Electrical enclosure gasket material guide' => '/electrical-enclosure-gasket-material-guide/',
+                'Electrical enclosure gasket options' => '/products/electrical-enclosure-gaskets/',
                 'EPDM vs silicone outdoor gasket guide' => '/epdm-vs-silicone-outdoor-enclosure-gaskets/',
             ],
         ],
         'control-cabinet-sealing-strips' => [
-            'title' => 'Control Cabinet Door Gasket and Seal Profile Selection',
-            'intro' => 'Control cabinet gasketing normally starts with the door gap and mounting edge. Bulb seals, D-profile strips, self-grip edge seals, and custom EPDM extrusions create different compression forces and installation conditions.',
+            'title' => 'Control Cabinet Door Sealing Strips and Electrical Panel Door Gaskets',
+            'intro' => 'Gasketing for control cabinets normally starts with the door gap and mounting edge. Bulb seals, D-profile strips, self-grip edge seals, and custom EPDM extrusions create different compression forces and installation conditions.',
             'checks' => [
                 'Profile fit' => 'Confirm profile width and height, retaining edge dimensions, door closing gap, bend radius, and whether corners are cut, bonded, or supplied as continuous strip.',
                 'Material direction' => 'Dense or sponge EPDM profiles are widely used for cabinet doors. Silicone profiles may be considered when softness or temperature exposure is more demanding.',
@@ -1178,6 +1181,7 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
             ],
             'links' => [
                 'Control cabinet sealing applications' => '/applications/control-cabinets/',
+                'Electrical enclosure gaskets for cabinet panels' => '/products/electrical-enclosure-gaskets/',
                 'Control cabinet door seal profile guide' => '/control-cabinet-door-seal-profiles/',
                 'Request a custom cabinet gasket quote' => '/contact/',
             ],
