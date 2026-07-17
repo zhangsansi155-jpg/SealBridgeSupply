@@ -687,6 +687,7 @@ function sealbridge_product_article_slugs(string $product_slug): array
             'choose-electrical-enclosure-gaskets-outdoor-boxes',
             'can-a-gasket-be-ip65-or-ip66-certified',
             'nema-3r-4-4x-enclosure-gasket-requirements',
+            'electrical-enclosure-gasket-material-guide',
         ],
         'control-cabinet-sealing-strips' => [
             'control-cabinet-door-seal-profiles',
@@ -700,6 +701,7 @@ function sealbridge_product_article_slugs(string $product_slug): array
         'silicone-gaskets' => [
             'silicone-gaskets-led-lighting-outdoor-electronics',
             'epdm-vs-silicone-outdoor-enclosure-gaskets',
+            'choose-electrical-enclosure-gaskets-outdoor-boxes',
         ],
         'adhesive-backed-die-cut-gaskets' => [
             'adhesive-backed-die-cut-gaskets-fast-enclosure-assembly',
@@ -1148,7 +1150,22 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
             'links' => [
                 'Outdoor electrical enclosure gasket applications' => '/applications/outdoor-electrical-enclosures/',
                 'Junction box gasket applications' => '/applications/junction-boxes/',
+                'Electrical enclosure gasket material guide' => '/electrical-enclosure-gasket-material-guide/',
                 'How to choose an electrical enclosure gasket' => '/choose-electrical-enclosure-gaskets-outdoor-boxes/',
+            ],
+        ],
+        'silicone-gaskets' => [
+            'title' => 'Silicone Gaskets for LED Lighting Housings and Outdoor Electronics',
+            'intro' => 'Use this product route for silicone gaskets, silicone rubber gaskets, and silicone foam gaskets where softness, UV exposure, temperature range, and clean assembly matter. Buyers often compare solid silicone against silicone foam for LED housings, outdoor electronics, battery covers, and temperature-sensitive enclosure projects.',
+            'checks' => [
+                'Material direction' => 'Solid silicone is usually selected for molded or cut parts that need stable elasticity and higher temperature resistance. Silicone foam can be a better fit when softer compression and lower closing force matter more.',
+                'Design information' => 'Send the gasket path, solid or foam silicone preference, hardness, color, temperature range, UV exposure, adhesive requirement, and annual quantity.',
+                'Validation scope' => 'Silicone is often chosen when EPDM is not the best fit for temperature or softness. The final gasket still needs to be designed around the complete enclosure assembly and test condition.',
+            ],
+            'links' => [
+                'Silicone gasket applications for LED and outdoor electronics' => '/applications/led-lighting-housings/',
+                'Outdoor electrical enclosure gasket applications' => '/applications/outdoor-electrical-enclosures/',
+                'EPDM vs silicone outdoor gasket guide' => '/epdm-vs-silicone-outdoor-enclosure-gaskets/',
             ],
         ],
         'control-cabinet-sealing-strips' => [

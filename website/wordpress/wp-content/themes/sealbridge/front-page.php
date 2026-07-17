@@ -62,7 +62,7 @@ get_header();
             <?php
             $featured_products = new WP_Query([
                 'post_type' => 'product',
-                'posts_per_page' => 4,
+                'posts_per_page' => 6,
                 'orderby' => 'menu_order title',
                 'order' => 'ASC',
             ]);
