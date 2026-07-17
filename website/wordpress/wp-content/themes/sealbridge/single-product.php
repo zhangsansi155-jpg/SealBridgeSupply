@@ -20,6 +20,7 @@ get_header();
                 $applications = sealbridge_product_applications();
                 $parameter_groups = sealbridge_product_parameters();
                 $buyer_guidance = sealbridge_product_buyer_guidance();
+                $product_faq = sealbridge_product_faq();
                 $video_url = (string) get_post_meta(get_the_ID(), '_sealbridge_product_video', true);
                 ?>
                 <div class="product-gallery" data-product-gallery>
@@ -89,6 +90,23 @@ get_header();
                                 <a class="text-link" href="<?php echo esc_url(home_url($link_path)); ?>"><?php echo esc_html($link_label); ?></a>
                             <?php endforeach; ?>
                         </nav>
+                    </section>
+                <?php endif; ?>
+                <?php if ($product_faq) : ?>
+                    <section class="product-parameter-section" aria-labelledby="product-faq">
+                        <div class="section-header">
+                            <span class="eyebrow">Buyer FAQ</span>
+                            <h2 id="product-faq">Frequently Asked Questions</h2>
+                            <p>Answers to the product and quotation questions buyers usually need to resolve before sampling.</p>
+                        </div>
+                        <div class="product-parameter-grid">
+                            <?php foreach ($product_faq as $question => $answer) : ?>
+                                <section class="parameter-card">
+                                    <h3><?php echo esc_html($question); ?></h3>
+                                    <p><?php echo esc_html($answer); ?></p>
+                                </section>
+                            <?php endforeach; ?>
+                        </div>
                     </section>
                 <?php endif; ?>
                 <?php if ($parameter_groups) : ?>

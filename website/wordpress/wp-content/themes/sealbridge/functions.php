@@ -603,6 +603,33 @@ function sealbridge_seo_head(): void
     }
 
     echo '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
+
+    if (is_singular('product')) {
+        $product_faq = sealbridge_product_faq(get_queried_object());
+        if ($product_faq) {
+            $faq_schema = [
+                '@context' => 'https://schema.org',
+                '@type' => 'FAQPage',
+                '@id' => $canonical . '#faq',
+                'mainEntity' => array_map(
+                    static function (string $question, string $answer): array {
+                        return [
+                            '@type' => 'Question',
+                            'name' => $question,
+                            'acceptedAnswer' => [
+                                '@type' => 'Answer',
+                                'text' => $answer,
+                            ],
+                        ];
+                    },
+                    array_keys($product_faq),
+                    array_values($product_faq)
+                ),
+            ];
+
+            echo '<script type="application/ld+json">' . wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
+        }
+    }
 }
 add_action('wp_head', 'sealbridge_seo_head', 2);
 remove_action('wp_head', 'rel_canonical');
@@ -1203,6 +1230,36 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
     ];
 
     return $guidance[$post->post_name] ?? [];
+}
+
+/**
+ * Keep the visible product FAQs and FAQ structured data in one source of truth.
+ */
+function sealbridge_product_faq(?WP_Post $post = null): array
+{
+    $post = $post ?: get_post();
+    $faqs = [
+        'electrical-enclosure-gaskets' => [
+            'What material is commonly used for electrical enclosure gaskets?' => 'Closed-cell EPDM foam is a common starting point for weather-exposed covers and panels. Silicone foam or solid silicone may be considered when temperature range, UV exposure, or softer compression is more important. Material selection should follow the enclosure gap and service conditions.',
+            'Can an electrical enclosure gasket be supplied with adhesive backing?' => 'Yes. Adhesive-backed foam or rubber gaskets can support clean placement during assembly. Confirm the mounting surface, operating environment, adhesive requirement, release liner, and required positioning accuracy before sampling.',
+            'Does a gasket itself have an IP65 or IP66 rating?' => 'No. IP ratings apply to the completed enclosure assembly under its test conditions. The gasket material, compression path, latches, corners, and cover design all contribute to the final result.',
+            'What information is needed for an enclosure gasket quote?' => 'Provide the enclosure drawing or gasket path, cover dimensions, thickness or profile target, compression gap, material preference, adhesive requirement, quantity, and any RoHS, REACH, TDS, or SDS document needs.',
+        ],
+        'silicone-gaskets' => [
+            'When should I choose silicone foam instead of solid silicone?' => 'Silicone foam can be useful when lower closing force and softer compression are needed around covers, lenses, or housings. Solid silicone is often selected for cut or molded parts that need stable elasticity and a more defined gasket section.',
+            'How do silicone gaskets compare with EPDM for an electrical enclosure?' => 'Silicone is often considered for wider temperature exposure, UV stability, or softer compression. EPDM can be a practical and economical choice for many outdoor enclosure projects. The right choice depends on the enclosure design, compression range, and actual environment.',
+            'Can silicone gaskets be adhesive backed?' => 'Yes, but the adhesive system should be matched to the silicone surface treatment, mounting material, temperature exposure, and assembly process. Confirm the adhesive requirement before sampling rather than assuming a general tape will bond correctly.',
+            'What should be included in a silicone gasket RFQ?' => 'Send a drawing or sample, solid or foam preference, hardness, color, temperature exposure, UV condition, adhesive requirement, tolerance, quantity, and any requested material documents.',
+        ],
+        'control-cabinet-sealing-strips' => [
+            'How do I choose a control cabinet door sealing strip profile?' => 'Start with the measured minimum and maximum door gap, mounting edge, available compression height, bend radius, latch locations, and corner treatment. Select the profile from those dimensions rather than from a catalog image alone.',
+            'Can an electrical panel door gasket support IP or NEMA enclosure testing?' => 'A gasket supports the enclosure sealing design, but IP and NEMA ratings belong to the complete cabinet assembly and its test conditions. Door compression, latches, corners, frame design, and installation quality must all be considered.',
+            'How should cabinet door seal corners be supplied?' => 'Corners may be cut, bonded, molded, or formed from a continuous strip depending on the profile, cabinet geometry, and assembly process. Share the door drawing and corner requirement so the joining approach can be reviewed before quotation.',
+            'What is needed to quote control cabinet sealing strips?' => 'Provide a profile drawing, section photo, or sample together with door-gap range, gasket path, material, hardness or density, color, roll or cut length, corner requirement, quantity, packing, and document needs.',
+        ],
+    ];
+
+    return $faqs[$post->post_name] ?? [];
 }
 
 function sealbridge_application_scenarios(): array
