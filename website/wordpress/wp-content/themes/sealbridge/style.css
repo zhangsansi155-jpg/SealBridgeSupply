@@ -1140,6 +1140,28 @@ img {
   background: var(--white);
 }
 
+.factory-workshop-note {
+  margin: 18px 0 0;
+  padding: 16px 18px;
+  border-left: 4px solid var(--green);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--paper);
+}
+
+.factory-workshop-note strong {
+  color: var(--ink);
+}
+
+.factory-workshop-note p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.factory-workshop-gallery img {
+  aspect-ratio: 1065 / 663;
+}
+
 .process {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

@@ -1401,6 +1401,51 @@ function sealbridge_application_display_title(?WP_Post $post = null): string
     return $titles[$post->post_name] ?? get_the_title($post);
 }
 
+/**
+ * Use genuine workshop references on the Factory Screening page.
+ *
+ * The page is stored in WordPress, so replacing the seeded gallery at render
+ * time also updates existing installations without overwriting editor content.
+ */
+function sealbridge_factory_workshop_gallery(): string
+{
+    $base = trailingslashit(get_template_directory_uri()) . 'assets/trust/factory-workshop/';
+    $items = [
+        ['mixing-molding.webp', 'Rubber mixing and material preparation equipment at a screened production partner', 'Material preparation and rubber mixing equipment used before forming.'],
+        ['tooling-storage.webp', 'Organized rubber mold storage area at a screened production partner', 'Organized mold storage supports tooling identification and repeat orders.'],
+        ['inspection-workshop.webp', 'Manual trimming and full inspection workshop for rubber sealing parts', 'Manual trimming and full inspection area for molded sealing parts.'],
+        ['testing-laboratory.webp', 'Rubber material and gasket testing laboratory at a screened production partner', 'Laboratory reference for dimensional and material-related verification.'],
+    ];
+
+    $html = '<div class="factory-workshop-note"><strong>Production partner site references</strong><p>These original workshop photos are used as screening evidence from a production partner. They show relevant process and inspection context; they do not represent a claim that SealBridge owns the facility.</p></div><div class="workshop-grid factory-workshop-gallery">';
+
+    foreach ($items as [$file, $alt, $caption]) {
+        $html .= sprintf(
+            '<figure><img src="%1$s" alt="%2$s" width="1065" height="663" loading="lazy" decoding="async"><figcaption>%3$s</figcaption></figure>',
+            esc_url($base . $file),
+            esc_attr($alt),
+            esc_html($caption)
+        );
+    }
+
+    return $html . '</div>';
+}
+
+function sealbridge_replace_factory_workshop_gallery(string $content): string
+{
+    if (!is_page('factory-screening') || !in_the_loop() || !is_main_query()) {
+        return $content;
+    }
+
+    $gallery = sealbridge_factory_workshop_gallery();
+    $updated = preg_replace('/<div class="workshop-grid">.*?<\/div>/s', $gallery, $content, 1);
+
+    return is_string($updated) && $updated !== $content
+        ? $updated
+        : $content . '<h2>Production Partner Workshop References</h2>' . $gallery;
+}
+add_filter('the_content', 'sealbridge_replace_factory_workshop_gallery', 20);
+
 function sealbridge_application_article(?WP_Post $post = null): array
 {
     $post = $post ?: get_post();
