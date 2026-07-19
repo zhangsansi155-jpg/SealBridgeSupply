@@ -1272,6 +1272,24 @@ function sealbridge_application_scenarios(): array
 }
 
 /**
+ * Prefer a Media Library featured image while keeping a deployable theme
+ * fallback for application pages that have not yet been edited in wp-admin.
+ */
+function sealbridge_application_image_url(string $slug, int $post_id = 0): string
+{
+    if ($post_id === 0) {
+        $application = get_page_by_path($slug, OBJECT, 'application');
+        $post_id = $application instanceof WP_Post ? (int) $application->ID : 0;
+    }
+
+    if ($post_id > 0 && has_post_thumbnail($post_id)) {
+        return (string) get_the_post_thumbnail_url($post_id, 'large');
+    }
+
+    return get_template_directory_uri() . '/assets/applications/' . sanitize_file_name($slug) . '.webp';
+}
+
+/**
  * Keep application H1s aligned with the primary buyer-intent query even when
  * an older database title is still present.
  */
@@ -1295,6 +1313,10 @@ function sealbridge_application_article(?WP_Post $post = null): array
             'summary' => 'Outdoor electrical enclosures need gasket materials that can handle rain, dust, UV exposure, temperature changes, and long-term compression on doors or covers.',
             'pain_points' => ['Water and dust ingress around doors and covers', 'Compression loss after repeated opening', 'UV and ozone aging outdoors', 'Unclear RoHS, REACH, TDS, or SDS document support'],
             'materials' => ['EPDM foam for weather resistance and compression recovery', 'Silicone foam or silicone rubber for broader temperature exposure', 'Neoprene / CR when balanced weather and industrial performance is needed'],
+            'structures' => ['Die-cut closed-cell foam frame for flat doors and covers', 'Extruded bulb or D-profile seal for larger cabinet doors', 'Molded rubber gasket for shaped grooves or complex corners'],
+            'selection_factors' => ['Minimum and maximum enclosure gap', 'Target compression and available latch force', 'UV, ozone, rain, temperature cycling, and cleaning exposure', 'Adhesive-backed, channel-retained, or mechanically located installation'],
+            'production' => ['Material receiving and incoming inspection', 'Mixing or sheet preparation followed by molding, extrusion, or die cutting', 'In-process dimensional review, trimming, and optional secondary cure', 'Final inspection, packaging review, and outgoing check'],
+            'quality_checks' => ['Material identification, hardness or density, and thickness', 'Frame dimensions, corner continuity, and joint quality', 'Compression recovery, aging, low-temperature, or tensile evidence when specified', 'TDS, SDS, RoHS, REACH, and other project documents when available'],
             'products' => ['electrical-enclosure-gaskets', 'epdm-foam-gaskets', 'silicone-gaskets'],
             'quote' => ['Enclosure drawing or gasket path', 'Door gap and compression target', 'Material and thickness', 'Adhesive or mechanical installation', 'Quantity and compliance documents'],
         ],
@@ -1302,6 +1324,10 @@ function sealbridge_application_article(?WP_Post $post = null): array
             'summary' => 'Control cabinet sealing usually focuses on door sealing strips, edge protection, dust sealing, and stable compression after repeated cabinet access.',
             'pain_points' => ['Door gaps vary between cabinet designs', 'Long strips need consistent profile and hardness', 'Corners or joints may leak if not specified', 'Suppliers may quote without confirming profile drawings'],
             'materials' => ['EPDM rubber for general cabinet door sealing', 'Silicone for softer or wider temperature sealing', 'PVC or rubber edge trim for U-channel protection'],
+            'structures' => ['Extruded bulb, D-profile, or edge-mounted sealing strip', 'Continuous strip with bonded or molded corners', 'Die-cut foam gasket for smaller access panels'],
+            'selection_factors' => ['Door-gap range and profile compression height', 'Hinge and latch spacing across the cabinet door', 'Corner bend radius, joint location, and cut length', 'Roll, cut-to-length, frame, or pre-assembled supply format'],
+            'production' => ['Compound and profile review before extrusion or molding', 'Profile extrusion, cooling, cutting, and corner preparation', 'In-process section and dimension inspection', 'Frame joining, final inspection, labeling, and packing'],
+            'quality_checks' => ['Profile section, hardness, color, and cut length', 'Corner joining and visual continuity', 'Compression behavior across the specified door gap', 'Packing method that prevents profile deformation'],
             'products' => ['control-cabinet-sealing-strips', 'epdm-foam-gaskets', 'custom-rubber-gaskets'],
             'quote' => ['Profile drawing or sample photo', 'Material and hardness', 'Strip length and annual quantity', 'Corner joining or cutting requirement', 'Packaging and label needs'],
         ],
@@ -1311,6 +1337,8 @@ function sealbridge_application_article(?WP_Post $post = null): array
             'materials' => ['Closed-cell EPDM foam for outdoor junction box cover sealing', 'Adhesive-backed die-cut foam for controlled placement and faster assembly', 'Silicone foam or solid silicone where softness or wider temperature exposure matters'],
             'structures' => ['One-piece die-cut frame gasket', 'Kiss-cut adhesive-backed gasket supplied on a release liner', 'Molded cover gasket with controlled corners', 'Foam strip joined into a frame for larger or lower-volume boxes'],
             'selection_factors' => ['Cover flange width and gasket path', 'Minimum, nominal, and maximum sealing gap', 'Fastener spacing and available closing force', 'Outdoor exposure, temperature, UV, and target enclosure test', 'Adhesive surface, liner, installation method, and annual volume'],
+            'production' => ['Foam or rubber sheet and adhesive system confirmation', 'Lamination when adhesive backing is required', 'Die cutting or kiss cutting with controlled waste removal', 'Dimensional inspection, liner review, counting, and flat packing'],
+            'quality_checks' => ['Outer and inner dimensions plus screw-hole position', 'Gasket thickness, density or hardness, and adhesive compatibility', 'Clean die-cut edges and continuous corners', 'Release liner, part orientation, and packing quantity'],
             'products' => ['adhesive-backed-die-cut-gaskets', 'electrical-enclosure-gaskets', 'epdm-foam-gaskets'],
             'related_articles' => ['adhesive-backed-die-cut-gaskets-fast-enclosure-assembly', 'can-a-gasket-be-ip65-or-ip66-certified'],
             'quote' => ['2D drawing, DXF, or cover gasket path', 'Box and cover material plus sealing surface finish', 'Material, thickness, density or hardness, and adhesive requirement', 'Compression gap, tolerance, and target enclosure test', 'Sample quantity, annual volume, liner, packing, and document needs'],
@@ -1321,21 +1349,31 @@ function sealbridge_application_article(?WP_Post $post = null): array
             'materials' => ['Closed-cell EPDM foam for weather-exposed charger cabinet doors and panels', 'Silicone foam or silicone rubber for softer closing force or wider temperature exposure', 'Custom molded or die-cut rubber gaskets for shaped covers, displays, and connector housings'],
             'structures' => ['Die-cut frame gasket for access panels and flat covers', 'Extruded bulb or D-profile seal for cabinet doors', 'Corner-joined foam or rubber frame', 'Molded gasket for non-flat charger components'],
             'selection_factors' => ['Enclosure gap and intended compression range', 'Door stiffness, hinge position, latch spacing, and closing force', 'Outdoor temperature, UV, ozone, rain, and cleaning exposure', 'Adhesive-backed, retained-channel, or mechanically located installation', 'Complete enclosure IP/NEMA test target and requested material documents'],
+            'production' => ['Select extrusion, die-cut frame, or molded gasket route by the charger component', 'Prepare samples against the actual cabinet gap and closing force', 'Inspect profile, frame dimensions, joints, and adhesive placement', 'Package long profiles or frames to prevent distortion during shipment'],
+            'quality_checks' => ['Compression consistency at hinges, corners, and latches', 'Weather-aging and low-temperature evidence when required', 'Material traceability and requested RoHS, REACH, TDS, SDS, or UL94 information', 'Final charger enclosure testing remains an assembly-level validation'],
             'products' => ['epdm-foam-gaskets', 'silicone-gaskets', 'electrical-enclosure-gaskets'],
             'related_articles' => ['epdm-vs-silicone-outdoor-enclosure-gaskets', 'can-a-gasket-be-ip65-or-ip66-certified'],
             'quote' => ['Cabinet door, panel, or gasket-path drawing', 'Minimum and maximum gap plus compression target', 'Working temperature, UV, rain, cleaning, and service-access conditions', 'Material, thickness or profile size, joining, and adhesive requirements', 'Sample and annual quantity plus RoHS, REACH, UL94, TDS, or SDS needs'],
         ],
         'solar-inverter-enclosures' => [
-            'summary' => 'Solar inverter enclosures need gasket options that can stay reliable under UV exposure, temperature changes, outdoor humidity, and continuous compression.',
-            'pain_points' => ['UV and ozone aging', 'Thermal cycling and compression set', 'Outdoor water and dust sealing', 'Need to avoid overclaiming IP rating on the gasket alone'],
-            'materials' => ['EPDM foam for outdoor enclosure sealing', 'Silicone foam for temperature-sensitive sealing', 'Closed-cell sponge materials when low water absorption is required'],
+            'summary' => 'Solar inverter, photovoltaic control, energy-storage, and battery cabinets use seals around service doors, cable-entry covers, display panels, and internal modules. Material selection should account for UV, outdoor humidity, temperature cycling, and continuous compression.',
+            'pain_points' => ['UV and ozone exposure at outdoor installations', 'Thermal cycling and long-term compression set', 'Large cabinet doors with uneven latch pressure', 'Different sealing needs around doors, cable entries, displays, and battery compartments'],
+            'materials' => ['Closed-cell EPDM foam for outdoor cabinet doors and removable covers', 'Silicone foam or silicone rubber for wider temperature exposure or softer compression', 'Custom molded or die-cut rubber parts for shaped cable-entry and module interfaces'],
+            'structures' => ['Extruded door seal for inverter or storage cabinets', 'Die-cut adhesive-backed frame for access panels', 'Molded gasket or O-ring for connector and module interfaces'],
+            'selection_factors' => ['Cabinet gap, latch spacing, and compression target', 'Outdoor temperature, UV, ozone, humidity, and cleaning conditions', 'Door, display, connector, or cable-entry sealing location', 'Required material documents and enclosure-level test target'],
+            'production' => ['Match each sealing location to extrusion, die cutting, or molding', 'Sample against the cabinet drawing and real compression gap', 'Inspect dimensions, joints, adhesive, and material properties', 'Complete final inspection, packing, and outgoing review'],
+            'quality_checks' => ['Hardness or density, thickness, and profile section', 'Thermal-aging, low-temperature, compression, or tensile evidence when specified', 'Frame and corner continuity on large cabinet doors', 'Do not treat a gasket material as a stand-alone IP rating'],
             'products' => ['epdm-foam-gaskets', 'silicone-gaskets', 'electrical-enclosure-gaskets'],
             'quote' => ['Drawing or gasket path', 'Temperature range', 'Thickness and compression target', 'Outdoor exposure details', 'Document requirements'],
         ],
         'led-lighting-housings' => [
-            'summary' => 'LED lighting housings often need soft gasket materials for lens covers, fixture bodies, outdoor housings, and assemblies exposed to heat and UV.',
-            'pain_points' => ['Heat near the light source', 'UV and outdoor aging', 'Soft sealing around lens or cover areas', 'Need clean appearance and stable assembly'],
-            'materials' => ['Silicone gasket for heat and UV exposure', 'Silicone foam for soft compression', 'EPDM foam for general outdoor housing sealing'],
+            'summary' => 'Outdoor LED luminaires and electronic lighting housings use gaskets around glass lenses, covers, cable-entry plates, and fixture bodies. The seal must balance heat exposure, UV aging, low closing force, appearance, and repeatable assembly.',
+            'pain_points' => ['Heat near the LED module and driver compartment', 'UV, rain, dust, and outdoor aging', 'Glass or plastic lens covers that allow only limited closing force', 'Visible gasket edges, inconsistent corners, or adhesive squeeze-out'],
+            'materials' => ['Silicone foam for soft compression and wider temperature exposure', 'Solid silicone for molded or die-cut lens and cover gaskets', 'Closed-cell EPDM foam for general outdoor fixture sealing where the temperature range permits'],
+            'structures' => ['Die-cut foam or silicone frame for flat lens covers', 'Molded silicone gasket for shaped grooves and corners', 'Extruded strip joined into a frame for larger fixture bodies'],
+            'selection_factors' => ['Lens or cover material and sealing-flange width', 'Operating temperature near LEDs and driver electronics', 'UV, rain, dust, cleaning, and outdoor exposure', 'Compression range, screw spacing, color, and visible-edge requirements'],
+            'production' => ['Confirm silicone or EPDM material and the drawing-based gasket route', 'Mold, extrude, or die cut followed by trimming or joining', 'Inspect section, frame dimensions, corners, and surface cleanliness', 'Pack flat or supported to protect shape and appearance'],
+            'quality_checks' => ['Material, hardness or density, color, and surface finish', 'Gasket path dimensions and corner continuity', 'Heat-aging, UV, compression, or dimensional evidence when specified', 'Assembly trial on the real lens and housing before volume production'],
             'products' => ['silicone-gaskets', 'epdm-foam-gaskets', 'adhesive-backed-die-cut-gaskets'],
             'quote' => ['Housing drawing', 'Lens or cover sealing path', 'Temperature and UV exposure', 'Material color', 'Quantity and packing requirements'],
         ],

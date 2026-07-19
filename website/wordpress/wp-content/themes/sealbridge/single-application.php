@@ -18,6 +18,9 @@ get_header();
                 ?>
                 <p class="eyebrow">Application</p>
                 <h1 class="page-title"><?php echo esc_html(sealbridge_application_display_title()); ?></h1>
+                <figure class="application-hero-media">
+                    <img src="<?php echo esc_url(sealbridge_application_image_url(get_post_field('post_name', get_the_ID()), get_the_ID())); ?>" alt="<?php echo esc_attr(sealbridge_application_display_title() . ' sealing application'); ?>">
+                </figure>
                 <div class="intro-band">
                     <p><?php echo esc_html($article['summary']); ?></p>
                 </div>
@@ -48,6 +51,22 @@ get_header();
                     <ul class="feature-list">
                         <?php foreach ($article['selection_factors'] as $selection_factor) : ?>
                             <li><?php echo esc_html($selection_factor); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+                <?php if (!empty($article['production'])) : ?>
+                    <h2>Typical Production Route</h2>
+                    <ul>
+                        <?php foreach ($article['production'] as $production_step) : ?>
+                            <li><?php echo esc_html($production_step); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+                <?php if (!empty($article['quality_checks'])) : ?>
+                    <h2>Quality Points to Confirm</h2>
+                    <ul class="feature-list">
+                        <?php foreach ($article['quality_checks'] as $quality_check) : ?>
+                            <li><?php echo esc_html($quality_check); ?></li>
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>

@@ -38,12 +38,18 @@ get_header();
         </div>
         <div class="grid scenario-grid">
             <?php foreach (array_slice(sealbridge_application_scenarios(), 0, 6) as $scenario) : ?>
-                <article class="scenario-card">
-                    <span class="scenario-icon"></span>
-                    <h3><a href="<?php echo esc_url(home_url('/applications/' . $scenario[3] . '/')); ?>"><?php echo esc_html($scenario[0]); ?></a></h3>
-                    <p><?php echo esc_html($scenario[1]); ?></p>
-                    <strong>Recommended: <?php echo esc_html($scenario[2]); ?></strong>
-                </article>
+                <a class="scenario-card" href="<?php echo esc_url(home_url('/applications/' . $scenario[3] . '/')); ?>">
+                    <span class="scenario-card-media">
+                        <img src="<?php echo esc_url(sealbridge_application_image_url($scenario[3])); ?>" alt="<?php echo esc_attr($scenario[0] . ' gasket application'); ?>">
+                    </span>
+                    <span class="scenario-card-body">
+                        <span class="scenario-icon"></span>
+                        <h3><?php echo esc_html($scenario[0]); ?></h3>
+                        <p><?php echo esc_html($scenario[1]); ?></p>
+                        <strong>Recommended: <?php echo esc_html($scenario[2]); ?></strong>
+                        <span class="scenario-card-link">View application guide <span aria-hidden="true">&rarr;</span></span>
+                    </span>
+                </a>
             <?php endforeach; ?>
         </div>
         <div class="section-link-row">
