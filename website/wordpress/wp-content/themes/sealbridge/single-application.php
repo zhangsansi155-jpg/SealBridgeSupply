@@ -24,16 +24,17 @@ get_header();
                 <div class="intro-band">
                     <p><?php echo esc_html($article['summary']); ?></p>
                 </div>
+                <?php $product_gallery = sealbridge_application_product_gallery(); ?>
                 <section class="application-product-gallery" aria-labelledby="real-product-examples">
                     <div class="application-gallery-heading">
                         <div>
                             <p class="eyebrow">Real Product Examples</p>
-                            <h2 id="real-product-examples">Cabinet Panels with Formed-in-Place Gaskets</h2>
+                            <h2 id="real-product-examples"><?php echo esc_html($product_gallery['title']); ?></h2>
                         </div>
-                        <p>Reference examples of continuous foam gasket paths on cabinet doors, equipment covers, and metal enclosure panels. Final material, section, dimensions, and production route are confirmed for each project.</p>
+                        <p><?php echo esc_html($product_gallery['description']); ?> Final material, section, dimensions, and production route are confirmed for each project.</p>
                     </div>
                     <div class="application-gallery-grid">
-                        <?php foreach (sealbridge_application_product_gallery() as $gallery_image) : ?>
+                        <?php foreach ($product_gallery['images'] as $gallery_image) : ?>
                             <figure>
                                 <img src="<?php echo esc_url($gallery_image['url']); ?>" alt="<?php echo esc_attr($gallery_image['alt']); ?>" loading="lazy">
                                 <figcaption><?php echo esc_html($gallery_image['alt']); ?></figcaption>

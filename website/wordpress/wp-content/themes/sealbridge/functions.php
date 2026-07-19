@@ -1290,31 +1290,98 @@ function sealbridge_application_image_url(string $slug, int $post_id = 0): strin
 }
 
 /**
- * Real cabinet-panel gasket examples used inside application guides.
- * These are supporting product references, not featured/cover images.
+ * Page-specific real product examples used inside application guides.
+ * These are supporting references, not featured/cover images.
  */
-function sealbridge_application_product_gallery(): array
+function sealbridge_application_product_gallery(?WP_Post $post = null): array
 {
-    $captions = [
-        'Continuous formed-in-place gasket around a cabinet door opening',
-        'Foamed gasket following the perimeter of a metal enclosure panel',
-        'Long rectangular sealing path for a narrow equipment access panel',
-        'Dark cabinet panel with a continuous perimeter gasket',
-        'Metal cabinet door with a closed-loop sealing line',
-        'Large enclosure panel with controlled gasket corners',
-        'Blue cabinet panel showing a continuous gasket path',
-        'Compact equipment cover with a perimeter sealing gasket',
-        'Paired enclosure doors showing different gasket layouts',
-        'Orange metal panel with a clearly visible closed-loop gasket',
+    $post = $post ?: get_post();
+    $cabinet_gallery = [
+        'title' => 'Cabinet Panels with Formed-in-Place Gaskets',
+        'description' => 'Reference examples of continuous foam gasket paths on cabinet doors, equipment covers, and metal enclosure panels.',
+        'prefix' => 'cabinet-gasket',
+        'captions' => [
+            'Continuous formed-in-place gasket around a cabinet door opening',
+            'Foamed gasket following the perimeter of a metal enclosure panel',
+            'Long rectangular sealing path for a narrow equipment access panel',
+            'Dark cabinet panel with a continuous perimeter gasket',
+            'Metal cabinet door with a closed-loop sealing line',
+            'Large enclosure panel with controlled gasket corners',
+            'Blue cabinet panel showing a continuous gasket path',
+            'Compact equipment cover with a perimeter sealing gasket',
+            'Paired enclosure doors showing different gasket layouts',
+            'Orange metal panel with a clearly visible closed-loop gasket',
+        ],
     ];
 
-    $gallery = [];
-    foreach ($captions as $index => $caption) {
-        $gallery[] = [
-            'url' => get_template_directory_uri() . '/assets/application-products/cabinet-gasket-' . sprintf('%02d', $index + 1) . '.jpg',
+    $galleries = [
+        'outdoor-electrical-enclosures' => $cabinet_gallery,
+        'control-cabinets' => $cabinet_gallery,
+        'junction-boxes' => [
+            'title' => 'Waterproof Junction Box and Cover Examples',
+            'description' => 'Real molded waterproof boxes, covers, and compact enclosures showing perimeter gasket paths and shaped sealing surfaces.',
+            'prefix' => 'junction-box',
+            'captions' => [
+                'Clear waterproof box cover with a perimeter gasket',
+                'Compact waterproof enclosure with cable-entry feature',
+                'Molded junction box housing prepared for cover sealing',
+                'Deep waterproof box frame with a continuous gasket path',
+                'Compact enclosure cover with formed-in-place foam gasket',
+                'Molded equipment box with internal mounting structure',
+                'Black waterproof housing with a closed-loop seal',
+                'Clear enclosure cover with a visible perimeter gasket',
+            ],
+        ],
+        'ev-charger-cabinets' => [
+            'title' => 'New-Energy and Automotive Sealing Examples',
+            'description' => 'Real battery covers, lighting parts, speaker housings, and automotive components that illustrate shaped sealing paths used around new-energy electrical assemblies.',
+            'prefix' => 'ev-component',
+            'captions' => [
+                'Metal battery cover component prepared for perimeter sealing',
+                'Battery upper-cover component with shaped sealing surface',
+                'Automotive lighting component with a continuous sealing line',
+                'Pressed automotive part with a formed gasket path',
+                'Long automotive component with controlled perimeter sealing',
+                'Automotive speaker housing with a circular gasket interface',
+            ],
+        ],
+        'solar-inverter-enclosures' => [
+            'title' => 'Electronic Enclosure and Waterproof Cover Examples',
+            'description' => 'Real junction boxes, instrument housings, electronic covers, and molded enclosures relevant to inverter controls, monitoring modules, and outdoor energy equipment.',
+            'prefix' => 'electronic-enclosure',
+            'captions' => [
+                'Electronic junction box with a perimeter gasket channel',
+                'Close view of a formed gasket around an electronic cover',
+                'Instrument housing frame with a controlled sealing path',
+                'Molded electronic enclosure with a continuous foam gasket',
+                'Waterproof electronic cover with a closed-loop seal',
+                'Black equipment cover with an integrated perimeter gasket',
+            ],
+        ],
+        'led-lighting-housings' => [
+            'title' => 'Lighting Housing and Lens-Cover Examples',
+            'description' => 'Real linear lights, explosion-resistant fixtures, LED covers, reflectors, and metal housings showing the variety of lighting sealing geometries.',
+            'prefix' => 'led-housing',
+            'captions' => [
+                'Linear lighting housing with a long narrow sealing path',
+                'Rectangular lighting cover prepared for perimeter sealing',
+                'Round lighting fixture with multiple enclosure fasteners',
+                'Slim lens cover with a continuous edge sealing interface',
+                'Round reflector housing with a circular gasket path',
+                'Metal lighting housing with a formed perimeter gasket',
+            ],
+        ],
+    ];
+
+    $gallery = $galleries[$post->post_name] ?? $cabinet_gallery;
+    $images = [];
+    foreach ($gallery['captions'] as $index => $caption) {
+        $images[] = [
+            'url' => get_template_directory_uri() . '/assets/application-products/' . $gallery['prefix'] . '-' . sprintf('%02d', $index + 1) . '.jpg',
             'alt' => $caption,
         ];
     }
+    $gallery['images'] = $images;
 
     return $gallery;
 }
