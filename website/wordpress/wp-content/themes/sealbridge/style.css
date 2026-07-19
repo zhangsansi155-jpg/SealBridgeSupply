@@ -1162,6 +1162,76 @@ img {
   aspect-ratio: 1065 / 663;
 }
 
+.factory-system-section {
+  margin-top: 34px;
+}
+
+.factory-process-figure,
+.factory-certificate-reference,
+.factory-testing-grid figure {
+  margin: 20px 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.factory-process-figure {
+  max-width: 760px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.factory-process-figure img,
+.factory-certificate-reference img,
+.factory-testing-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.factory-process-figure figcaption,
+.factory-certificate-reference figcaption,
+.factory-testing-grid figcaption {
+  padding: 12px 14px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.factory-testing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.factory-testing-grid figure {
+  margin: 0;
+}
+
+.factory-testing-grid figure:last-child {
+  grid-column: 1 / -1;
+}
+
+.factory-testing-grid img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.factory-testing-grid figure:last-child img {
+  aspect-ratio: 16 / 9;
+}
+
+.factory-certificate-reference {
+  max-width: 520px;
+}
+
+.factory-certificate-reference figcaption strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #8a3f22;
+}
+
 .process {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1795,6 +1865,7 @@ img {
   .factory-screening-layout,
   .application-gallery-heading,
   .workshop-grid,
+  .factory-testing-grid,
   .scenario-grid,
   .related-products-grid,
   .product-parameter-grid,

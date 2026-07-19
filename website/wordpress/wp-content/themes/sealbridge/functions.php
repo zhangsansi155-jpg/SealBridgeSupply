@@ -1431,6 +1431,30 @@ function sealbridge_factory_workshop_gallery(): string
     return $html . '</div>';
 }
 
+function sealbridge_factory_systems_section(): string
+{
+    $base = trailingslashit(get_template_directory_uri()) . 'assets/trust/factory-systems/';
+
+    return '<section class="factory-system-section" aria-labelledby="production-system-title">'
+        . '<h2 id="production-system-title">Production System</h2>'
+        . '<p>The production reference covers incoming material inspection, mixing, cutting, forming, in-process inspection, optional trimming and post-curing, final inspection, packing, outgoing inspection, and shipment.</p>'
+        . '<figure class="factory-process-figure"><img src="' . esc_url($base . 'production-process.webp') . '" alt="Bilingual rubber sealing product production and inspection process" width="1100" height="1468" loading="lazy" decoding="async"><figcaption>Original bilingual production-process reference supplied in the production partner brochure.</figcaption></figure>'
+        . '<h2>Inspection and Testing System</h2>'
+        . '<p>Inspection equipment is reviewed against the project requirement. Available checks may include dimensional measurement, aging exposure, hardness, tensile or compression-related testing. The exact test plan must be confirmed for the selected material and gasket.</p>'
+        . '<div class="factory-testing-grid">'
+        . '<figure><img src="' . esc_url($base . 'aging-test-oven.webp') . '" alt="High-temperature aging test oven used for rubber material checks" width="519" height="527" loading="lazy" decoding="async"><figcaption>High-temperature aging test oven.</figcaption></figure>'
+        . '<figure><img src="' . esc_url($base . 'optical-measurement.webp') . '" alt="Optical dimensional measurement equipment operated in a rubber testing laboratory" width="521" height="769" loading="lazy" decoding="async"><figcaption>Optical dimensional measurement equipment.</figcaption></figure>'
+        . '<figure><img src="' . esc_url($base . 'testing-equipment.webp') . '" alt="Rubber material testing laboratory equipment and workbench" width="1064" height="552" loading="lazy" decoding="async"><figcaption>Material and physical-property testing workbench.</figcaption></figure>'
+        . '</div></section>';
+}
+
+function sealbridge_factory_certificate_reference(): string
+{
+    $image = trailingslashit(get_template_directory_uri()) . 'assets/trust/certificates/iso-9001-2015-english-reference.webp';
+
+    return '<figure class="factory-certificate-reference"><a href="' . esc_url($image) . '" target="_blank" rel="noopener"><img src="' . esc_url($image) . '" alt="English ISO 9001 2015 certificate reference from a screened production partner" width="820" height="1598" loading="lazy" decoding="async"></a><figcaption><strong>Historical supplier certificate reference — not a current certification claim.</strong> The English ISO 9001:2015 certificate shown in the supplied brochure expired on 10 October 2025. A current certificate must be requested and verified before it is used for qualification or purchasing.</figcaption></figure>';
+}
+
 function sealbridge_replace_factory_workshop_gallery(string $content): string
 {
     if (!is_page('factory-screening') || !in_the_loop() || !is_main_query()) {
@@ -1439,10 +1463,22 @@ function sealbridge_replace_factory_workshop_gallery(string $content): string
 
     $gallery = sealbridge_factory_workshop_gallery();
     $updated = preg_replace('/<div class="workshop-grid">.*?<\/div>/s', $gallery, $content, 1);
+    if (!is_string($updated) || $updated === $content) {
+        $updated = $content . '<h2>Production Partner Workshop References</h2>' . $gallery;
+    }
 
-    return is_string($updated) && $updated !== $content
-        ? $updated
-        : $content . '<h2>Production Partner Workshop References</h2>' . $gallery;
+    if (!str_contains($updated, 'factory-system-section')) {
+        $updated = str_replace(
+            '<h2>Certificate and Document Review</h2>',
+            sealbridge_factory_systems_section() . '<h2>Certificate and Document Review</h2>',
+            $updated
+        );
+    }
+
+    $certificate = sealbridge_factory_certificate_reference();
+    $replaced = preg_replace('/<figure class="content-figure"><img[^>]*certificate-review\.png[^>]*>.*?<\/figure>/s', $certificate, $updated, 1);
+
+    return is_string($replaced) ? $replaced : $updated;
 }
 add_filter('the_content', 'sealbridge_replace_factory_workshop_gallery', 20);
 
