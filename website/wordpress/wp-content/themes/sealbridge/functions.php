@@ -1290,6 +1290,36 @@ function sealbridge_application_image_url(string $slug, int $post_id = 0): strin
 }
 
 /**
+ * Real cabinet-panel gasket examples used inside application guides.
+ * These are supporting product references, not featured/cover images.
+ */
+function sealbridge_application_product_gallery(): array
+{
+    $captions = [
+        'Continuous formed-in-place gasket around a cabinet door opening',
+        'Foamed gasket following the perimeter of a metal enclosure panel',
+        'Long rectangular sealing path for a narrow equipment access panel',
+        'Dark cabinet panel with a continuous perimeter gasket',
+        'Metal cabinet door with a closed-loop sealing line',
+        'Large enclosure panel with controlled gasket corners',
+        'Blue cabinet panel showing a continuous gasket path',
+        'Compact equipment cover with a perimeter sealing gasket',
+        'Paired enclosure doors showing different gasket layouts',
+        'Orange metal panel with a clearly visible closed-loop gasket',
+    ];
+
+    $gallery = [];
+    foreach ($captions as $index => $caption) {
+        $gallery[] = [
+            'url' => get_template_directory_uri() . '/assets/application-products/cabinet-gasket-' . sprintf('%02d', $index + 1) . '.jpg',
+            'alt' => $caption,
+        ];
+    }
+
+    return $gallery;
+}
+
+/**
  * Keep application H1s aligned with the primary buyer-intent query even when
  * an older database title is still present.
  */
