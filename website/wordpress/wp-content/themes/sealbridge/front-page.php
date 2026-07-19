@@ -107,8 +107,8 @@ get_header();
         </div>
         <div class="trust-strip">
             <div><strong>20+</strong><span>screened production partners and factory contacts</span></div>
-            <div><strong>4</strong><span>main process routes: die cutting, molding, extrusion, adhesive backing</span></div>
-            <div><strong>5</strong><span>common document types: RoHS, REACH, UL94, TDS, SDS</span></div>
+            <div><strong>4</strong><span>core routes: die cutting, molding, extrusion, adhesive integration</span></div>
+            <div><strong>IQC–OQC</strong><span>quality checkpoints reviewed with the selected production partner</span></div>
         </div>
         <div class="factory-screening-layout">
             <div class="factory-screening-points">
@@ -119,13 +119,13 @@ get_header();
                 </article>
                 <article>
                     <span>02</span>
-                    <h3>Sample & Workshop Review</h3>
-                    <p>Check sample photos, workshop references, profile details, response speed, and production communication quality.</p>
+                    <h3>Process & Sample Review</h3>
+                    <p>Confirm the practical route - molding, extrusion, die cutting, adhesive integration, or secondary cure - before sampling.</p>
                 </article>
                 <article>
                     <span>03</span>
-                    <h3>Document Check</h3>
-                    <p>Review RoHS, REACH, UL94, TDS, SDS, and ISO information against the selected material and supplier source.</p>
+                    <h3>Quality Evidence Check</h3>
+                    <p>Review material documents, inspection flow, and available tensile, aging, low-temperature, or dimensional checks against the selected project.</p>
                 </article>
             </div>
             <a class="factory-screening-feature" href="<?php echo esc_url(home_url('/factory-screening/')); ?>">
