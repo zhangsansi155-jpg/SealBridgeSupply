@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">SealBridge Supply avatar mark</title>
+  <desc id="desc">A square avatar logo with a gasket ring and bridge mark for SealBridge Supply.</desc>
+  <defs>
+    <linearGradient id="bgGradient" x1="144" y1="96" x2="880" y2="928" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f8f3"/>
+      <stop offset="1" stop-color="#e5ece4"/>
+    </linearGradient>
+    <linearGradient id="markGradient" x1="238" y1="206" x2="786" y2="818" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2f6f5e"/>
+      <stop offset="1" stop-color="#0f3d38"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="192" fill="url(#bgGradient)"/>
+  <circle cx="512" cy="512" r="332" fill="#f7f8f3" stroke="url(#markGradient)" stroke-width="72"/>
+  <circle cx="512" cy="512" r="156" fill="none" stroke="#d9a441" stroke-width="70"/>
+  <path d="M292 598c73-116 146-174 220-174s147 58 220 174" fill="none" stroke="#0f3d38" stroke-width="64" stroke-linecap="round"/>
+  <path d="M330 660h364" fill="none" stroke="#0f3d38" stroke-width="64" stroke-linecap="round"/>
+  <path d="M512 438v226" fill="none" stroke="#2f6f5e" stroke-width="46" stroke-linecap="round"/>
+</svg>
