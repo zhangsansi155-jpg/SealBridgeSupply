@@ -70,6 +70,7 @@ get_header();
                 <div class="entry-content product-rich-content">
                     <?php the_content(); ?>
                 </div>
+                <?php echo wp_kses_post(sealbridge_product_search_content()); ?>
                 <?php if ($buyer_guidance) : ?>
                     <section class="product-parameter-section" aria-labelledby="product-buyer-guidance">
                         <div class="section-header">

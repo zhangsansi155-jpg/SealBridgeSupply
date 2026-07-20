@@ -1388,6 +1388,29 @@ img {
   line-height: 1.45;
 }
 
+.product-search-content {
+  grid-column: 1 / -1;
+  margin-top: 20px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.article-product-pathway {
+  margin-top: 32px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--green);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.article-product-pathway h2,
+.article-product-pathway p {
+  margin-top: 0;
+}
+
 .intro-band {
   background: var(--green-dark);
   color: var(--white);

@@ -276,8 +276,8 @@ function sealbridge_seo_map(): array
                 'description' => 'Closed-cell EPDM foam gaskets and EPDM sponge gaskets for outdoor waterproof, dustproof, weather-resistant enclosure sealing.',
             ],
             'silicone-gaskets' => [
-                'title' => 'Silicone Gaskets for Electrical Enclosures | Custom Foam & Solid Silicone',
-                'description' => 'Custom silicone rubber and silicone foam gaskets for electrical enclosures, LED housings, outdoor electronics, equipment covers, and temperature-sensitive sealing.',
+                'title' => 'Custom Silicone Gaskets | Foam & Solid Silicone Supplier',
+                'description' => 'Custom silicone gaskets made to drawing in solid silicone, silicone foam and sponge for electrical enclosures, LED lighting and industrial OEM sealing.',
             ],
             'adhesive-backed-die-cut-gaskets' => [
                 'title' => 'Custom Die Cut Gaskets | SealBridge Supply',
@@ -1230,6 +1230,87 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
 }
 
 /**
+ * Give the silicone product URL a clear commercial search role while related
+ * articles continue to target narrower application and comparison queries.
+ */
+function sealbridge_product_search_content(?WP_Post $post = null): string
+{
+    $post = $post ?: get_post();
+    if (!$post instanceof WP_Post || $post->post_name !== 'silicone-gaskets') {
+        return '';
+    }
+
+    return '<section class="product-search-content entry-content" aria-labelledby="custom-silicone-gaskets">'
+        . '<h2 id="custom-silicone-gaskets">Custom Silicone Gaskets Made to Drawing</h2>'
+        . '<p>SealBridge coordinates custom silicone gaskets for industrial OEM projects from a 2D drawing, 3D model, dimensioned sketch, or physical sample. Depending on the sealing gap and production quantity, parts may be die cut from silicone sheet or foam, compression molded into a custom shape, or extruded as a silicone sealing profile.</p>'
+        . '<div class="material-table-scroll"><table><thead><tr><th>Silicone gasket type</th><th>When to consider it</th><th>Details to specify</th></tr></thead><tbody>'
+        . '<tr><td><strong>Solid silicone gasket</strong></td><td>Defined cross-sections, molded shapes, stable elasticity, or higher-temperature covers</td><td>Hardness, color, surface finish, dimensions, tolerance and tooling</td></tr>'
+        . '<tr><td><strong>Silicone foam gasket</strong></td><td>Low closing force, soft compression, lightweight covers, lenses and electronics housings</td><td>Thickness, density or compression force, cell structure and compression gap</td></tr>'
+        . '<tr><td><strong>Silicone sponge gasket</strong></td><td>Environmental sealing where conformability and compression recovery are important</td><td>Closed-cell requirement, section size, skin condition and joint method</td></tr>'
+        . '<tr><td><strong>Adhesive-backed silicone gasket</strong></td><td>Repeatable placement during enclosure or panel assembly</td><td>Silicone surface treatment, adhesive grade, mounting surface and release liner</td></tr>'
+        . '</tbody></table></div>'
+        . '<h2>Silicone Enclosure Gasket Applications</h2>'
+        . '<p>Common projects include silicone enclosure gaskets for LED lighting housings, outdoor electronics, electrical cabinet covers, battery or power-electronics housings, display covers, sensors, and other assemblies exposed to heat, cold, UV, ozone, or repeated opening. A gasket supports the sealing design, but IP and NEMA ratings apply to the complete tested enclosure.</p>'
+        . '<h2>Manufacturing and Inspection Route</h2>'
+        . '<p>The production route may include material and drawing review, die cutting or molding, trimming, optional post-curing, dimensional inspection, visual inspection, packing and outgoing quality checks. Requested TDS, SDS, RoHS, REACH, UL 94, food-contact, or other documents must be confirmed against the exact silicone grade rather than assumed for every gasket.</p>'
+        . '<h2>Request a Custom Silicone Gasket Quote</h2>'
+        . '<p>Send the drawing, gasket dimensions, solid or foam construction, hardness or density, working temperature, compression gap, color, adhesive requirement, sample quantity, annual volume, destination country, and required documents. <a href="' . esc_url(home_url('/contact/')) . '">Request a silicone gasket quotation</a>.</p>'
+        . '</section>';
+}
+
+/**
+ * Route long-tail article relevance back to the commercial silicone product.
+ */
+function sealbridge_add_silicone_article_pathway(string $content): string
+{
+    if (!is_singular('post') || !in_the_loop() || !is_main_query()) {
+        return $content;
+    }
+
+    $post = get_post();
+    if (!$post instanceof WP_Post) {
+        return $content;
+    }
+
+    $pathways = [
+        'silicone-gaskets-led-lighting-outdoor-electronics' => [
+            'Silicone Gaskets for LED Lighting Projects',
+            'For a drawing-based LED housing seal, compare solid silicone, silicone foam, and silicone sponge against the cover gap, screw spacing, heat exposure, UV conditions, and available closing force.',
+            'custom silicone gaskets for LED lighting',
+        ],
+        'epdm-vs-silicone-outdoor-enclosure-gaskets' => [
+            'Need a Custom Silicone Enclosure Gasket?',
+            'If the project requires wider temperature exposure or softer compression than the EPDM option, review the dedicated product route before requesting samples.',
+            'custom silicone enclosure gaskets',
+        ],
+        'choose-electrical-enclosure-gaskets-outdoor-boxes' => [
+            'Silicone Gasket Option for Outdoor Enclosures',
+            'Silicone foam or solid silicone may suit outdoor enclosures when temperature range, UV exposure, or low closing force is the deciding requirement.',
+            'silicone gaskets for electrical enclosures',
+        ],
+    ];
+
+    if (!isset($pathways[$post->post_name])) {
+        return $content;
+    }
+
+    [$title, $description, $anchor] = $pathways[$post->post_name];
+    $product_url = home_url('/products/silicone-gaskets/');
+    if (str_contains($content, $product_url) || str_contains($content, '/products/silicone-gaskets/')) {
+        return $content;
+    }
+
+    return $content . sprintf(
+        '<aside class="article-product-pathway"><h2>%1$s</h2><p>%2$s</p><a class="text-link" href="%3$s">View %4$s</a></aside>',
+        esc_html($title),
+        esc_html($description),
+        esc_url($product_url),
+        esc_html($anchor)
+    );
+}
+add_filter('the_content', 'sealbridge_add_silicone_article_pathway', 18);
+
+/**
  * Keep the visible product FAQs and FAQ structured data in one source of truth.
  */
 function sealbridge_product_faq(?WP_Post $post = null): array
@@ -1425,7 +1506,7 @@ function sealbridge_materials_page_content(): string
 <h2>Core Enclosure Gasket Materials</h2>
 <div class="material-detail-grid">
 <article><h3>EPDM Rubber</h3><p>EPDM is usually the first material to evaluate for outdoor electrical enclosure gaskets. It offers strong resistance to rain, ozone, sunlight and weather aging while retaining useful compression recovery.</p><ul><li>Best for outdoor cabinet doors, access panels and HVAC covers</li><li>Available as solid rubber, closed-cell foam and extruded profiles</li><li>Check compression set, density or hardness, joint design and adhesive compatibility</li><li>Avoid where the gasket has continuous contact with petroleum oils or fuels</li></ul></article>
-<article><h3>Silicone Rubber and Silicone Foam</h3><p>Silicone is selected when wider temperature exposure, soft compression or electrical insulation is more important than abrasion resistance.</p><ul><li>Useful for LED lighting housings, electronics and temperature-sensitive covers</li><li>Silicone foam can reduce closing force on lightweight doors and lenses</li><li>Confirm tear strength, compression set, color and flame-rating requirements</li><li>Not normally the lowest-cost choice for general cabinet sealing</li></ul></article>
+<article><h3><a href="/products/silicone-gaskets/">Silicone Rubber and Silicone Foam</a></h3><p>Silicone is selected when wider temperature exposure, soft compression or electrical insulation is more important than abrasion resistance.</p><ul><li>Useful for LED lighting housings, electronics and temperature-sensitive covers</li><li>Silicone foam can reduce closing force on lightweight doors and lenses</li><li>Confirm tear strength, compression set, color and flame-rating requirements</li><li>Not normally the lowest-cost choice for general cabinet sealing</li></ul></article>
 <article><h3>NBR and HNBR</h3><p>NBR is a practical oil-resistant elastomer. HNBR extends heat, ozone and aging performance for more demanding service, although it generally costs more.</p><ul><li>Use NBR around oils, grease, hydraulic components and fuel-related systems</li><li>Consider HNBR for higher heat, refrigeration or longer dynamic service</li><li>Confirm the actual fluid, concentration and continuous exposure temperature</li><li>Standard NBR should not be treated as a long-term outdoor weathering material</li></ul></article>
 <article><h3>FKM / FPM Fluoroelastomer</h3><p>FKM is used for high-temperature and chemically demanding seals where EPDM, CR or NBR cannot provide sufficient resistance.</p><ul><li>Strong resistance to many oils, fuels, solvents and elevated temperatures</li><li>Common in chemical equipment, fuel systems and demanding industrial sealing</li><li>Review compatibility carefully for ketones, amines and certain esters</li><li>Cold flexibility, compound grade and cost must be checked early</li></ul></article>
 <article><h3>CR / Neoprene</h3><p>CR provides balanced general industrial performance across weathering, ozone, moderate oils and flame behavior. It can be useful when no single exposure dominates the project.</p><ul><li>Suitable for equipment gaskets, cable protection and general outdoor parts</li><li>Available in solid and cellular constructions</li><li>Confirm whether oil resistance or water resistance is the higher priority</li><li>Do not substitute it for a project-specific flame-tested compound without evidence</li></ul></article>
