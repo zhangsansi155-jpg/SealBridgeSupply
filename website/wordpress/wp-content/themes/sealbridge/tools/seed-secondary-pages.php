@@ -32,7 +32,7 @@ $pages = [
         'post_title' => 'Materials',
         'post_name' => 'materials',
         'post_type' => 'page',
-        'post_content' => '<div class="intro-band"><p>Material choice decides compression recovery, outdoor life, adhesive performance, cost, and the documents that can be provided for a project.</p></div>
+        'post_content' => '<div class="intro-band"><p>Material choice decides compression recovery, outdoor life, adhesive performance, cost, and the documents that can be provided for a project. The brochure images below show common sealing material families and their real application context.</p></div>
 <h2>Material Options</h2>
 <table><thead><tr><th>Material</th><th>Best Fit</th><th>Notes</th></tr></thead><tbody>
 <tr><td>EPDM</td><td>Outdoor electrical enclosures, control cabinets, HVAC units</td><td>Good weather, ozone, aging, and water resistance. Not ideal for long oil exposure.</td></tr>
@@ -41,6 +41,20 @@ $pages = [
 <tr><td>Neoprene / CR</td><td>Balanced industrial sealing and foam gaskets</td><td>Good general-purpose option when weather, oil, and flame behavior all matter.</td></tr>
 <tr><td>EVA / PU Foam</td><td>Cushioning, dust sealing, packaging, low-pressure sealing</td><td>Confirm water absorption, aging, and compression set before outdoor use.</td></tr>
 </tbody></table>
+<div class="material-reference-gallery">
+<div class="material-reference-heading"><div><h2>PDF Material Reference Gallery</h2><p>These original brochure pages show how different sealing material families are used in energy storage, electronics, automotive, petrochemical, hydraulic, connector, O-ring, and custom sealing applications.</p></div><p>Use them as reference images, then confirm the actual drawing, thickness, hardness, density, temperature exposure, and chemical exposure for the project.</p></div>
+<div class="material-reference-grid">
+<figure><img src="/wp-content/themes/sealbridge/assets/materials/photovoltaics-energy-storage-batteries.jpg" alt="PDF brochure page for photovoltaics energy storage and batteries sealing applications" width="800" height="1132" loading="lazy"><figcaption>Photovoltaics, energy storage, and battery sealing reference.</figcaption></figure>
+<figure><img src="/wp-content/themes/sealbridge/assets/materials/semiconductor-optoelectronic-panel-industry.jpg" alt="PDF brochure page for semiconductor and optoelectronic panel industry sealing applications" width="800" height="1132" loading="lazy"><figcaption>Semiconductor and optoelectronic panel reference.</figcaption></figure>
+<figure><img src="/wp-content/themes/sealbridge/assets/materials/automotive-industry-seal-ring.jpg" alt="PDF brochure page for automotive industry seal ring applications" width="800" height="1132" loading="lazy"><figcaption>Automotive industry seal ring reference.</figcaption></figure>
+<figure><img src="/wp-content/themes/sealbridge/assets/materials/petrochemical-valve-industry-sealing-ring.jpg" alt="PDF brochure page for petrochemical valve industry sealing ring applications" width="800" height="1132" loading="lazy"><figcaption>Petrochemical valve industry reference.</figcaption></figure>
+<figure><img src="/wp-content/themes/sealbridge/assets/materials/hydraulic-pneumatic-industry.jpg" alt="PDF brochure page for hydraulic and pneumatic industry sealing applications" width="800" height="1132" loading="lazy"><figcaption>Hydraulic and pneumatic sealing reference.</figcaption></figure>
+<figure><img src="/wp-content/themes/sealbridge/assets/materials/pump-valve-seal-ring.jpg" alt="PDF brochure page for pump and valve seal ring applications" width="800" height="1132" loading="lazy"><figcaption>Pump and valve seal ring reference.</figcaption></figure>
+<figure><img src="/wp-content/themes/sealbridge/assets/materials/waterproof-connector-seal-ring.jpg" alt="PDF brochure page for waterproof connector seal ring applications" width="800" height="1132" loading="lazy"><figcaption>Waterproof connector seal ring reference.</figcaption></figure>
+<figure><img src="/wp-content/themes/sealbridge/assets/materials/o-rings-seals.jpg" alt="PDF brochure page for O-rings seals applications" width="800" height="1132" loading="lazy"><figcaption>O-rings and seals reference.</figcaption></figure>
+<figure><img src="/wp-content/themes/sealbridge/assets/materials/material-selection-instruction.jpg" alt="PDF brochure page for material selection instruction and comparison guidance" width="800" height="1132" loading="lazy"><figcaption>Material selection instruction reference.</figcaption></figure>
+</div>
+</div>
 <h2>How We Compare Materials</h2>
 <ul class="feature-list"><li>Outdoor exposure and UV aging</li><li>Compression set and recovery</li><li>Thickness, density, and hardness</li><li>Adhesive backing compatibility</li><li>RoHS, REACH, TDS, and SDS availability</li><li>Cost target and production process</li></ul>',
     ],
