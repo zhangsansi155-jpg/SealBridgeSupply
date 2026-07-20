@@ -304,8 +304,8 @@ function sealbridge_seo_map(): array
                 'description' => 'Factory screening for custom gasket sourcing, supplier matching, workshop references, RoHS, REACH, UL94, TDS, SDS, and document review.',
             ],
             'materials' => [
-                'title' => 'Gasket Material Selection | EPDM, Silicone, NBR, CR and Foam',
-                'description' => 'Compare EPDM, silicone, NBR, neoprene, EVA, and PU foam for enclosure gaskets, cabinet seals, adhesive-backed parts, and custom rubber gaskets.',
+                'title' => 'Rubber Gasket Material Guide | EPDM, Silicone, NBR, FKM',
+                'description' => 'Compare EPDM, silicone, NBR, HNBR, FKM, neoprene and specialty elastomers by temperature, weather, oil, chemical resistance and gasket application.',
             ],
             'capabilities' => [
                 'title' => 'Custom Gasket Manufacturing Processes | Die Cutting, Molding, Extrusion',
@@ -1402,11 +1402,78 @@ function sealbridge_application_display_title(?WP_Post $post = null): string
 }
 
 /**
- * Use genuine workshop references on the Factory Screening page.
- *
- * The page is stored in WordPress, so replacing the seeded gallery at render
- * time also updates existing installations without overwriting editor content.
+ * Build the English material guide from the supplied brochure references.
+ * The front-end filter keeps an existing WordPress page in sync after deploy.
  */
+function sealbridge_materials_page_content(): string
+{
+    $theme_uri = esc_url(get_template_directory_uri());
+    $html = <<<'HTML'
+<div class="intro-band"><p>Rubber gasket material selection affects sealing life, compression recovery, temperature capability, outdoor durability, chemical compatibility, assembly force, and project cost. This guide translates and expands the material-property pages supplied in the production brochure.</p></div>
+<div class="material-caution"><strong>Engineering note</strong><p>Temperature ranges and relative ratings below are typical reference values, not guaranteed limits. Actual performance depends on compound formulation, hardness, thickness, compression, exposure time, media, and the complete enclosure design. Confirm the selected grade and its TDS before production.</p></div>
+
+<h2>Quick Material Selection for Industrial Gaskets</h2>
+<div class="material-table-scroll"><table class="material-selection-table"><thead><tr><th>Material</th><th>Typical reference range</th><th>Primary strengths</th><th>Main limitation</th><th>Common gasket applications</th></tr></thead><tbody>
+<tr><td><strong>EPDM</strong></td><td>-40 to 120°C</td><td>Weather, ozone, water, steam, compression recovery</td><td>Poor compatibility with mineral oils and many fuels</td><td>Electrical enclosures, control cabinets, HVAC and outdoor equipment</td></tr>
+<tr><td><strong>Silicone</strong></td><td>-60 to 230°C</td><td>Wide temperature range, UV and ozone resistance, soft sealing</td><td>Lower tear and abrasion resistance; higher material cost</td><td>LED lighting, electronics covers and hot/cold enclosure projects</td></tr>
+<tr><td><strong>NBR</strong></td><td>-25 to 100°C</td><td>Oil, fuel and grease resistance; good abrasion resistance</td><td>Not preferred for continuous sunlight, ozone or strong weather exposure</td><td>Oil seals, hydraulic components and industrial equipment</td></tr>
+<tr><td><strong>HNBR</strong></td><td>-25 to 150°C</td><td>Improved heat, ozone, aging and mechanical performance over NBR</td><td>Higher cost than standard NBR</td><td>Automotive, refrigeration and demanding dynamic seals</td></tr>
+<tr><td><strong>FKM / FPM</strong></td><td>-20 to 250°C</td><td>High heat, oil, fuel and broad chemical resistance</td><td>Higher cost; weak flexibility at very low temperatures</td><td>Chemical processing, fuel systems and high-temperature sealing</td></tr>
+<tr><td><strong>CR / Neoprene</strong></td><td>-40 to 120°C</td><td>Balanced weather, ozone, moderate oil and flame resistance</td><td>Less oil resistance than FKM and less water/steam resistance than EPDM</td><td>Industrial gaskets, cable protection and outdoor seals</td></tr>
+</tbody></table></div>
+
+<h2>Core Enclosure Gasket Materials</h2>
+<div class="material-detail-grid">
+<article><h3>EPDM Rubber</h3><p>EPDM is usually the first material to evaluate for outdoor electrical enclosure gaskets. It offers strong resistance to rain, ozone, sunlight and weather aging while retaining useful compression recovery.</p><ul><li>Best for outdoor cabinet doors, access panels and HVAC covers</li><li>Available as solid rubber, closed-cell foam and extruded profiles</li><li>Check compression set, density or hardness, joint design and adhesive compatibility</li><li>Avoid where the gasket has continuous contact with petroleum oils or fuels</li></ul></article>
+<article><h3>Silicone Rubber and Silicone Foam</h3><p>Silicone is selected when wider temperature exposure, soft compression or electrical insulation is more important than abrasion resistance.</p><ul><li>Useful for LED lighting housings, electronics and temperature-sensitive covers</li><li>Silicone foam can reduce closing force on lightweight doors and lenses</li><li>Confirm tear strength, compression set, color and flame-rating requirements</li><li>Not normally the lowest-cost choice for general cabinet sealing</li></ul></article>
+<article><h3>NBR and HNBR</h3><p>NBR is a practical oil-resistant elastomer. HNBR extends heat, ozone and aging performance for more demanding service, although it generally costs more.</p><ul><li>Use NBR around oils, grease, hydraulic components and fuel-related systems</li><li>Consider HNBR for higher heat, refrigeration or longer dynamic service</li><li>Confirm the actual fluid, concentration and continuous exposure temperature</li><li>Standard NBR should not be treated as a long-term outdoor weathering material</li></ul></article>
+<article><h3>FKM / FPM Fluoroelastomer</h3><p>FKM is used for high-temperature and chemically demanding seals where EPDM, CR or NBR cannot provide sufficient resistance.</p><ul><li>Strong resistance to many oils, fuels, solvents and elevated temperatures</li><li>Common in chemical equipment, fuel systems and demanding industrial sealing</li><li>Review compatibility carefully for ketones, amines and certain esters</li><li>Cold flexibility, compound grade and cost must be checked early</li></ul></article>
+<article><h3>CR / Neoprene</h3><p>CR provides balanced general industrial performance across weathering, ozone, moderate oils and flame behavior. It can be useful when no single exposure dominates the project.</p><ul><li>Suitable for equipment gaskets, cable protection and general outdoor parts</li><li>Available in solid and cellular constructions</li><li>Confirm whether oil resistance or water resistance is the higher priority</li><li>Do not substitute it for a project-specific flame-tested compound without evidence</li></ul></article>
+<article><h3>Foam Construction Matters</h3><p>Material family alone does not define sealing performance. Open-cell, closed-cell, sponge density, skin condition and adhesive lamination change water absorption, compression force and recovery.</p><ul><li>Closed-cell foam is generally preferred for dust and water sealing</li><li>Compression should be matched to the real enclosure gap and latch force</li><li>Adhesive is mainly an assembly aid unless the design specifically relies on it</li><li>IP or NEMA performance must be validated on the complete enclosure assembly</li></ul></article>
+</div>
+
+<h2>Specialty Elastomer Reference</h2>
+<div class="material-table-scroll"><table><thead><tr><th>Material</th><th>Key characteristic</th><th>Typical reference range</th><th>Example use</th></tr></thead><tbody>
+<tr><td>NR</td><td>High elasticity, tear strength and abrasion resistance; weak oil and outdoor resistance</td><td>-50 to 100°C</td><td>Anti-vibration parts and weather-protected general seals</td></tr>
+<tr><td>SBR</td><td>Economical general-purpose rubber with useful wear resistance</td><td>-40 to 100°C</td><td>General molded parts without heavy oil or outdoor exposure</td></tr>
+<tr><td>IIR / Butyl</td><td>Very low gas permeability and good ozone resistance</td><td>-50 to 120°C</td><td>Air-retention and low-permeability seals</td></tr>
+<tr><td>CSM</td><td>Strong weather, ozone, chemical and flame resistance</td><td>-30 to 150°C</td><td>Outdoor cable jackets and harsh-weather components</td></tr>
+<tr><td>FLS / Fluorosilicone</td><td>Silicone-like temperature flexibility with improved fuel resistance</td><td>-60 to 200°C</td><td>Fuel-system and precision temperature seals</td></tr>
+<tr><td>FFPM</td><td>Very high resistance to aggressive chemicals, solvents, fuels, heat and steam</td><td>-15 to 300°C</td><td>Semiconductor and chemical-process sealing</td></tr>
+<tr><td>ACM</td><td>Good hot-oil, transmission-fluid and heat-aging resistance</td><td>-20 to 150°C</td><td>Automotive transmission and powertrain seals</td></tr>
+<tr><td>PU</td><td>Excellent abrasion, tear, load-bearing and extrusion resistance</td><td>-40 to 90°C</td><td>Wipers, scrapers and wear-prone dynamic parts</td></tr>
+<tr><td>GLT</td><td>Low-temperature fluoroelastomer with fuel and oil resistance</td><td>-30 to 200°C</td><td>Cold-weather fuel-system seals</td></tr>
+<tr><td>FTP</td><td>Specialty fluorinated elastomer for aggressive chemicals and heat</td><td>-20 to 200°C</td><td>Chemical equipment and specialty valves</td></tr>
+<tr><td>AEM</td><td>Heat, hot-oil and ozone resistance with improved cold behavior over ACM</td><td>-30 to 150°C</td><td>Automotive under-hood and transmission components</td></tr>
+</tbody></table></div>
+
+<h2>English Material Reference Charts</h2>
+<p>The following four English charts reproduce the material-property pages from the supplied brochure in a format suitable for customer review. Click any chart to open the full-size version.</p>
+<div class="material-reference-gallery"><div class="material-reference-grid">
+<figure><a href="{{theme_uri}}/assets/materials/material-property-description-01-en.png" target="_blank" rel="noopener"><img src="{{theme_uri}}/assets/materials/material-property-description-01-en.png" alt="English material property descriptions for NBR HNBR FKM EPDM and silicone" width="1600" height="2200" loading="lazy" decoding="async"></a><figcaption>Core sealing elastomers: NBR, HNBR, FKM/FPM, EPDM and silicone.</figcaption></figure>
+<figure><a href="{{theme_uri}}/assets/materials/material-property-description-02-en.png" target="_blank" rel="noopener"><img src="{{theme_uri}}/assets/materials/material-property-description-02-en.png" alt="English material property descriptions for NR SBR IIR CR CSM and fluorosilicone" width="1600" height="2200" loading="lazy" decoding="async"></a><figcaption>General-purpose and weathering elastomers: NR, SBR, IIR, CR, CSM and FLS.</figcaption></figure>
+<figure><a href="{{theme_uri}}/assets/materials/material-property-description-03-en.png" target="_blank" rel="noopener"><img src="{{theme_uri}}/assets/materials/material-property-description-03-en.png" alt="English material property descriptions for FFPM ACM PU GLT FTP and AEM" width="1600" height="2200" loading="lazy" decoding="async"></a><figcaption>Specialty elastomers: FFPM, ACM, PU, GLT, FTP and AEM.</figcaption></figure>
+<figure><a href="{{theme_uri}}/assets/materials/material-properties-comparison-04-en.png" target="_blank" rel="noopener"><img src="{{theme_uri}}/assets/materials/material-properties-comparison-04-en.png" alt="English rubber material properties comparison and temperature range chart" width="1600" height="2200" loading="lazy" decoding="async"></a><figcaption>Relative property comparison and typical operating-temperature guide.</figcaption></figure>
+</div></div>
+
+<h2>Information Needed for Material Recommendation</h2>
+<ul class="feature-list"><li>Minimum, normal and maximum operating temperature</li><li>Outdoor UV, ozone, rain, steam or washdown exposure</li><li>Oil, fuel, coolant, cleaning chemical or solvent contact</li><li>Enclosure gap, target compression and available closing force</li><li>Solid rubber, closed-cell foam, extrusion or die-cut construction</li><li>Hardness or density, thickness, adhesive and compliance documents</li></ul>
+<p><a class="button" href="/contact/">Send Your Gasket Requirements</a></p>
+HTML;
+
+    return str_replace('{{theme_uri}}', $theme_uri, $html);
+}
+
+function sealbridge_replace_materials_content(string $content): string
+{
+    if (!is_page('materials') || !in_the_loop() || !is_main_query()) {
+        return $content;
+    }
+
+    return sealbridge_materials_page_content();
+}
+add_filter('the_content', 'sealbridge_replace_materials_content', 19);
+
 function sealbridge_factory_workshop_gallery(): string
 {
     $base = trailingslashit(get_template_directory_uri()) . 'assets/trust/factory-workshop/';

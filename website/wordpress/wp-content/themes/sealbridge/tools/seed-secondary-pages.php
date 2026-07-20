@@ -32,17 +32,7 @@ $pages = [
         'post_title' => 'Materials',
         'post_name' => 'materials',
         'post_type' => 'page',
-        'post_content' => '<div class="intro-band"><p>Material choice decides compression recovery, outdoor life, adhesive performance, cost, and the documents that can be provided for a project.</p></div>
-<h2>Material Options</h2>
-<table><thead><tr><th>Material</th><th>Best Fit</th><th>Notes</th></tr></thead><tbody>
-<tr><td>EPDM</td><td>Outdoor electrical enclosures, control cabinets, HVAC units</td><td>Good weather, ozone, aging, and water resistance. Not ideal for long oil exposure.</td></tr>
-<tr><td>Silicone</td><td>High or low temperature, UV exposure, soft sealing</td><td>Flexible and stable, usually higher cost than EPDM or NBR.</td></tr>
-<tr><td>NBR</td><td>Oil-resistant gasket applications</td><td>Useful around oils and fuels, less preferred for long outdoor exposure.</td></tr>
-<tr><td>Neoprene / CR</td><td>Balanced industrial sealing and foam gaskets</td><td>Good general-purpose option when weather, oil, and flame behavior all matter.</td></tr>
-<tr><td>EVA / PU Foam</td><td>Cushioning, dust sealing, packaging, low-pressure sealing</td><td>Confirm water absorption, aging, and compression set before outdoor use.</td></tr>
-</tbody></table>
-<h2>How We Compare Materials</h2>
-<ul class="feature-list"><li>Outdoor exposure and UV aging</li><li>Compression set and recovery</li><li>Thickness, density, and hardness</li><li>Adhesive backing compatibility</li><li>RoHS, REACH, TDS, and SDS availability</li><li>Cost target and production process</li></ul>',
+        'post_content' => sealbridge_materials_page_content(),
     ],
     [
         'post_title' => 'Capabilities',
