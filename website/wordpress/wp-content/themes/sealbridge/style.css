@@ -860,58 +860,6 @@ img {
   line-height: 1.45;
 }
 
-.material-reference-gallery {
-  margin: 34px 0 42px;
-  padding: 28px;
-  border: 1px solid var(--line);
-  border-radius: calc(var(--radius) + 6px);
-  background: var(--paper);
-}
-
-.material-reference-heading {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
-  gap: 28px;
-  align-items: end;
-  margin-bottom: 24px;
-}
-
-.material-reference-heading h2,
-.material-reference-heading p {
-  margin-top: 0;
-}
-
-.material-reference-heading > p {
-  color: var(--muted);
-}
-
-.material-reference-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.material-reference-grid figure {
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #f7f9f8;
-}
-
-.material-reference-grid img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.material-reference-grid figcaption {
-  padding: 12px 14px 14px;
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.45;
-}
-
 .related-products-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1972,14 +1920,6 @@ img {
   }
 
   .application-gallery-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .material-reference-gallery {
-    padding: 20px 16px;
-  }
-
-  .material-reference-grid {
     grid-template-columns: 1fr;
   }
 }
