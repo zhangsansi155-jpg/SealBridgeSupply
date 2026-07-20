@@ -272,16 +272,16 @@ function sealbridge_seo_map(): array
                 'description' => 'Control cabinet door sealing strips, electrical panel door gaskets, bulb seals, and EPDM profiles sized to the door gap and installation method.',
             ],
             'epdm-foam-gaskets' => [
-                'title' => 'EPDM Foam Gaskets | Closed Cell Sponge Gasket Supplier',
-                'description' => 'Closed-cell EPDM foam gaskets and EPDM sponge gaskets for outdoor waterproof, dustproof, weather-resistant enclosure sealing.',
+                'title' => 'Closed Cell EPDM Foam Gaskets | Industrial Custom Gaskets',
+                'description' => 'Industrial closed cell EPDM foam gaskets, custom die-cut frames, strips and adhesive-backed parts for outdoor enclosures, panels and OEM equipment.',
             ],
             'silicone-gaskets' => [
                 'title' => 'Custom Silicone Gaskets | Foam & Solid Silicone Supplier',
                 'description' => 'Custom silicone gaskets made to drawing in solid silicone, silicone foam and sponge for electrical enclosures, LED lighting and industrial OEM sealing.',
             ],
             'adhesive-backed-die-cut-gaskets' => [
-                'title' => 'Custom Die Cut Gaskets | SealBridge Supply',
-                'description' => 'Custom die cut foam and rubber gaskets with adhesive backing for electrical boxes, enclosure panels, covers, and repeatable peel-and-stick assembly.',
+                'title' => 'Custom Die Cut Gaskets | Adhesive-Backed Foam & Rubber',
+                'description' => 'Custom die cut gaskets in EPDM foam, silicone foam and rubber sheet, with optional adhesive and release liner for enclosure and OEM assembly.',
             ],
             'custom-rubber-gaskets' => [
                 'title' => 'Custom Rubber Gaskets According to Drawing | Rubber Seals',
@@ -1195,6 +1195,21 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
                 'EPDM vs silicone outdoor gasket guide' => '/epdm-vs-silicone-outdoor-enclosure-gaskets/',
             ],
         ],
+        'epdm-foam-gaskets' => [
+            'title' => 'Industrial Closed Cell EPDM Foam Gaskets',
+            'intro' => 'Use this product route for industrial-grade closed-cell foam gaskets, custom EPDM foam frames, strips, pads, and adhesive-backed parts used on electrical enclosures, outdoor panels, HVAC covers, solar equipment, and other weather-exposed OEM assemblies.',
+            'checks' => [
+                'Cell structure and sealing' => 'Closed-cell EPDM is commonly considered where low water absorption, weather resistance, and compressible sealing are required. Confirm whether the supplied grade is closed cell rather than relying only on the word foam.',
+                'Compression design' => 'Specify the minimum and maximum enclosure gap, gasket thickness, available closing force, and target compression. Excessive compression can shorten service life, while insufficient compression can leave leakage paths.',
+                'Conversion and assembly' => 'Parts may be supplied as die-cut frames, kiss-cut sheets, rolls, strips, or adhesive-backed pads. Confirm adhesive grade, liner, joint position, tolerances, and flat-packing requirements.',
+            ],
+            'links' => [
+                'Closed cell EPDM density and compression guide' => '/closed-cell-epdm-sponge-density-compression-guide/',
+                'EPDM foam gasket with adhesive guide' => '/epdm-foam-gasket-with-adhesive-quote-parameters/',
+                'EPDM vs silicone outdoor gasket guide' => '/epdm-vs-silicone-outdoor-enclosure-gaskets/',
+                'Outdoor enclosure gasket applications' => '/applications/outdoor-electrical-enclosures/',
+            ],
+        ],
         'control-cabinet-sealing-strips' => [
             'title' => 'Control Cabinet Door Sealing Strips and Electrical Panel Door Gaskets',
             'intro' => 'Gasketing for control cabinets normally starts with the door gap and mounting edge. Bulb seals, D-profile strips, self-grip edge seals, and custom EPDM extrusions create different compression forces and installation conditions.',
@@ -1236,7 +1251,41 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
 function sealbridge_product_search_content(?WP_Post $post = null): string
 {
     $post = $post ?: get_post();
-    if (!$post instanceof WP_Post || $post->post_name !== 'silicone-gaskets') {
+    if (!$post instanceof WP_Post) {
+        return '';
+    }
+
+    if ($post->post_name === 'epdm-foam-gaskets') {
+        return '<section class="product-search-content entry-content" aria-labelledby="industrial-closed-cell-foam-gaskets">'
+            . '<h2 id="industrial-closed-cell-foam-gaskets">Industrial Grade Closed Cell Foam Gaskets</h2>'
+            . '<p>Custom closed-cell EPDM foam gaskets are converted from foam sheet or strip into frames, pads, rolls, and assembly-ready parts. They are commonly evaluated for industrial enclosures that need weather resistance, low water absorption, controlled compression, and repeatable placement.</p>'
+            . '<div class="material-table-scroll"><table><thead><tr><th>Supply format</th><th>Suitable project</th><th>Details to confirm</th></tr></thead><tbody>'
+            . '<tr><td><strong>Die-cut EPDM foam frame</strong></td><td>Electrical box covers, access panels and flat enclosure doors</td><td>Outer/inner dimensions, thickness, density, tolerance and compression gap</td></tr>'
+            . '<tr><td><strong>Adhesive-backed EPDM gasket</strong></td><td>Fast positioning during panel or cover assembly</td><td>Mounting surface, adhesive grade, release liner and operating environment</td></tr>'
+            . '<tr><td><strong>EPDM foam strip or roll</strong></td><td>Long cabinet paths, field cutting and variable-length assembly</td><td>Width, thickness, roll length, joint method and packing</td></tr>'
+            . '<tr><td><strong>Kiss-cut foam gasket sheet</strong></td><td>Repeat production with multiple small parts per liner</td><td>Part orientation, cavity layout, waste removal and quantity per sheet</td></tr>'
+            . '</tbody></table></div>'
+            . '<h2>Closed Cell Foam Gasket Selection</h2><p>Industrial grade is not defined by one universal density or thickness. Select the grade from the real enclosure gap, closing force, outdoor exposure, recovery requirement, water-absorption target, adhesive surface, and expected service life. Requested TDS, SDS, RoHS, REACH, or flame-performance information must match the quoted EPDM foam grade.</p>'
+            . '<h2>Request a Custom EPDM Foam Gasket Quote</h2><p>Send a DXF, PDF, drawing, gasket dimensions, thickness, density or compression-force target, adhesive requirement, liner format, working environment, sample quantity, and annual volume. <a href="' . esc_url(home_url('/contact/')) . '">Request an EPDM foam gasket quotation</a>.</p>'
+            . '</section>';
+    }
+
+    if ($post->post_name === 'adhesive-backed-die-cut-gaskets') {
+        return '<section class="product-search-content entry-content" aria-labelledby="custom-die-cut-gaskets">'
+            . '<h2 id="custom-die-cut-gaskets">Custom Die Cut Gaskets Made to Drawing</h2>'
+            . '<p>Custom die cut gaskets can be produced from EPDM foam, silicone foam, rubber sheet, EVA, PE foam, and other flexible materials. Parts may be supplied individually, kiss cut on a release liner, nested in sheets, or laminated with pressure-sensitive adhesive for faster enclosure assembly.</p>'
+            . '<div class="material-table-scroll"><table><thead><tr><th>Die-cut gasket format</th><th>Buyer benefit</th><th>Quotation details</th></tr></thead><tbody>'
+            . '<tr><td><strong>Individual die cut gasket</strong></td><td>Simple flat frames, washers, pads and custom shapes</td><td>DXF/PDF drawing, material, thickness, tolerances and quantity</td></tr>'
+            . '<tr><td><strong>Adhesive-backed die cut gasket</strong></td><td>Cleaner placement and reduced assembly handling</td><td>Adhesive brand or performance, mounting surface and liner</td></tr>'
+            . '<tr><td><strong>Kiss-cut gasket sheet</strong></td><td>Multiple parts remain positioned on a common liner</td><td>Sheet layout, pull tab, part spacing, waste removal and packing</td></tr>'
+            . '<tr><td><strong>Prototype or short-run gasket</strong></td><td>Drawing and assembly checks before volume production</td><td>Sample quantity, inspection dimensions and revision control</td></tr>'
+            . '</tbody></table></div>'
+            . '<h2>Die Cutting, Adhesive Lamination, and Inspection</h2><p>The manufacturing route should confirm material batch, thickness, adhesive lamination, cutting method, critical dimensions, edge quality, liner condition, part counting, and packing. Adhesive selection must reflect the silicone, plastic, painted metal, or other assembly surface rather than being treated as a generic option.</p>'
+            . '<h2>Request a Custom Die Cut Gasket Quote</h2><p>Send the CAD or dimensioned drawing, material, thickness, adhesive, liner, tolerance, assembly surface, sample quantity, annual demand, and requested documents. <a href="' . esc_url(home_url('/contact/')) . '">Request a custom die cut gasket quotation</a>.</p>'
+            . '</section>';
+    }
+
+    if ($post->post_name !== 'silicone-gaskets') {
         return '';
     }
 
@@ -1259,9 +1308,9 @@ function sealbridge_product_search_content(?WP_Post $post = null): string
 }
 
 /**
- * Route long-tail article relevance back to the commercial silicone product.
+ * Route long-tail article relevance back to the matching commercial product.
  */
-function sealbridge_add_silicone_article_pathway(string $content): string
+function sealbridge_add_product_article_pathway(string $content): string
 {
     if (!is_singular('post') || !in_the_loop() || !is_main_query()) {
         return $content;
@@ -1276,17 +1325,37 @@ function sealbridge_add_silicone_article_pathway(string $content): string
         'silicone-gaskets-led-lighting-outdoor-electronics' => [
             'Silicone Gaskets for LED Lighting Projects',
             'For a drawing-based LED housing seal, compare solid silicone, silicone foam, and silicone sponge against the cover gap, screw spacing, heat exposure, UV conditions, and available closing force.',
-            'custom silicone gaskets for LED lighting',
+            ['custom silicone gaskets for LED lighting' => '/products/silicone-gaskets/'],
         ],
         'epdm-vs-silicone-outdoor-enclosure-gaskets' => [
-            'Need a Custom Silicone Enclosure Gasket?',
-            'If the project requires wider temperature exposure or softer compression than the EPDM option, review the dedicated product route before requesting samples.',
-            'custom silicone enclosure gaskets',
+            'Compare the Matching Gasket Product Routes',
+            'Use the dedicated product pages to compare weather-resistant closed-cell EPDM against silicone options for wider temperature exposure or softer compression.',
+            ['closed cell EPDM foam gaskets' => '/products/epdm-foam-gaskets/', 'custom silicone enclosure gaskets' => '/products/silicone-gaskets/'],
         ],
         'choose-electrical-enclosure-gaskets-outdoor-boxes' => [
             'Silicone Gasket Option for Outdoor Enclosures',
             'Silicone foam or solid silicone may suit outdoor enclosures when temperature range, UV exposure, or low closing force is the deciding requirement.',
-            'silicone gaskets for electrical enclosures',
+            ['silicone gaskets for electrical enclosures' => '/products/silicone-gaskets/'],
+        ],
+        'epdm-foam-gasket-with-adhesive-quote-parameters' => [
+            'Adhesive-Backed Closed Cell EPDM Foam Gaskets',
+            'Review the commercial product route for custom frames, strips, pads, adhesive systems, release liners, and drawing-based quotation.',
+            ['adhesive-backed EPDM foam gaskets' => '/products/epdm-foam-gaskets/'],
+        ],
+        'closed-cell-epdm-sponge-density-compression-guide' => [
+            'Specify an Industrial Closed Cell Foam Gasket',
+            'Apply the density and compression guidance to a drawing-based EPDM foam gasket request for an enclosure, panel, or cover.',
+            ['industrial closed cell foam gaskets' => '/products/epdm-foam-gaskets/'],
+        ],
+        'adhesive-backed-die-cut-gaskets-fast-enclosure-assembly' => [
+            'Custom Die Cut Gaskets for Production Assembly',
+            'Review available material, adhesive, liner, kiss-cut, tolerance, and packing options before requesting a production quotation.',
+            ['adhesive-backed custom die cut gaskets' => '/products/adhesive-backed-die-cut-gaskets/'],
+        ],
+        'custom-die-cut-gasket-quote-information' => [
+            'Send a Custom Die Cut Gasket RFQ',
+            'Use the commercial product page to match the drawing, foam or rubber material, adhesive, release liner, tolerance, sample plan, and annual volume.',
+            ['custom die cut gaskets made to drawing' => '/products/adhesive-backed-die-cut-gaskets/'],
         ],
     ];
 
@@ -1294,21 +1363,27 @@ function sealbridge_add_silicone_article_pathway(string $content): string
         return $content;
     }
 
-    [$title, $description, $anchor] = $pathways[$post->post_name];
-    $product_url = home_url('/products/silicone-gaskets/');
-    if (str_contains($content, $product_url) || str_contains($content, '/products/silicone-gaskets/')) {
+    [$title, $description, $links] = $pathways[$post->post_name];
+    $link_html = '';
+    foreach ($links as $anchor => $path) {
+        if (str_contains($content, $path)) {
+            continue;
+        }
+        $link_html .= sprintf('<a class="text-link" href="%1$s">View %2$s</a>', esc_url(home_url($path)), esc_html($anchor));
+    }
+
+    if ($link_html === '') {
         return $content;
     }
 
     return $content . sprintf(
-        '<aside class="article-product-pathway"><h2>%1$s</h2><p>%2$s</p><a class="text-link" href="%3$s">View %4$s</a></aside>',
+        '<aside class="article-product-pathway"><h2>%1$s</h2><p>%2$s</p><nav class="section-link-row" aria-label="Related gasket products">%3$s</nav></aside>',
         esc_html($title),
         esc_html($description),
-        esc_url($product_url),
-        esc_html($anchor)
+        $link_html
     );
 }
-add_filter('the_content', 'sealbridge_add_silicone_article_pathway', 18);
+add_filter('the_content', 'sealbridge_add_product_article_pathway', 18);
 
 /**
  * Keep the visible product FAQs and FAQ structured data in one source of truth.
@@ -1328,6 +1403,18 @@ function sealbridge_product_faq(?WP_Post $post = null): array
             'How do silicone gaskets compare with EPDM for an electrical enclosure?' => 'Silicone is often considered for wider temperature exposure, UV stability, or softer compression. EPDM can be a practical and economical choice for many outdoor enclosure projects. The right choice depends on the enclosure design, compression range, and actual environment.',
             'Can silicone gaskets be adhesive backed?' => 'Yes, but the adhesive system should be matched to the silicone surface treatment, mounting material, temperature exposure, and assembly process. Confirm the adhesive requirement before sampling rather than assuming a general tape will bond correctly.',
             'What should be included in a silicone gasket RFQ?' => 'Send a drawing or sample, solid or foam preference, hardness, color, temperature exposure, UV condition, adhesive requirement, tolerance, quantity, and any requested material documents.',
+        ],
+        'epdm-foam-gaskets' => [
+            'What does closed cell mean for an EPDM foam gasket?' => 'Closed-cell foam contains mostly enclosed cells, which generally supports lower water absorption and environmental sealing better than open-cell foam. The actual cell structure, density, compression behavior, and test data should still be confirmed for the quoted grade.',
+            'How much should a closed-cell foam gasket be compressed?' => 'There is no universal compression percentage for every EPDM foam. The target should be selected from the material data, thickness, enclosure gap, surface variation, latch force, and expected compression set. Test the gasket on the complete assembly before production approval.',
+            'Can EPDM foam gaskets have adhesive backing?' => 'Yes. Adhesive backing can hold the gasket in position during assembly. Confirm the mounting surface, adhesive grade, release liner, operating temperature, outdoor exposure, and whether the adhesive is only an assembly aid or part of the design requirement.',
+            'What is needed to quote a custom EPDM foam gasket?' => 'Provide a drawing or dimensions, closed-cell requirement, thickness, density or compression-force target, adhesive and liner needs, tolerance, enclosure gap, working environment, sample quantity, and annual volume.',
+        ],
+        'adhesive-backed-die-cut-gaskets' => [
+            'What materials can be used for custom die cut gaskets?' => 'Common options include closed-cell EPDM foam, silicone foam, solid rubber sheet, EVA, PE foam, and other flexible materials. Select the material from temperature, weather, fluid, compression, and compliance requirements.',
+            'What is the difference between die cutting and kiss cutting?' => 'Die cutting can produce an individual finished part through the material. Kiss cutting controls the cut depth so the gasket remains on a common release liner, which can improve handling and repeatable assembly.',
+            'Can die cut gaskets be supplied with adhesive?' => 'Yes. Pressure-sensitive adhesive can be laminated before cutting. The adhesive, primer or surface treatment, liner, assembly substrate, temperature, and environmental exposure should be confirmed before sampling.',
+            'What files are needed for a die cut gasket quotation?' => 'A DXF, DWG, PDF, CAD file, or dimensioned sketch is useful. Include material, thickness, adhesive, liner, critical tolerances, sample quantity, annual volume, packing format, and requested inspection or compliance documents.',
         ],
         'control-cabinet-sealing-strips' => [
             'How do I choose a control cabinet door sealing strip profile?' => 'Start with the measured minimum and maximum door gap, mounting edge, available compression height, bend radius, latch locations, and corner treatment. Select the profile from those dimensions rather than from a catalog image alone.',
