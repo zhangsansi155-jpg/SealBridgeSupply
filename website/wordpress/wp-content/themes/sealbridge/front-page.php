@@ -12,8 +12,8 @@ get_header();
     <div class="section-inner hero-grid">
         <div>
             <span class="eyebrow">Custom Gasket Sourcing</span>
-            <h1>Custom Gasket Sourcing for Electrical Enclosures & Control Cabinets</h1>
-            <p>Sourcing, sampling, and production coordination for EPDM foam gaskets, silicone gaskets, adhesive-backed die-cut gaskets, sealing strips, and custom rubber parts for manufacturers across Canada, the United Kingdom, Europe, and other international markets.</p>
+            <h1>Silicone Gaskets, Electrical Enclosure Gaskets and Die Cut Gaskets</h1>
+            <p>SealBridge focuses on the main search terms first: silicone gaskets, electrical enclosure gaskets, control cabinet sealing strips, adhesive-backed die cut gaskets, and custom rubber gaskets for manufacturers across Canada, the United Kingdom, Europe, and other international markets.</p>
             <div class="hero-actions">
                 <a class="button" href="<?php echo esc_url(home_url('/contact/')); ?>">Request a Quote</a>
                 <a class="button secondary" href="<?php echo esc_url(home_url('/products/')); ?>">View Products</a>
@@ -27,6 +27,40 @@ get_header();
                 <li><span>Applications</span><strong>IP-rated Enclosure Sealing</strong></li>
             </ul>
         </aside>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-inner">
+        <div class="section-header">
+            <h2>Core Product Routes</h2>
+            <p>These are the pages we want to strengthen first because they already match the biggest buying intents.</p>
+        </div>
+        <div class="grid home-category-grid">
+            <?php
+            $core_routes = [
+                ['Silicone Gaskets', 'Custom foam, solid silicone, and sponge gaskets for LED housings, outdoor electronics, and temperature-sensitive sealing.', '/products/silicone-gaskets/'],
+                ['Electrical Enclosure Gaskets', 'IP rated enclosure gasket support for panels, junction boxes, outdoor covers, and cabinet sealing.', '/products/electrical-enclosure-gaskets/'],
+                ['Die Cut Gaskets', 'Adhesive-backed die cut gaskets for faster assembly on boxes, covers, panels, and OEM housings.', '/products/adhesive-backed-die-cut-gaskets/'],
+            ];
+            foreach ($core_routes as $route) :
+            ?>
+                <article class="home-category-card">
+                    <div class="home-category-body">
+                        <p class="product-type">Core keyword target</p>
+                        <h3><a href="<?php echo esc_url(home_url($route[2])); ?>"><?php echo esc_html($route[0]); ?></a></h3>
+                        <p><?php echo esc_html($route[1]); ?></p>
+                        <div class="application-chip-list">
+                            <span>Primary SEO page</span>
+                            <span>Commercial intent</span>
+                        </div>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        </div>
+        <div class="section-link-row">
+            <a class="button" href="<?php echo esc_url(home_url('/products/')); ?>">View All Product Categories</a>
+        </div>
     </div>
 </section>
 
@@ -62,7 +96,7 @@ get_header();
     <div class="section-inner">
         <div class="section-header">
             <h2>Product Categories</h2>
-            <p>Start from the gasket family, then match it to the enclosure or equipment application.</p>
+            <p>Start from the gasket family, then match it to the enclosure or equipment application. The pages below still cover the broader keyword set, but the first priority is the main commercial terms.</p>
         </div>
         <div class="grid home-category-grid">
             <?php

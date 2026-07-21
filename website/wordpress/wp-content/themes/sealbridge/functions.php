@@ -229,12 +229,12 @@ function sealbridge_seo_map(): array
 {
     return [
         'home' => [
-            'title' => 'Custom Gasket Sourcing for Electrical Enclosures & Control Cabinets',
-            'description' => 'Custom gasket sourcing, sampling, and production coordination for electrical enclosures, cabinet doors, EPDM foam, silicone, and die-cut gasket projects.',
+            'title' => 'Silicone Gaskets, Electrical Enclosure Gaskets & Die Cut Gaskets',
+            'description' => 'Custom gasket sourcing, sampling, and production coordination for silicone gaskets, electrical enclosure gaskets, control cabinet sealing strips, EPDM foam, and die cut gasket projects.',
         ],
         'products_archive' => [
-            'title' => 'Custom Gasket Product Categories for Enclosures and Cabinets',
-            'description' => 'Browse electrical enclosure gaskets, control cabinet sealing strips, EPDM foam gaskets, silicone gaskets, adhesive-backed die-cut gaskets, and custom rubber gaskets.',
+            'title' => 'Silicone Gaskets, Enclosure Gaskets and Custom Die Cut Gaskets',
+            'description' => 'Browse the main product families for silicone gaskets, electrical enclosure gaskets, control cabinet sealing strips, EPDM foam gaskets, adhesive-backed die cut gaskets, and custom rubber gaskets.',
         ],
         'applications_archive' => [
             'title' => 'Gasket Application Scenarios for Electrical Enclosures',
@@ -276,11 +276,11 @@ function sealbridge_seo_map(): array
                 'description' => 'Industrial closed cell EPDM foam gaskets, custom die-cut frames, strips and adhesive-backed parts for outdoor enclosures, panels and OEM equipment.',
             ],
             'silicone-gaskets' => [
-                'title' => 'Custom Silicone Gaskets | Foam & Solid Silicone Supplier',
+                'title' => 'Silicone Gaskets | Custom Foam, Solid Silicone & Sponge',
                 'description' => 'Custom silicone gaskets made to drawing in solid silicone, silicone foam and sponge for electrical enclosures, LED lighting and industrial OEM sealing.',
             ],
             'adhesive-backed-die-cut-gaskets' => [
-                'title' => 'Custom Die Cut Gaskets | Adhesive-Backed Foam & Rubber',
+                'title' => 'Die Cut Gaskets | Adhesive-Backed Foam & Rubber',
                 'description' => 'Custom die cut gaskets in EPDM foam, silicone foam and rubber sheet, with optional adhesive and release liner for enclosure and OEM assembly.',
             ],
             'custom-rubber-gaskets' => [
