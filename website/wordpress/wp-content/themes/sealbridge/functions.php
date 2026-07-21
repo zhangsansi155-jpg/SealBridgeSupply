@@ -264,12 +264,12 @@ function sealbridge_seo_map(): array
         ],
         'products' => [
             'electrical-enclosure-gaskets' => [
-                'title' => 'Electrical Enclosure Gaskets | Custom Foam, Rubber & Silicone Seals',
-                'description' => 'Custom electrical enclosure gaskets in EPDM foam, rubber, and silicone for panels, junction boxes, outdoor covers, and drawing-based sealing projects.',
+                'title' => 'Electrical Enclosure Gaskets | IP Rated Enclosure Gasket Support',
+                'description' => 'Electrical enclosure gaskets in EPDM foam, rubber, and silicone for panels, junction boxes, outdoor covers, and IP rated enclosure gasket projects.',
             ],
             'control-cabinet-sealing-strips' => [
-                'title' => 'Control Cabinet Door Sealing Strips | Gasketing for Electrical Cabinets',
-                'description' => 'Control cabinet door sealing strips, electrical panel door gaskets, bulb seals, and EPDM profiles sized to the door gap and installation method.',
+                'title' => 'Control Cabinet Door Sealing Strips | NEMA Enclosure Gasket Support',
+                'description' => 'Control cabinet door sealing strips, electrical panel door gaskets, bulb seals, and EPDM profiles for NEMA enclosure gasket projects.',
             ],
             'epdm-foam-gaskets' => [
                 'title' => 'Closed Cell EPDM Foam Gaskets | Industrial Custom Gaskets',
@@ -1164,12 +1164,12 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
     $post = $post ?: get_post();
     $guidance = [
         'electrical-enclosure-gaskets' => [
-            'title' => 'Electrical Enclosure Gaskets for Panels, Covers, and Outdoor Boxes',
-            'intro' => 'Use this product route for drawing-based enclosure cover gaskets, junction box frames, access-panel seals, and outdoor electrical box gaskets. The correct material depends on the cover geometry, compression gap, exposure conditions, and assembly method—not on an IP label alone.',
+            'title' => 'Electrical Enclosure Gaskets and IP Rated Enclosure Gasket Options',
+            'intro' => 'Use this product route for electrical enclosure gaskets, drawing-based enclosure cover gaskets, junction box frames, access-panel seals, and outdoor electrical box gaskets. The correct material depends on the cover geometry, compression gap, exposure conditions, and assembly method, not on an IP label alone.',
             'checks' => [
                 'Material direction' => 'EPDM foam is a common starting point for outdoor weather resistance and compressible door sealing. Silicone foam or solid rubber may suit wider temperature ranges or different compression loads.',
                 'Design information' => 'Send the enclosure drawing, gasket path, cover dimensions, target thickness, compression gap, adhesive requirement, and expected order quantity.',
-                'Validation scope' => 'A gasket supports an IP65 or IP66 enclosure design, but the rating applies to the complete assembled enclosure and its test conditions.',
+                'Validation scope' => 'An IP rated enclosure gasket supports the sealing design, but the IP65 or IP66 rating applies to the complete assembled enclosure and its test conditions.',
             ],
             'links' => [
                 'Outdoor electrical enclosure gasket applications' => '/applications/outdoor-electrical-enclosures/',
@@ -1177,6 +1177,8 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
                 'Electrical enclosure gasket material guide' => '/electrical-enclosure-gasket-material-guide/',
                 'Silicone gaskets for electrical enclosures' => '/products/silicone-gaskets/',
                 'How to choose an electrical enclosure gasket' => '/choose-electrical-enclosure-gaskets-outdoor-boxes/',
+                'IP rated enclosure gasket guide' => '/can-a-gasket-be-ip65-or-ip66-certified/',
+                'NEMA enclosure gasket requirements' => '/nema-3r-4-4x-enclosure-gasket-requirements/',
             ],
         ],
         'silicone-gaskets' => [
@@ -1211,8 +1213,8 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
             ],
         ],
         'control-cabinet-sealing-strips' => [
-            'title' => 'Control Cabinet Door Sealing Strips and Electrical Panel Door Gaskets',
-            'intro' => 'Gasketing for control cabinets normally starts with the door gap and mounting edge. Bulb seals, D-profile strips, self-grip edge seals, and custom EPDM extrusions create different compression forces and installation conditions.',
+            'title' => 'Control Cabinet Door Sealing Strips and NEMA Enclosure Gasket Guidance',
+            'intro' => 'Gasketing for control cabinets normally starts with the door gap and mounting edge. Bulb seals, D-profile strips, self-grip edge seals, and custom EPDM extrusions create different compression forces and installation conditions for NEMA enclosure gasket projects.',
             'checks' => [
                 'Profile fit' => 'Confirm profile width and height, retaining edge dimensions, door closing gap, bend radius, and whether corners are cut, bonded, or supplied as continuous strip.',
                 'Material direction' => 'Dense or sponge EPDM profiles are widely used for cabinet doors. Silicone profiles may be considered when softness or temperature exposure is more demanding.',
@@ -1222,7 +1224,23 @@ function sealbridge_product_buyer_guidance(?WP_Post $post = null): array
                 'Control cabinet sealing applications' => '/applications/control-cabinets/',
                 'Electrical enclosure gaskets for cabinet panels' => '/products/electrical-enclosure-gaskets/',
                 'Control cabinet door seal profile guide' => '/control-cabinet-door-seal-profiles/',
+                'NEMA enclosure gasket requirements' => '/nema-3r-4-4x-enclosure-gasket-requirements/',
                 'Request a custom cabinet gasket quote' => '/contact/',
+            ],
+        ],
+        'custom-rubber-gaskets' => [
+            'title' => 'Custom Rubber Gaskets Made to Drawing',
+            'intro' => 'Use this product route for custom rubber gaskets, custom rubber seals, and drawing-based projects where standard gasket sizes or profiles cannot match the requirement. Parts may be molded, die-cut, extruded, bonded, or assembled based on the drawing, sample, material, tolerance, and quantity.',
+            'checks' => [
+                'Material direction' => 'Common materials include EPDM, NBR, silicone, neoprene / CR, and custom compounds. EPDM is often used for outdoor sealing, NBR for oil-resistant applications, silicone for temperature-sensitive sealing, and CR for balanced industrial performance.',
+                'Design information' => 'Send the drawing or physical sample, material target, hardness, dimensions, tolerance, surface finish, application environment, sample plan, bulk quantity, inspection criteria, packaging requirement, and document needs.',
+                'Validation scope' => 'Custom rubber gaskets should be matched to the actual project geometry, not to a generic material name. Tooling may be required for molded or special-profile parts.',
+            ],
+            'links' => [
+                'Custom rubber gasket applications' => '/applications/outdoor-electrical-enclosures/',
+                'Custom gasket quotation guide' => '/custom-rubber-gaskets-according-to-drawing-sample-quote/',
+                'Electrical enclosure gaskets' => '/products/electrical-enclosure-gaskets/',
+                'Request a custom rubber gasket quote' => '/contact/',
             ],
         ],
         'adhesive-backed-die-cut-gaskets' => [
@@ -1267,6 +1285,36 @@ function sealbridge_product_search_content(?WP_Post $post = null): string
             . '</tbody></table></div>'
             . '<h2>Closed Cell Foam Gasket Selection</h2><p>Industrial grade is not defined by one universal density or thickness. Select the grade from the real enclosure gap, closing force, outdoor exposure, recovery requirement, water-absorption target, adhesive surface, and expected service life. Requested TDS, SDS, RoHS, REACH, or flame-performance information must match the quoted EPDM foam grade.</p>'
             . '<h2>Request a Custom EPDM Foam Gasket Quote</h2><p>Send a DXF, PDF, drawing, gasket dimensions, thickness, density or compression-force target, adhesive requirement, liner format, working environment, sample quantity, and annual volume. <a href="' . esc_url(home_url('/contact/')) . '">Request an EPDM foam gasket quotation</a>.</p>'
+            . '</section>';
+    }
+
+    if ($post->post_name === 'control-cabinet-sealing-strips') {
+        return '<section class="product-search-content entry-content" aria-labelledby="nema-enclosure-gaskets">'
+            . '<h2 id="nema-enclosure-gaskets">NEMA Enclosure Gasket Options for Control Cabinets</h2>'
+            . '<p>NEMA enclosure gasket projects usually start with the control cabinet door gap, compression force, profile shape, and corner treatment. SealBridge coordinates EPDM and silicone sealing strips for electrical panel doors, distribution cabinets, and outdoor equipment doors where the gasket supports the enclosure sealing design but does not itself carry the NEMA rating.</p>'
+            . '<div class="material-table-scroll"><table><thead><tr><th>Control cabinet seal type</th><th>Buyer benefit</th><th>Quotation details</th></tr></thead><tbody>'
+            . '<tr><td><strong>Bulb seal</strong></td><td>Soft compression for uneven door gaps</td><td>Door gap range, bulb diameter, foot width, corner method</td></tr>'
+            . '<tr><td><strong>D-shape strip</strong></td><td>Balanced sealing force for cabinet doors and panels</td><td>Profile drawing, height, width, hardness or density</td></tr>'
+            . '<tr><td><strong>U-channel or self-grip profile</strong></td><td>Edge-mounted installation without adhesive in some cases</td><td>Sheet thickness, edge thickness, length, joining requirement</td></tr>'
+            . '<tr><td><strong>Custom extruded gasket</strong></td><td>Project-specific cabinet geometry or compression target</td><td>Drawing, sample photo, material, annual volume and documents</td></tr>'
+            . '</tbody></table></div>'
+            . '<h2>Why Buyers Search for NEMA Enclosure Gasket Support</h2><p>Buyers usually search this phrase when they need help translating a cabinet door, latch, and frame design into a practical sealing strip specification. Confirm the enclosure type, the target environment, the available closing force, and the requested material documents before sampling.</p>'
+            . '<h2>Request a Custom Control Cabinet Quote</h2><p>Send the door drawing, section photo, gasket path, gap range, profile preference, material, hardness or density, color, length, corner treatment, quantity, and compliance document needs. <a href="' . esc_url(home_url('/contact/')) . '">Request a control cabinet gasket quotation</a>.</p>'
+            . '</section>';
+    }
+
+    if ($post->post_name === 'custom-rubber-gaskets') {
+        return '<section class="product-search-content entry-content" aria-labelledby="custom-rubber-gaskets-made-to-drawing">'
+            . '<h2 id="custom-rubber-gaskets-made-to-drawing">Custom Rubber Gaskets Made to Drawing</h2>'
+            . '<p>Custom rubber gaskets are used when standard sizes, standard profiles, or off-the-shelf materials do not match the project. SealBridge coordinates custom rubber gaskets for drawings, samples, molded parts, die-cut parts, extrusions, and bonded assemblies across EPDM, NBR, silicone, and neoprene / CR material directions.</p>'
+            . '<div class="material-table-scroll"><table><thead><tr><th>Custom rubber gasket route</th><th>When it fits</th><th>Quotation details</th></tr></thead><tbody>'
+            . '<tr><td><strong>Molded custom rubber gasket</strong></td><td>Defined profile, repeated part, and tooling-based production</td><td>2D/3D drawing, tooling need, hardness, tolerance, quantity</td></tr>'
+            . '<tr><td><strong>Die cut custom rubber gasket</strong></td><td>Flat sheet, frame, pad, or washer style parts</td><td>DXF/PDF drawing, thickness, material, adhesive, tolerance</td></tr>'
+            . '<tr><td><strong>Extruded custom rubber gasket</strong></td><td>Long sealing strips, cabinet doors, and edge-mounted profiles</td><td>Section drawing, length, corner treatment, joining method</td></tr>'
+            . '<tr><td><strong>Sample-matched custom gasket</strong></td><td>Existing part must be matched or improved</td><td>Sample photo, dimensions, surface finish, quantity, inspection criteria</td></tr>'
+            . '</tbody></table></div>'
+            . '<h2>Material Choices for Custom Rubber Gaskets</h2><p>EPDM is often chosen for outdoor weather resistance. NBR suits many oil-resistant applications. Silicone is used when temperature range or softness is more important. The correct choice depends on the application environment and the intended compression result, not on the word rubber alone.</p>'
+            . '<h2>Request a Custom Rubber Gasket Quote</h2><p>Send the drawing or physical sample, target material, hardness, dimensions, tolerance, application environment, sample schedule, bulk quantity, inspection criteria, packing method, and document needs. <a href="' . esc_url(home_url('/contact/')) . '">Request a custom rubber gasket quotation</a>.</p>'
             . '</section>';
     }
 
@@ -1395,6 +1443,7 @@ function sealbridge_product_faq(?WP_Post $post = null): array
         'electrical-enclosure-gaskets' => [
             'What material is commonly used for electrical enclosure gaskets?' => 'Closed-cell EPDM foam is a common starting point for weather-exposed covers and panels. Silicone foam or solid silicone may be considered when temperature range, UV exposure, or softer compression is more important. Material selection should follow the enclosure gap and service conditions.',
             'Can an electrical enclosure gasket be supplied with adhesive backing?' => 'Yes. Adhesive-backed foam or rubber gaskets can support clean placement during assembly. Confirm the mounting surface, operating environment, adhesive requirement, release liner, and required positioning accuracy before sampling.',
+            'What is an IP rated enclosure gasket?' => 'It is a gasket selected to support the sealing design of an enclosure that is being tested for an IP target. The gasket itself does not carry the IP rating; the completed assembly does.',
             'Does a gasket itself have an IP65 or IP66 rating?' => 'No. IP ratings apply to the completed enclosure assembly under its test conditions. The gasket material, compression path, latches, corners, and cover design all contribute to the final result.',
             'What information is needed for an enclosure gasket quote?' => 'Provide the enclosure drawing or gasket path, cover dimensions, thickness or profile target, compression gap, material preference, adhesive requirement, quantity, and any RoHS, REACH, TDS, or SDS document needs.',
         ],
@@ -1418,9 +1467,16 @@ function sealbridge_product_faq(?WP_Post $post = null): array
         ],
         'control-cabinet-sealing-strips' => [
             'How do I choose a control cabinet door sealing strip profile?' => 'Start with the measured minimum and maximum door gap, mounting edge, available compression height, bend radius, latch locations, and corner treatment. Select the profile from those dimensions rather than from a catalog image alone.',
+            'What is a NEMA enclosure gasket in practice?' => 'It is usually a control cabinet sealing strip or door gasket specified to help the complete enclosure meet the intended NEMA test outcome. The gasket itself is only one part of the tested assembly.',
             'Can an electrical panel door gasket support IP or NEMA enclosure testing?' => 'A gasket supports the enclosure sealing design, but IP and NEMA ratings belong to the complete cabinet assembly and its test conditions. Door compression, latches, corners, frame design, and installation quality must all be considered.',
             'How should cabinet door seal corners be supplied?' => 'Corners may be cut, bonded, molded, or formed from a continuous strip depending on the profile, cabinet geometry, and assembly process. Share the door drawing and corner requirement so the joining approach can be reviewed before quotation.',
             'What is needed to quote control cabinet sealing strips?' => 'Provide a profile drawing, section photo, or sample together with door-gap range, gasket path, material, hardness or density, color, roll or cut length, corner requirement, quantity, packing, and document needs.',
+        ],
+        'custom-rubber-gaskets' => [
+            'What makes a custom rubber gasket different from a standard part?' => 'A custom rubber gasket follows the drawing, sample, tolerance, application environment, and production route for a specific project. It may be molded, die cut, extruded, bonded, or assembled to match the enclosure or equipment requirement.',
+            'Which materials are common for custom rubber gaskets?' => 'EPDM, NBR, silicone, and neoprene / CR are common starting points. The material should be selected from weather exposure, oil exposure, temperature range, compression behavior, and document needs.',
+            'When does a custom rubber gasket need tooling?' => 'Tooling is usually needed for molded or special-profile parts, especially when the shape cannot be produced accurately by cutting alone. The final decision depends on the geometry, quantity, and target unit price.',
+            'What files are needed for a custom rubber gasket quote?' => 'Send a drawing or physical sample with dimensions, material target, hardness, tolerance, surface finish, application environment, sample plan, bulk quantity, inspection criteria, and packing preference.',
         ],
     ];
 

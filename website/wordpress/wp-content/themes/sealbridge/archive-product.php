@@ -12,14 +12,14 @@ get_header();
     <div class="section-inner">
         <div class="section-header">
             <h1 class="page-title">Custom Gasket Product Categories</h1>
-            <p>Browse enclosure gaskets, cabinet door seals, EPDM foam gaskets, silicone gaskets, adhesive-backed die-cut gaskets, and drawing-based custom rubber gaskets.</p>
+            <p>Browse electrical enclosure gaskets, control cabinet sealing strips, EPDM foam gaskets, silicone gaskets, adhesive-backed die-cut gaskets, IP rated enclosure gasket support, and drawing-based custom rubber gaskets.</p>
         </div>
         <div class="category-intro">
             <div>
                 <span class="eyebrow">Product Categories</span>
                 <h2>Enclosure and cabinet gasket categories first</h2>
             </div>
-            <p>Each category can be customized by drawing, material, thickness, hardness or density, adhesive requirement, quantity, and compliance documents.</p>
+            <p>Each category can be customized by drawing, material, thickness, hardness or density, adhesive requirement, quantity, and compliance documents. Use the control cabinet and enclosure pages when the target term is NEMA enclosure gasket or IP rated enclosure gasket.</p>
         </div>
         <div class="product-filter-panel" data-product-filter>
             <button class="is-active" type="button" data-filter="all">All Products</button>
