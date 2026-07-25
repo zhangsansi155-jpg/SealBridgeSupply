@@ -280,7 +280,7 @@ function sealbridge_seo_map(): array
                 'description' => 'Custom silicone gaskets made to drawing in solid silicone, silicone foam and sponge for electrical enclosures, LED lighting and industrial OEM sealing.',
             ],
             'adhesive-backed-die-cut-gaskets' => [
-                'title' => 'Die Cut Gaskets | Adhesive-Backed Foam & Rubber',
+                'title' => 'Custom Die Cut Gaskets | Adhesive-Backed Foam & Rubber',
                 'description' => 'Custom die cut gaskets in EPDM foam, silicone foam and rubber sheet, with optional adhesive and release liner for enclosure and OEM assembly.',
             ],
             'custom-rubber-gaskets' => [
@@ -340,6 +340,12 @@ function sealbridge_seo_map(): array
                 'description' => 'Practical gasket guides covering material selection, enclosure sealing, RFQ preparation, compliance questions, and custom manufacturing.',
             ],
         ],
+        'posts' => [
+            'custom-die-cut-gasket-quote-information' => [
+                'title' => 'Die Cut Gasket RFQ Checklist | Drawings, Materials & Tolerances',
+                'description' => 'Use this die cut gasket RFQ checklist to prepare drawings, material, thickness, adhesive, liner, tolerance, quantity, application, and compliance details.',
+            ],
+        ],
     ];
 }
 
@@ -394,6 +400,10 @@ function sealbridge_current_seo(): array
 
     if (is_singular()) {
         $post = get_queried_object();
+        if ($post instanceof WP_Post && $post->post_type === 'post' && isset($map['posts'][$post->post_name])) {
+            return $map['posts'][$post->post_name];
+        }
+
         return [
             'title' => get_the_title($post),
             'description' => has_excerpt($post) ? get_the_excerpt($post) : wp_trim_words(wp_strip_all_tags($post->post_content), 24),

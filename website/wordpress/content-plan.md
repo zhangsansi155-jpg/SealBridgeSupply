@@ -65,7 +65,7 @@ Recommended form fields:
 ## First Blog Topics
 
 1. EPDM vs Silicone: Which Material Is Better for Outdoor Enclosure Gaskets?
-2. What Information Is Needed for a Custom Die Cut Gasket Quote?
+2. Die Cut Gasket RFQ Checklist: Drawings, Materials, and Tolerances
 3. Can a Gasket Be IP65 or IP66 Certified?
 4. Adhesive Backed Gaskets: 3M Tape, Surface Treatment, and Assembly Notes
 5. Die Cutting, Compression Molding, and Extrusion for Custom Rubber Parts
