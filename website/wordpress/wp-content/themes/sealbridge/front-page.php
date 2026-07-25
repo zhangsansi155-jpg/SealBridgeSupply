@@ -13,7 +13,7 @@ get_header();
         <div>
             <span class="eyebrow">Custom Gasket Sourcing</span>
             <h1>Silicone Gaskets, Electrical Enclosure Gaskets and Die Cut Gaskets</h1>
-            <p>SealBridge focuses on the main search terms first: silicone gaskets, electrical enclosure gaskets, control cabinet sealing strips, adhesive-backed die cut gaskets, and custom rubber gaskets for manufacturers across Canada, the United Kingdom, Europe, and other international markets.</p>
+            <p>SealBridge focuses on the main search terms first: silicone gaskets, electrical enclosure gaskets, control cabinet sealing strips, EPDM foam gaskets, adhesive-backed die cut gaskets, and custom rubber gaskets for manufacturers across Canada, the United Kingdom, Europe, and other international markets. Each term routes to one clear page so buyers can move from search to quote without guesswork.</p>
             <div class="hero-actions">
                 <a class="button" href="<?php echo esc_url(home_url('/contact/')); ?>">Request a Quote</a>
                 <a class="button secondary" href="<?php echo esc_url(home_url('/products/')); ?>">View Products</a>
@@ -34,13 +34,15 @@ get_header();
     <div class="section-inner">
         <div class="section-header">
             <h2>Core Product Routes</h2>
-            <p>These are the pages we want to strengthen first because they already match the biggest buying intents.</p>
+            <p>These are the pages we want to strengthen first because they already match the biggest buying intents and can absorb the highest-value search terms.</p>
         </div>
         <div class="grid home-category-grid">
             <?php
             $core_routes = [
                 ['Silicone Gaskets', 'Custom foam, solid silicone, and sponge gaskets for LED housings, outdoor electronics, and temperature-sensitive sealing.', '/products/silicone-gaskets/'],
                 ['Electrical Enclosure Gaskets', 'IP rated enclosure gasket support for panels, junction boxes, outdoor covers, and cabinet sealing.', '/products/electrical-enclosure-gaskets/'],
+                ['Control Cabinet Sealing Strips', 'Cabinet door seals, edge seals, and NEMA enclosure gasket support for industrial panels.', '/products/control-cabinet-sealing-strips/'],
+                ['EPDM Foam Gaskets', 'Closed-cell EPDM sponge and foam gaskets for outdoor waterproof and dustproof sealing.', '/products/epdm-foam-gaskets/'],
                 ['Die Cut Gaskets', 'Adhesive-backed die cut gaskets for faster assembly on boxes, covers, panels, and OEM housings.', '/products/adhesive-backed-die-cut-gaskets/'],
             ];
             foreach ($core_routes as $route) :
@@ -60,6 +62,28 @@ get_header();
         </div>
         <div class="section-link-row">
             <a class="button" href="<?php echo esc_url(home_url('/products/')); ?>">View All Product Categories</a>
+        </div>
+    </div>
+</section>
+
+<section class="section white">
+    <div class="section-inner">
+        <div class="section-header">
+            <h2>Priority Keyword Pages</h2>
+            <p>These are the exact search phrases we want to connect to the right landing page first.</p>
+        </div>
+        <div class="section-link-row">
+            <a class="text-link" href="<?php echo esc_url(home_url('/products/silicone-gaskets/')); ?>">Silicone gaskets</a>
+            <a class="text-link" href="<?php echo esc_url(home_url('/products/electrical-enclosure-gaskets/')); ?>">Electrical enclosure gaskets</a>
+            <a class="text-link" href="<?php echo esc_url(home_url('/products/control-cabinet-sealing-strips/')); ?>">Control cabinet sealing strips</a>
+            <a class="text-link" href="<?php echo esc_url(home_url('/products/epdm-foam-gaskets/')); ?>">EPDM foam gaskets</a>
+            <a class="text-link" href="<?php echo esc_url(home_url('/products/adhesive-backed-die-cut-gaskets/')); ?>">Die cut gaskets</a>
+        </div>
+        <div class="section-link-row">
+            <a class="text-link" href="<?php echo esc_url(home_url('/choose-electrical-enclosure-gaskets-outdoor-boxes/')); ?>">How to choose an electrical enclosure gasket</a>
+            <a class="text-link" href="<?php echo esc_url(home_url('/epdm-vs-silicone-outdoor-enclosure-gaskets/')); ?>">EPDM vs silicone for outdoor enclosures</a>
+            <a class="text-link" href="<?php echo esc_url(home_url('/custom-die-cut-gasket-quote-information/')); ?>">Custom die cut gasket RFQ checklist</a>
+            <a class="text-link" href="<?php echo esc_url(home_url('/control-cabinet-door-seal-profiles/')); ?>">Control cabinet door seal profiles</a>
         </div>
     </div>
 </section>
