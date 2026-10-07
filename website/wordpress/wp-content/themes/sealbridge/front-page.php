@@ -12,8 +12,8 @@ get_header();
     <div class="section-inner hero-grid">
         <div>
             <span class="eyebrow">Custom Gasket Sourcing</span>
-            <h1>Silicone Gaskets, Electrical Enclosure Gaskets and Die Cut Gaskets</h1>
-            <p>SealBridge focuses on the main search terms first: silicone gaskets, electrical enclosure gaskets, control cabinet sealing strips, EPDM foam gaskets, adhesive-backed die cut gaskets, and custom rubber gaskets for manufacturers across Canada, the United Kingdom, Europe, and other international markets. Each term routes to one clear page so buyers can move from search to quote without guesswork.</p>
+            <h1>Custom Gaskets for Electrical Enclosures and OEM Equipment</h1>
+            <p>SealBridge coordinates drawing review, material selection, sampling, and production for enclosure doors, control cabinets, outdoor equipment, and industrial OEM assemblies. Compare the dedicated product routes for silicone, EPDM foam, extruded door seals, and die-cut gasket parts.</p>
             <div class="hero-actions">
                 <a class="button" href="<?php echo esc_url(home_url('/contact/')); ?>">Request a Quote</a>
                 <a class="button secondary" href="<?php echo esc_url(home_url('/products/')); ?>">View Products</a>
@@ -75,8 +75,8 @@ get_header();
         <div class="section-link-row">
             <a class="text-link" href="<?php echo esc_url(home_url('/products/silicone-gaskets/')); ?>">Silicone gaskets</a>
             <a class="text-link" href="<?php echo esc_url(home_url('/products/electrical-enclosure-gaskets/')); ?>">Electrical enclosure gaskets</a>
-            <a class="text-link" href="<?php echo esc_url(home_url('/products/control-cabinet-sealing-strips/')); ?>">Control cabinet sealing strips</a>
-            <a class="text-link" href="<?php echo esc_url(home_url('/products/epdm-foam-gaskets/')); ?>">EPDM foam gaskets</a>
+            <a class="text-link" href="<?php echo esc_url(home_url('/products/control-cabinet-sealing-strips/')); ?>">Gasketing for control cabinets</a>
+            <a class="text-link" href="<?php echo esc_url(home_url('/products/epdm-foam-gaskets/')); ?>">EPDM foam and sponge gaskets</a>
             <a class="text-link" href="<?php echo esc_url(home_url('/products/adhesive-backed-die-cut-gaskets/')); ?>">Die cut gaskets</a>
         </div>
         <div class="section-link-row">

@@ -229,12 +229,12 @@ function sealbridge_seo_map(): array
 {
     return [
         'home' => [
-            'title' => 'Silicone Gaskets, Electrical Enclosure Gaskets & Die Cut Gaskets | SealBridge Supply',
-            'description' => 'Custom gasket sourcing, sampling, and production coordination for silicone gaskets, electrical enclosure gaskets, control cabinet sealing strips, EPDM foam gaskets, and adhesive-backed die cut gasket projects.',
+            'title' => 'Custom Gasket Supplier for Electrical Enclosures | SealBridge Supply',
+            'description' => 'Drawing-based custom gasket sourcing, sampling, and production support for electrical enclosures, control cabinets, outdoor equipment, and industrial OEM projects.',
         ],
         'products_archive' => [
-            'title' => 'Silicone Gaskets, Enclosure Gaskets, EPDM Foam & Custom Die Cut Gaskets',
-            'description' => 'Browse the main product families for silicone gaskets, electrical enclosure gaskets, control cabinet sealing strips, EPDM foam gaskets, adhesive-backed die cut gaskets, and custom rubber gaskets.',
+            'title' => 'Custom Gasket Products | EPDM, Silicone & Die-Cut Parts',
+            'description' => 'Compare custom gasket product routes by material and process, including EPDM foam, silicone, extrusion, molding, die cutting, and adhesive lamination.',
         ],
         'applications_archive' => [
             'title' => 'Gasket Application Scenarios for Electrical Enclosures and Cabinets',
@@ -268,12 +268,12 @@ function sealbridge_seo_map(): array
                 'description' => 'Electrical enclosure gaskets in EPDM foam, rubber, and silicone for panels, junction boxes, outdoor covers, and IP rated enclosure gasket projects.',
             ],
             'control-cabinet-sealing-strips' => [
-                'title' => 'Control Cabinet Door Sealing Strips | NEMA Enclosure Gasket Support',
-                'description' => 'Control cabinet door sealing strips, electrical panel door gaskets, bulb seals, and EPDM profiles for NEMA enclosure gasket projects.',
+                'title' => 'Control Cabinet Door Gaskets & Sealing Strips',
+                'description' => 'Gasketing for control cabinets using EPDM door seals, bulb profiles, edge trims, and custom sealing strips selected by door gap and compression.',
             ],
             'epdm-foam-gaskets' => [
-                'title' => 'Closed Cell EPDM Foam Gaskets | Industrial Custom Gaskets',
-                'description' => 'Industrial closed cell EPDM foam gaskets, custom die-cut frames, strips and adhesive-backed parts for outdoor enclosures, panels and OEM equipment.',
+                'title' => 'Closed Cell EPDM Foam & Sponge Gaskets | Custom Parts',
+                'description' => 'Closed cell EPDM foam and sponge gaskets supplied as custom die-cut frames, strips, rolls, and adhesive-backed parts for outdoor enclosures and OEM equipment.',
             ],
             'silicone-gaskets' => [
                 'title' => 'Silicone Gaskets | Custom Foam, Solid Silicone & Sponge',
@@ -379,6 +379,26 @@ function sealbridge_seo_map(): array
             ],
         ],
     ];
+}
+
+/** Keep each commercial product page focused on one primary search intent. */
+function sealbridge_product_heading(?WP_Post $post = null): string
+{
+    $post = $post ?: get_post();
+    if (!$post instanceof WP_Post) {
+        return '';
+    }
+
+    $headings = [
+        'electrical-enclosure-gaskets' => 'Electrical Enclosure Gaskets',
+        'control-cabinet-sealing-strips' => 'Control Cabinet Door Gaskets and Sealing Strips',
+        'epdm-foam-gaskets' => 'Closed Cell EPDM Foam and Sponge Gaskets',
+        'silicone-gaskets' => 'Silicone Gaskets',
+        'adhesive-backed-die-cut-gaskets' => 'Custom Die Cut Gaskets',
+        'custom-rubber-gaskets' => 'Custom Rubber Gaskets',
+    ];
+
+    return $headings[$post->post_name] ?? get_the_title($post);
 }
 
 function sealbridge_current_seo(): array
@@ -612,7 +632,7 @@ function sealbridge_seo_head(): void
         $schema = [
             '@context' => 'https://schema.org',
             '@type' => is_singular('product') ? 'Service' : 'Organization',
-            'name' => is_singular('product') ? get_the_title() : get_bloginfo('name'),
+            'name' => is_singular('product') ? sealbridge_product_heading(get_queried_object()) : get_bloginfo('name'),
             'description' => $description,
             'url' => $canonical,
         ];
@@ -1326,7 +1346,7 @@ function sealbridge_product_search_content(?WP_Post $post = null): string
             . '<tr><td><strong>Kiss-cut foam gasket sheet</strong></td><td>Repeat production with multiple small parts per liner</td><td>Part orientation, cavity layout, waste removal and quantity per sheet</td></tr>'
             . '</tbody></table></div>'
             . '<h2>Closed Cell EPDM Foam Gasket Selection</h2><p>When buyers search for industrial grade closed cell foam gaskets, they usually need a weather-resistant material for outdoor enclosures, HVAC covers, solar equipment, or other OEM assemblies. The quoted grade should be selected from the real compression gap, exposure conditions, and adhesive or liner needs.</p>'
-            . '<h2>Closed Cell Foam Gasket Selection</h2><p>Industrial grade is not defined by one universal density or thickness. Select the grade from the real enclosure gap, closing force, outdoor exposure, recovery requirement, water-absorption target, adhesive surface, and expected service life. Requested TDS, SDS, RoHS, REACH, or flame-performance information must match the quoted EPDM foam grade.</p>'
+            . '<h2>EPDM Foam vs Sponge Gaskets</h2><p>EPDM foam and EPDM sponge are often used as overlapping buying terms, but the quoted construction should still identify the cell structure, density or compression-force range, thickness, skin condition, and water-absorption requirement. For an EPDM sponge gasket, confirm whether the part is a die-cut frame, strip, roll, or joined profile and whether adhesive backing is needed. Industrial grade is not defined by one universal density or thickness; requested TDS, SDS, RoHS, REACH, or flame-performance information must match the exact quoted grade.</p>'
             . '<h2>Request a Custom EPDM Foam Gasket Quote</h2><p>Send a DXF, PDF, drawing, gasket dimensions, thickness, density or compression-force target, adhesive requirement, liner format, working environment, sample quantity, and annual volume. <a href="' . esc_url(home_url('/contact/')) . '">Request an EPDM foam gasket quotation</a>.</p>'
             . '</section>';
     }
@@ -1341,7 +1361,7 @@ function sealbridge_product_search_content(?WP_Post $post = null): string
             . '<tr><td><strong>Die-cut enclosure frame</strong></td><td>Flat cover geometry and repeatable assembly</td><td>Drawing, gasket path, tolerance and quantity</td></tr>'
             . '<tr><td><strong>Adhesive-backed enclosure gasket</strong></td><td>Clean placement during cover or panel assembly</td><td>Mounting surface, liner type, adhesive grade and working environment</td></tr>'
             . '</tbody></table></div>'
-            . '<h2>Why Buyers Search for Electrical Enclosure Gaskets</h2><p>Most buyers are comparing materials and fit at the same time. The enclosure geometry, available closing force, service environment, and requested documents should drive the selection before sampling or quotation. This page is the main route for IP rated enclosure gasket support.</p>'
+            . '<h2>Compression and Enclosure Fit</h2><p>Select the gasket from the enclosure geometry, minimum and maximum gap, available closing force, latch spacing, service environment, and mounting method. The gasket supports an IP sealing target, while the completed enclosure must be tested as an assembly.</p>'
             . '<h2>Request an Electrical Enclosure Gasket Quote</h2><p>Send the enclosure drawing, gasket path, cover dimensions, thickness target, material preference, adhesive requirement, quantity, and document needs. <a href="' . esc_url(home_url('/contact/')) . '">Request an electrical enclosure gasket quotation</a>.</p>'
             . '</section>';
     }
@@ -1356,8 +1376,9 @@ function sealbridge_product_search_content(?WP_Post $post = null): string
             . '<tr><td><strong>U-channel or self-grip profile</strong></td><td>Edge-mounted installation without adhesive in some cases</td><td>Sheet thickness, edge thickness, length, joining requirement</td></tr>'
             . '<tr><td><strong>Custom extruded gasket</strong></td><td>Project-specific cabinet geometry or compression target</td><td>Drawing, sample photo, material, annual volume and documents</td></tr>'
             . '</tbody></table></div>'
+            . '<h2>Gasketing for Control Cabinets: Profile Selection</h2><p>Gasketing for control cabinets should be selected from the measured minimum and maximum door gap, mounting edge, hinge and latch spacing, bend radius, and available closing force. Bulb and sponge profiles suit different compression ranges, while cut, bonded, or molded corners affect continuity around the cabinet door. Share a section drawing or sample photo before choosing a profile from appearance alone.</p>'
             . '<h2>Electrical Panel Door Gasket and NEMA Enclosure Support</h2><p>For cabinet buyers, the useful search intent is usually a mix of profile fit and sealing outcome. The door seal should be chosen from the actual door gap, latching pressure, corner treatment, and expected service environment so the finished enclosure can be tested as a system.</p>'
-            . '<h2>Why Buyers Search for NEMA Enclosure Gasket Support</h2><p>Buyers usually search this phrase when they need help translating a cabinet door, latch, and frame design into a practical sealing strip specification. Confirm the enclosure type, the target environment, the available closing force, and the requested material documents before sampling.</p>'
+            . '<h2>Cabinet Door Compression and Corner Design</h2><p>Translate the cabinet door, latch, hinge, and frame design into a practical sealing-strip specification. Confirm the door-gap range, compression force, corner construction, opening cycles, environment, and requested material documents before sampling.</p>'
             . '<h2>Request a Custom Control Cabinet Quote</h2><p>Send the door drawing, section photo, gasket path, gap range, profile preference, material, hardness or density, color, length, corner treatment, quantity, and compliance document needs. <a href="' . esc_url(home_url('/contact/')) . '">Request a control cabinet gasket quotation</a>.</p>'
             . '</section>';
     }
@@ -1387,7 +1408,7 @@ function sealbridge_product_search_content(?WP_Post $post = null): string
             . '<tr><td><strong>Kiss-cut gasket sheet</strong></td><td>Multiple parts remain positioned on a common liner</td><td>Sheet layout, pull tab, part spacing, waste removal and packing</td></tr>'
             . '<tr><td><strong>Prototype or short-run gasket</strong></td><td>Drawing and assembly checks before volume production</td><td>Sample quantity, inspection dimensions and revision control</td></tr>'
             . '</tbody></table></div>'
-            . '<h2>Adhesive Backed Die Cut Gaskets for Fast Enclosure Assembly</h2><p>Buyers usually search this phrase when they want faster assembly, cleaner placement, and lower handling time on boxes, housings, access covers, and panel parts. The adhesion system should be matched to the mounting surface instead of being treated as a generic tape choice.</p>'
+            . '<h2>Adhesive Backing for Repeatable Assembly</h2><p>Pressure-sensitive adhesive can improve positioning, handling, and installation consistency on boxes, housings, access covers, and panel parts. Match the adhesive and any primer or surface treatment to the mounting substrate, temperature, environmental exposure, and required release liner.</p>'
             . '<h2>Die Cutting, Adhesive Lamination, and Inspection</h2><p>The manufacturing route should confirm material batch, thickness, adhesive lamination, cutting method, critical dimensions, edge quality, liner condition, part counting, and packing. Adhesive selection must reflect the silicone, plastic, painted metal, or other assembly surface rather than being treated as a generic option.</p>'
             . '<h2>Request a Custom Die Cut Gasket Quote</h2><p>Send the CAD or dimensioned drawing, material, thickness, adhesive, liner, tolerance, assembly surface, sample quantity, annual demand, and requested documents. <a href="' . esc_url(home_url('/contact/')) . '">Request a custom die cut gasket quotation</a>.</p>'
             . '</section>';
@@ -1407,7 +1428,7 @@ function sealbridge_product_search_content(?WP_Post $post = null): string
         . '<tr><td><strong>Adhesive-backed silicone gasket</strong></td><td>Repeatable placement during enclosure or panel assembly</td><td>Silicone surface treatment, adhesive grade, mounting surface and release liner</td></tr>'
         . '</tbody></table></div>'
         . '<h2>Silicone Gaskets for LED Lighting and Outdoor Electronics</h2>'
-        . '<p>Buyers often search silicone gaskets when the application involves LED lighting housings, outdoor electronics, battery covers, or other assemblies exposed to heat, cold, UV, ozone, and frequent opening. Silicone is often compared with EPDM when softness or temperature range matters more than cost.</p>'
+        . '<p>Silicone gaskets suit LED lighting housings, outdoor electronics, battery covers, and other assemblies exposed to heat, cold, UV, ozone, or frequent opening. Compare silicone with EPDM using the actual temperature range, compression force, weather exposure, and project cost.</p>'
         . '<h2>Silicone Enclosure Gasket Applications</h2>'
         . '<p>Common projects include silicone enclosure gaskets for LED lighting housings, outdoor electronics, electrical cabinet covers, battery or power-electronics housings, display covers, sensors, and other assemblies exposed to heat, cold, UV, ozone, or repeated opening. A gasket supports the sealing design, but IP and NEMA ratings apply to the complete tested enclosure.</p>'
         . '<h2>Manufacturing and Inspection Route</h2>'

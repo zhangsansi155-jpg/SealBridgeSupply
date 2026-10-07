@@ -45,7 +45,7 @@ get_header();
                 </div>
                 <div class="product-summary">
                     <p class="eyebrow">Product Category</p>
-                    <h1 class="page-title"><?php the_title(); ?></h1>
+                    <h1 class="page-title"><?php echo esc_html(sealbridge_product_heading()); ?></h1>
                     <p class="product-lead"><?php echo esc_html(get_the_excerpt()); ?></p>
                     <dl class="product-spec-table">
                         <div><dt>Material</dt><dd><?php echo esc_html($specs[0]); ?></dd></div>
